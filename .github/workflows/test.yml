@@ -21,7 +21,12 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew connectedDebugAndroidTest
+          script: ./gradlew connectedCheck
+      - name: Submit report
+        run: |
+          curl -Os https://uploader.codecov.io/latest/macos/codecov
+          chmod +x codecov
+          ./codecov -f "build/reports/coverage/androidTest/debug/report.xml", "treemap-example/build/reports/coverage/androidTest/debug/report.xml"
 
   test:
     runs-on: ubuntu-latest
@@ -29,4 +34,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Test
         run: ./gradlew koverReport
-        
+      - name: Submit report
+        run: |
+          curl -Os https://uploader.codecov.io/latest/linux/codecov
+          chmod +x codecov
+          ./codecov -f "build/reports/kover/report.xml"

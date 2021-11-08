@@ -22,11 +22,11 @@ jobs:
         with:
           api-level: 29
           script: ./gradlew connectedCheck
-      - name: Submit report
-        run: |
-          curl -Os https://uploader.codecov.io/latest/macos/codecov
-          chmod +x codecov
-          ./codecov -f "build/reports/coverage/androidTest/debug/report.xml", "treemap-example/build/reports/coverage/androidTest/debug/report.xml"
+#      - name: Submit report
+#        run: |
+#          curl -Os https://uploader.codecov.io/latest/macos/codecov
+#          chmod +x codecov
+#          ./codecov -f "build/reports/coverage/androidTest/debug/report.xml", "treemap-example/build/reports/coverage/androidTest/debug/report.xml"
 
   test:
     runs-on: ubuntu-latest

@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming")
+
 package by.overpass.treemapchart.example.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme

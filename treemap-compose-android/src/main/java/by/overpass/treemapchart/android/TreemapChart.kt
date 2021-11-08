@@ -1,3 +1,5 @@
+@file:Suppress("FunctionNaming", "FunctionParameterNaming", "MagicNumber")
+
 package by.overpass.treemapchart.android
 
 import androidx.compose.foundation.border

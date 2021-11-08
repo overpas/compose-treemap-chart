@@ -161,6 +161,7 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
             }
     }
 
+    @Suppress("MagicNumber")
     private fun isDoubleEqual(one: Double, two: Double): Boolean {
         val eps = 0.00001
         return abs(one - two) < eps

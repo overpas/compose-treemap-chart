@@ -13,6 +13,7 @@ buildscript {
         lifecycle_runtime_ktx_version = '2.4.0'
         activity_compose_version = '1.4.0'
         detekt_version = '1.19.0-RC1'
+        kover_version = '0.4.1'
 
         compile_sdk = 31
         min_sdk = 21
@@ -21,12 +22,23 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        gradlePluginPortal()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$android_build_tools_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlinx:kover:$kover_version"
     }
 }
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'kover'
 
 task clean(type: Delete) {
     delete rootProject.buildDir

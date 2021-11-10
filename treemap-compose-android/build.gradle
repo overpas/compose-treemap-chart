@@ -57,3 +57,11 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'io.github.overpas'
+    PUBLISH_VERSION = '0.0.1'
+    PUBLISH_ARTIFACT_ID = 'treemap-compose-android'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"

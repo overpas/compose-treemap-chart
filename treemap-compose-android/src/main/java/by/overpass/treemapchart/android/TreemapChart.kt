@@ -35,6 +35,12 @@ internal val sampleTreeData = tree(10) {
     node(1)
 }
 
+/**
+ * Basic UI to represent a treemap item
+ *
+ * @param item item to be displayed
+ * @param modifier compose modifier
+ */
 @Composable
 fun SimpleTreemapItem(item: Int, modifier: Modifier = Modifier) {
     Box(
@@ -48,6 +54,17 @@ fun SimpleTreemapItem(item: Int, modifier: Modifier = Modifier) {
     }
 }
 
+/**
+ * Treemap chart UI
+ *
+ * @param data items to be displayed
+ * @param evaluateItem function that evaluates an item
+ * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
+ * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
+ * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
+ * @param modifier compose modifier
+ * @param ItemContent UI for a leaf treemap item
+ */
 @Composable
 fun <T> TreemapChart(
     data: Tree<T>,
@@ -66,6 +83,16 @@ fun <T> TreemapChart(
     }
 }
 
+/**
+ * Treemap chart node UI
+ *
+ * @param data item to be displayed
+ * @param evaluateItem function that evaluates an item
+ * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
+ * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
+ * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
+ * @param ItemContent UI for a leaf treemap item
+ */
 @Composable
 fun <T> TreemapChartNode(
     data: Tree.Node<T>,
@@ -91,6 +118,16 @@ fun <T> TreemapChartNode(
     }
 }
 
+/**
+ * Treemap chart leaf node UI
+ *
+ * @param data item to be displayed
+ * @param evaluateItem function that evaluates an item
+ * @param treemapChartMeasurer strategy of positioning nodes; Available implementations:
+ * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
+ * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
+ * @param ItemContent UI for a leaf treemap item
+ */
 @Composable
 fun <T> TreemapChart(
     data: Tree.Node<T>,

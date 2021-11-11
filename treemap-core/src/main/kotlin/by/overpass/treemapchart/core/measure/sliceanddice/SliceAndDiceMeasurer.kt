@@ -5,6 +5,9 @@ import by.overpass.treemapchart.core.measure.TreemapChartMeasurer
 import by.overpass.treemapchart.core.measure.TreemapNode
 import kotlin.math.roundToInt
 
+/**
+ * An implementation of [TreemapChartMeasurer] that positions treemap nodes the "slice-and-dice" way
+ */
 class SliceAndDiceMeasurer : TreemapChartMeasurer {
 
     override fun measureNodes(values: List<Double>, width: Int, height: Int): List<TreemapNode> {

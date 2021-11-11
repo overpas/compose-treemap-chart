@@ -1,3 +1,7 @@
+/**
+ * DSL for creating the tree structure to be displayed in the treemap chart
+ */
+
 package by.overpass.treemapchart.core.tree
 
 @DslMarker

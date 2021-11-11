@@ -1,6 +1,9 @@
 package by.overpass.treemapchart.core.measure.squarified
 
-class TreemapElement(var area: Double) {
+/**
+ * An intermediary object to represent a [by.overpass.treemapchart.core.measure.TreemapNode]
+ */
+internal class TreemapElement(var area: Double) {
     var left = 0.0
     var top = 0.0
     var width = 0.0

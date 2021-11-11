@@ -12,3 +12,9 @@ java {
 dependencies {
     testImplementation "junit:junit:$junit_version"
 }
+
+ext {
+    PUBLISH_ARTIFACT_ID = 'treemap-core'
+}
+
+apply from: "${rootProject.projectDir}/scripts/publish-module.gradle"

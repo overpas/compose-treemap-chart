@@ -19,6 +19,9 @@ buildscript {
         compile_sdk = 31
         min_sdk = 21
         target_sdk = 31
+
+        PUBLISH_GROUP_ID = 'io.github.overpas'
+        PUBLISH_VERSION = '0.0.2'
     }
     repositories {
         google()

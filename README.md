@@ -65,3 +65,5 @@ fun TreemapItem(item: Int, modifier: Modifier = Modifier) {
     }
 }
 ```
+The code above produces something like this:
+<img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">

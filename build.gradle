@@ -15,7 +15,7 @@ buildscript {
         detekt_version = '1.19.0-RC2'
         kover_version = '0.4.2'
         gradle_nexus_plugin_version = '1.1.0'
-        dokka_version = '1.5.31'
+        dokka_version = '1.6.0'
 
         compile_sdk = 31
         min_sdk = 21

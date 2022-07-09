@@ -10,7 +10,7 @@ buildscript {
         core_ktx_version = '1.8.0'
         appcompat_version = '1.4.2'
         material_version = '1.6.1'
-        lifecycle_runtime_ktx_version = '2.4.1'
+        lifecycle_runtime_ktx_version = '2.5.0'
         activity_compose_version = '1.5.0'
         detekt_version = '1.19.0'
         kover_version = '0.5.1'

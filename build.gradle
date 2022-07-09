@@ -12,7 +12,7 @@ buildscript {
         material_version = '1.6.1'
         lifecycle_runtime_ktx_version = '2.4.1'
         activity_compose_version = '1.5.0'
-        detekt_version = '1.19.0'
+        detekt_version = '1.20.0'
         kover_version = '0.5.1'
         gradle_nexus_plugin_version = '1.1.0'
         dokka_version = '1.7.0'

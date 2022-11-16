@@ -23,7 +23,7 @@ buildscript {
         target_sdk = 33
 
         PUBLISH_GROUP_ID = 'io.github.overpas'
-        PUBLISH_VERSION = '0.0.3'
+        PUBLISH_VERSION = '0.0.4'
     }
     repositories {
         google()

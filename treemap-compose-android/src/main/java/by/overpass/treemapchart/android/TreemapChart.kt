@@ -1,5 +1,3 @@
-@file:Suppress("FunctionNaming", "FunctionParameterNaming", "MagicNumber")
-
 package by.overpass.treemapchart.android
 
 import androidx.compose.foundation.border
@@ -84,6 +82,38 @@ fun <T> TreemapChart(
 }
 
 /**
+ * Treemap chart UI
+ *
+ * @param data items to be displayed
+ * @param evaluateItem function that evaluates an item
+ * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
+ * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
+ * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
+ * @param modifier compose modifier
+ * @param NodeContent UI for a treemap node (leaf or group)
+ */
+@Composable
+fun <T> TreemapChart(
+    data: Tree<T>,
+    evaluateItem: (T) -> Double,
+    treemapChartMeasurer: TreemapChartMeasurer,
+    modifier: Modifier = Modifier,
+    NodeContent: @Composable (
+        data: Tree.Node<T>,
+        groupContent: @Composable (Tree.Node<T>) -> Unit,
+    ) -> Unit,
+) {
+    Box(modifier) {
+        TreemapChartNode(
+            data = data.root,
+            evaluateItem = evaluateItem,
+            treemapChartMeasurer = treemapChartMeasurer,
+            NodeContent = NodeContent,
+        )
+    }
+}
+
+/**
  * Treemap chart node UI
  *
  * @param data item to be displayed
@@ -100,22 +130,56 @@ fun <T> TreemapChartNode(
     treemapChartMeasurer: TreemapChartMeasurer,
     ItemContent: @Composable (T) -> Unit,
 ) {
-    if (data.children.isEmpty()) {
-        ItemContent(data.data)
-    } else {
-        TreemapChart(
-            data = data,
-            evaluateItem = evaluateItem,
-            treemapChartMeasurer = treemapChartMeasurer,
-        ) { node ->
-            TreemapChartNode(
+    TreemapChartNode(
+        data = data,
+        evaluateItem = evaluateItem,
+        treemapChartMeasurer = treemapChartMeasurer,
+    ) { node, GroupContent ->
+        if (node.children.isEmpty()) {
+            ItemContent(node.data)
+        } else {
+            GroupContent(node)
+        }
+    }
+}
+
+/**
+ * Treemap chart node UI
+ *
+ * @param data item to be displayed
+ * @param evaluateItem function that evaluates an item
+ * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
+ * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
+ * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
+ * @param NodeContent UI for a treemap node (leaf or group)
+ */
+@Composable
+fun <T> TreemapChartNode(
+    data: Tree.Node<T>,
+    evaluateItem: (T) -> Double,
+    treemapChartMeasurer: TreemapChartMeasurer,
+    NodeContent: @Composable (
+        data: Tree.Node<T>,
+        groupContent: @Composable (Tree.Node<T>) -> Unit,
+    ) -> Unit,
+) {
+    NodeContent(
+        data = data,
+        groupContent = { node ->
+            TreemapChartLayout(
                 data = node,
                 evaluateItem = evaluateItem,
                 treemapChartMeasurer = treemapChartMeasurer,
-                ItemContent = ItemContent,
-            )
-        }
-    }
+            ) { childNode ->
+                TreemapChartNode(
+                    data = childNode,
+                    evaluateItem = evaluateItem,
+                    treemapChartMeasurer = treemapChartMeasurer,
+                    NodeContent = NodeContent,
+                )
+            }
+        },
+    )
 }
 
 /**
@@ -129,10 +193,11 @@ fun <T> TreemapChartNode(
  * @param ItemContent UI for a leaf treemap item
  */
 @Composable
-fun <T> TreemapChart(
+fun <T> TreemapChartLayout(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
     treemapChartMeasurer: TreemapChartMeasurer,
+    modifier: Modifier = Modifier,
     ItemContent: @Composable (Tree.Node<T>) -> Unit,
 ) {
     Layout(
@@ -141,6 +206,7 @@ fun <T> TreemapChart(
                 ItemContent(node)
             }
         },
+        modifier = modifier,
     ) { measurables, constraints ->
         val nodes = treemapChartMeasurer.measureNodes(
             data.children.map { evaluateItem(it.data) },
@@ -158,16 +224,17 @@ fun <T> TreemapChart(
     }
 }
 
+@Suppress("UnusedPrivateMember")
 @Preview(showBackground = true)
 @Composable
 private fun PreviewTreemapChart() {
     MaterialTheme {
         TreemapChart(
             data = sampleTreeData,
-            evaluateItem = { it.toDouble() },
+            evaluateItem = Int::toDouble,
             treemapChartMeasurer = remember { SquarifiedMeasurer() }
-        ) {
-            SimpleTreemapItem(it)
+        ) { data ->
+            SimpleTreemapItem(data)
         }
     }
 }

@@ -32,9 +32,9 @@ class TreemapChartTest {
             MaterialTheme {
                 TreemapChart(
                     data = sampleTreeData,
-                    evaluateItem = { it.toDouble() },
+                    evaluateItem = Int::toDouble,
                     treemapChartMeasurer = remember { measurer }
-                ) {
+                ) { it ->
                     SimpleTreemapItem(it)
                 }
             }

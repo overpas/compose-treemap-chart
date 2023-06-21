@@ -10,8 +10,8 @@ Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart imple
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-core:0.0.3"
-implementation "io.github.overpas:treemap-compose-android:0.0.3"
+implementation "io.github.overpas:treemap-core:0.0.4"
+implementation "io.github.overpas:treemap-compose-android:0.0.4"
 ```
 ### Sample code
 ```kotlin

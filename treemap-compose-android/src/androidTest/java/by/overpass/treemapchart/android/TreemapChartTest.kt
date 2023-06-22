@@ -1,7 +1,7 @@
 package by.overpass.treemapchart.android
 
 import androidx.compose.material.MaterialTheme
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -30,12 +30,13 @@ class TreemapChartTest {
     private fun testTreemapDisplayed(measurer: TreemapChartMeasurer) {
         composeTestRule.setContent {
             MaterialTheme {
-                TreemapChart(
-                    data = sampleTreeData,
-                    evaluateItem = Int::toDouble,
-                    treemapChartMeasurer = remember { measurer }
-                ) { it ->
-                    SimpleTreemapItem(it)
+                CompositionLocalProvider(LocalTreemapChartMeasurer provides measurer) {
+                    TreemapChart(
+                        data = sampleTreeData,
+                        evaluateItem = Int::toDouble,
+                    ) { it ->
+                        SimpleTreemapItem(it)
+                    }
                 }
             }
         }

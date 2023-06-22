@@ -23,7 +23,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import by.overpass.treemapchart.android.TreemapChart
-import by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer
 import by.overpass.treemapchart.core.tree.Tree
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -172,7 +171,6 @@ internal fun ComplexChart(modifier: Modifier = Modifier, onBack: () -> Unit) {
         TreemapChart(
             data = tree!!,
             evaluateItem = { it.value.toDouble() },
-            treemapChartMeasurer = SquarifiedMeasurer(),
             modifier = modifier,
         ) { node, GroupContent ->
             if (node.children.isEmpty()) {
@@ -201,9 +199,12 @@ private fun CategoryItem(item: CategoryItem, modifier: Modifier = Modifier) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround,
-        modifier = modifier.border(1.dp, Color.White)
+        modifier = modifier
+            .border(1.dp, Color.White)
             .clickable {
-                Toast.makeText(context, "${item.name} clicked", Toast.LENGTH_SHORT).show()
+                Toast
+                    .makeText(context, "${item.name} clicked", Toast.LENGTH_SHORT)
+                    .show()
             }
             .padding(4.dp),
     ) {

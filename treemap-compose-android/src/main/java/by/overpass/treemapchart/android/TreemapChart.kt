@@ -5,16 +5,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
-import by.overpass.treemapchart.core.measure.TreemapChartMeasurer
-import by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer
 import by.overpass.treemapchart.core.tree.Tree
 import by.overpass.treemapchart.core.tree.tree
 
@@ -57,9 +55,6 @@ fun SimpleTreemapItem(item: Int, modifier: Modifier = Modifier) {
  *
  * @param data items to be displayed
  * @param evaluateItem function that evaluates an item
- * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
- * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
- * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
  * @param modifier compose modifier
  * @param ItemContent UI for a leaf treemap item
  */
@@ -67,15 +62,14 @@ fun SimpleTreemapItem(item: Int, modifier: Modifier = Modifier) {
 fun <T> TreemapChart(
     data: Tree<T>,
     evaluateItem: (T) -> Double,
-    treemapChartMeasurer: TreemapChartMeasurer,
     modifier: Modifier = Modifier,
     ItemContent: @Composable (T) -> Unit,
 ) {
+    LocalContext
     Box(modifier) {
         TreemapChartNode(
             data = data.root,
             evaluateItem = evaluateItem,
-            treemapChartMeasurer = treemapChartMeasurer,
             ItemContent = ItemContent,
         )
     }
@@ -86,9 +80,6 @@ fun <T> TreemapChart(
  *
  * @param data items to be displayed
  * @param evaluateItem function that evaluates an item
- * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
- * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
- * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
  * @param modifier compose modifier
  * @param NodeContent UI for a treemap node (leaf or group)
  */
@@ -96,7 +87,6 @@ fun <T> TreemapChart(
 fun <T> TreemapChart(
     data: Tree<T>,
     evaluateItem: (T) -> Double,
-    treemapChartMeasurer: TreemapChartMeasurer,
     modifier: Modifier = Modifier,
     NodeContent: @Composable (
         data: Tree.Node<T>,
@@ -107,7 +97,6 @@ fun <T> TreemapChart(
         TreemapChartNode(
             data = data.root,
             evaluateItem = evaluateItem,
-            treemapChartMeasurer = treemapChartMeasurer,
             NodeContent = NodeContent,
         )
     }
@@ -118,22 +107,17 @@ fun <T> TreemapChart(
  *
  * @param data item to be displayed
  * @param evaluateItem function that evaluates an item
- * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
- * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
- * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
  * @param ItemContent UI for a leaf treemap item
  */
 @Composable
 fun <T> TreemapChartNode(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
-    treemapChartMeasurer: TreemapChartMeasurer,
     ItemContent: @Composable (T) -> Unit,
 ) {
     TreemapChartNode(
         data = data,
         evaluateItem = evaluateItem,
-        treemapChartMeasurer = treemapChartMeasurer,
     ) { node, GroupContent ->
         if (node.children.isEmpty()) {
             ItemContent(node.data)
@@ -148,16 +132,12 @@ fun <T> TreemapChartNode(
  *
  * @param data item to be displayed
  * @param evaluateItem function that evaluates an item
- * @param treemapChartMeasurer strategy of positioning nodes; available implementations are:
- * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
- * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
  * @param NodeContent UI for a treemap node (leaf or group)
  */
 @Composable
 fun <T> TreemapChartNode(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
-    treemapChartMeasurer: TreemapChartMeasurer,
     NodeContent: @Composable (
         data: Tree.Node<T>,
         groupContent: @Composable (Tree.Node<T>) -> Unit,
@@ -169,12 +149,10 @@ fun <T> TreemapChartNode(
             TreemapChartLayout(
                 data = node,
                 evaluateItem = evaluateItem,
-                treemapChartMeasurer = treemapChartMeasurer,
             ) { childNode ->
                 TreemapChartNode(
                     data = childNode,
                     evaluateItem = evaluateItem,
-                    treemapChartMeasurer = treemapChartMeasurer,
                     NodeContent = NodeContent,
                 )
             }
@@ -187,19 +165,16 @@ fun <T> TreemapChartNode(
  *
  * @param data item to be displayed
  * @param evaluateItem function that evaluates an item
- * @param treemapChartMeasurer strategy of positioning nodes; Available implementations:
- * [by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer],
- * [by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer]
  * @param ItemContent UI for a leaf treemap item
  */
 @Composable
 fun <T> TreemapChartLayout(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
-    treemapChartMeasurer: TreemapChartMeasurer,
     modifier: Modifier = Modifier,
     ItemContent: @Composable (Tree.Node<T>) -> Unit,
 ) {
+    val treemapChartMeasurer = LocalTreemapChartMeasurer.current
     Layout(
         content = {
             data.children.forEach { node ->
@@ -232,7 +207,6 @@ private fun PreviewTreemapChart() {
         TreemapChart(
             data = sampleTreeData,
             evaluateItem = Int::toDouble,
-            treemapChartMeasurer = remember { SquarifiedMeasurer() }
         ) { data ->
             SimpleTreemapItem(data)
         }

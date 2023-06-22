@@ -1,6 +1,6 @@
 [versions]
 kotlin = '1.8.21'
-android-build-tools-version = '7.3.0'
+android-build-tools = '7.3.0'
 compose = '1.4.3'
 compose-compiler = '1.4.7'
 junit = '4.13.2'
@@ -32,11 +32,14 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-kotlinx-setialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 
 [plugins]
-android-app = { id = "com.android.application", version.ref = "android-build-tools-version" }
-android-lib = { id = "com.android.library", version.ref = "android-build-tools-version" }
-kotlin-android = { id = "kotlin-android", version.ref = "kotlin" }
+android-app = { id = "com.android.application", version.ref = "android-build-tools" }
+android-lib = { id = "com.android.library", version.ref = "android-build-tools" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-plugin" }

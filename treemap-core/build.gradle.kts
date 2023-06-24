@@ -48,27 +48,14 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
-                //                implementation(compose.foundation)
-                //                implementation(compose.material)
-                //            }
             }
         }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
-                //                implementation(compose.desktop.currentOs)
             }
         }
-        val androidMain by getting {
-            dependencies {
-                //                implementation(libs.android.compose.ui.ui)
-                //                implementation(libs.android.compose.ui.tooling)
-                //                implementation(libs.android.compose.ui.tooling.preview)
-                //                implementation(libs.android.compose.material.material)
-                //                implementation(libs.android.compose.material.icons)
-            }
-        }
-
+        val androidMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting

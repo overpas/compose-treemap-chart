@@ -3,6 +3,8 @@ pluginManagement {
         mavenCentral()
         google()
         gradlePluginPortal()
+        mavenLocal()
+        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -10,6 +12,8 @@ dependencyResolutionManagement {
     repositories {
         mavenCentral()
         google()
+        mavenLocal()
+        maven(url = "https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
 }
 
@@ -17,4 +21,4 @@ rootProject.name = "compose-treemap-chart"
 
 include(":treemap-example")
 include(":treemap-core")
-include(":treemap-compose-android")
+include(":treemap-chart-compose")

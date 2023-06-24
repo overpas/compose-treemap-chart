@@ -1,8 +1,9 @@
 [versions]
-kotlin = '1.8.21'
+kotlin = '1.8.20'
 android-build-tools = '7.3.0'
-compose = '1.4.3'
-compose-compiler = '1.4.7'
+compose = '1.4.0'
+compose-compiler = '1.4.6'
+compose-multiplatform = '1.4.0'
 junit = '4.13.2'
 androidx-test-junit-ext = '1.1.5'
 androidx-test-espresso-core = '3.5.1'
@@ -38,6 +39,8 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 android-app = { id = "com.android.application", version.ref = "android-build-tools" }
 android-lib = { id = "com.android.library", version.ref = "android-build-tools" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

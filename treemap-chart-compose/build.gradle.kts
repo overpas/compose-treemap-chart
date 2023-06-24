@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -12,6 +10,7 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -47,25 +46,21 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":treemap-core"))
                 implementation(compose.runtime)
-                //                implementation(compose.foundation)
-                //                implementation(compose.material)
-                //            }
+                implementation(compose.foundation)
+                implementation(compose.material)
             }
         }
         val desktopMain by getting {
             dependencies {
                 implementation(compose.desktop.common)
-                //                implementation(compose.desktop.currentOs)
             }
         }
         val androidMain by getting {
             dependencies {
-                //                implementation(libs.android.compose.ui.ui)
-                //                implementation(libs.android.compose.ui.tooling)
-                //                implementation(libs.android.compose.ui.tooling.preview)
-                //                implementation(libs.android.compose.material.material)
-                //                implementation(libs.android.compose.material.icons)
+                implementation(libs.compose.ui.test.manifest)
+                implementation(libs.compose.ui.tooling)
             }
         }
 
@@ -85,6 +80,15 @@ kotlin {
             }
         }
         val androidUnitTest by getting
+        val androidInstrumentedTest by getting {
+            dependencies {
+                implementation(libs.androidx.test.ext.junit)
+                implementation(libs.androidx.test.espresso.core)
+                implementation(libs.compose.ui.test.junit4)
+                implementation(libs.compose.ui.test.manifest)
+                implementation(libs.compose.ui.tooling)
+            }
+        }
         val desktopTest by getting
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -98,12 +102,8 @@ kotlin {
     }
 }
 
-tasks.withType<KotlinCompile> {
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = "17"
     }
-}
-
-tasks.register("commonUnitTest") {
-    dependsOn("testDebugUnitTest", "desktopTest", "iosSimulatorArm64Test")
 }

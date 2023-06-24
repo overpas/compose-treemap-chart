@@ -1,5 +1,3 @@
-@file:Suppress("FunctionNaming", "MagicNumber")
-
 package by.overpass.treemapchart.example
 
 import android.os.Bundle

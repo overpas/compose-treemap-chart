@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import by.overpass.treemapchart.android.TreemapChart
+import by.overpass.treemapchart.compose.TreemapChart
 import by.overpass.treemapchart.core.tree.Tree
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

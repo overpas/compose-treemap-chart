@@ -47,7 +47,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":treemap-compose-android"))
+    implementation(project(":treemap-core"))
+    implementation(project(":treemap-chart-compose"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)

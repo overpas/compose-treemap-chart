@@ -62,7 +62,7 @@ private fun TreemapChartSampleTopAppBar(
                 text = if (showComplexChart) {
                     "Complex chart"
                 } else {
-                    "Easy chart"
+                    "Simple chart"
                 },
             )
         },

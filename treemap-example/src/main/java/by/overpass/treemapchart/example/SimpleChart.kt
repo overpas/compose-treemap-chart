@@ -30,7 +30,7 @@ private val simpleTreeData = tree(10) {
 }
 
 @Composable
-internal fun EasyChart(
+internal fun SimpleChart(
     modifier: Modifier = Modifier,
     onGoToComplexChartClick: () -> Unit,
 ) {

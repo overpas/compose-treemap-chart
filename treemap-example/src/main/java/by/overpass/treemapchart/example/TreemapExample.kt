@@ -33,7 +33,7 @@ internal fun TreemapExample(
                 showComplexChart = false
             }
         } else {
-            EasyChart(modifier.padding(paddingValues)) {
+            SimpleChart(modifier.padding(paddingValues)) {
                 showComplexChart = true
             }
         }
@@ -52,7 +52,7 @@ private fun TreemapExampleTopAppBar(
                 text = if (showComplexChart) {
                     "Complex chart"
                 } else {
-                    "Easy chart"
+                    "Simple chart"
                 },
             )
         },

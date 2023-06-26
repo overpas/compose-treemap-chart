@@ -40,10 +40,10 @@ kotlin {
         summary = "Treemap Chart Compose Multiplatform sample"
         homepage = "https://github.com/overpas/compose-treemap-chart"
         version = "1.0"
-        ios.deploymentTarget = "16.2"
+        ios.deploymentTarget = "14.1"
         podfile = project.file("../ios/Podfile")
         framework {
-            isStatic = false
+            isStatic = true
             baseName = "Shared"
         }
     }

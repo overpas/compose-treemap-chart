@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'Treemap Chart Compose Multiplatform sample'
     spec.vendored_frameworks      = 'build/cocoapods/framework/Shared.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '16.2'
+    spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {

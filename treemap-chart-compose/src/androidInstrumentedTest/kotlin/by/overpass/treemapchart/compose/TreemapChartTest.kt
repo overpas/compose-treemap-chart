@@ -35,7 +35,7 @@ class TreemapChartTest {
 
     @Test
     fun testSliceAndDiceTreemapDisplayed() {
-        testTreemapDisplayed(SliceAndDiceMeasurer())
+        testTreemapDisplayed(SliceAndDiceMeasurer)
     }
 
     @Test

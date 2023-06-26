@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 
 class SliceAndDiceMeasurerTest {
 
-    private val sliceAndDiceMeasurer = SliceAndDiceMeasurer()
+    private val sliceAndDiceMeasurer = SliceAndDiceMeasurer
     private val values = listOf(6.0, 6.0, 4.0, 3.0, 2.0, 2.0, 1.0)
 
     @Test

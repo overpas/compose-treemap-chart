@@ -10,7 +10,8 @@ val Typography = Typography(
     body1 = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 16.sp,
+        letterSpacing = 0.5.sp,
     ),
     overline = TextStyle(
         fontFamily = FontFamily.Default,

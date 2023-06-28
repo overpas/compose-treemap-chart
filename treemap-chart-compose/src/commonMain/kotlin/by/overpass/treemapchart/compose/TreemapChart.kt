@@ -16,9 +16,9 @@ import by.overpass.treemapchart.core.tree.Tree
 /**
  * Treemap chart UI
  *
- * @param data items to be displayed
- * @param evaluateItem function that evaluates an item
- * @param modifier compose modifier
+ * @param data Items to be displayed
+ * @param evaluateItem Function that evaluates an item
+ * @param modifier Modifier to be applied to the layout
  * @param ItemContent UI for a leaf treemap item; Must contain exactly 1 top-level Composable
  */
 @Composable
@@ -40,9 +40,9 @@ fun <T> TreemapChart(
 /**
  * Treemap chart UI
  *
- * @param data items to be displayed
- * @param evaluateItem function that evaluates an item
- * @param modifier compose modifier
+ * @param data Items to be displayed
+ * @param evaluateItem Function that evaluates an item
+ * @param modifier Modifier to be applied to the layout
  * @param NodeContent UI for a treemap node (leaf or group); Must contain exactly 1 top-level Composable
  */
 @Composable
@@ -67,8 +67,8 @@ fun <T> TreemapChart(
 /**
  * Treemap chart node UI
  *
- * @param data item to be displayed
- * @param evaluateItem function that evaluates an item
+ * @param data Item to be displayed
+ * @param evaluateItem Function that evaluates an item
  * @param ItemContent UI for a leaf treemap item
  */
 @Composable
@@ -92,8 +92,8 @@ fun <T> TreemapChartNode(
 /**
  * Treemap chart node UI
  *
- * @param data item to be displayed
- * @param evaluateItem function that evaluates an item
+ * @param data Item to be displayed
+ * @param evaluateItem Function that evaluates an item
  * @param NodeContent UI for a treemap node (leaf or group)
  */
 @Composable
@@ -125,8 +125,9 @@ fun <T> TreemapChartNode(
 /**
  * Treemap chart leaf node UI
  *
- * @param data item to be displayed
- * @param evaluateItem function that evaluates an item
+ * @param data Item to be displayed
+ * @param evaluateItem Function that evaluates an item
+ * @param modifier Modifier to be applied to the layout.
  * @param ItemContent UI for a leaf treemap item
  */
 @Composable
@@ -161,14 +162,20 @@ fun <T> TreemapChartLayout(
     }
 }
 
+/**
+ * Basic treemap item UI
+ *
+ * @param item The displayed text
+ * @param modifier Modifier to be applied to the layout.
+ */
 @Composable
-fun SimpleTreemapItem(item: Int, modifier: Modifier = Modifier) {
+fun SimpleTreemapItem(item: String, modifier: Modifier = Modifier) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier.border(1.dp, MaterialTheme.colors.onBackground),
     ) {
         Text(
-            text = item.toString(),
+            text = item,
             textAlign = TextAlign.Center,
         )
     }

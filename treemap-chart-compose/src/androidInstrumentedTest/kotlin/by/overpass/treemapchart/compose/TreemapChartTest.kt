@@ -50,8 +50,8 @@ class TreemapChartTest {
                     TreemapChart(
                         data = sampleTreeData,
                         evaluateItem = Int::toDouble,
-                    ) { it ->
-                        SimpleTreemapItem(it)
+                    ) { item ->
+                        SimpleTreemapItem(item.toString())
                     }
                 }
             }

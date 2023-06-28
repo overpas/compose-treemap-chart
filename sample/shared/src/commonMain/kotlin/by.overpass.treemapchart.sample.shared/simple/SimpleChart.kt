@@ -40,7 +40,7 @@ internal fun SimpleChart(
             modifier = Modifier
                 .weight(1f),
         ) { item ->
-            SimpleTreemapItem(item = item)
+            SimpleTreemapItem(item = item.toString())
         }
         Button(onClick = onGoToComplexChartClick) {
             Text(text = "Show more complex chart")

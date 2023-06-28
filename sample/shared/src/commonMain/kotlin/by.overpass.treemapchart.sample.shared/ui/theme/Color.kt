@@ -1,5 +1,3 @@
-@file:Suppress("MagicNumber")
-
 package by.overpass.treemapchart.sample.shared.ui.theme
 
 import androidx.compose.ui.graphics.Color

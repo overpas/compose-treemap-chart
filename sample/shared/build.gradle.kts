@@ -92,6 +92,11 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
         }
+        val nonAndroidMain by creating {
+            dependsOn(commonMain)
+            desktopMain.dependsOn(this)
+            iosMain.dependsOn(this)
+        }
 
         val commonTest by getting {
             dependencies {

@@ -17,6 +17,7 @@ kover = '0.5.1'
 gradle-nexus-plugin = '1.1.0'
 dokka = '1.8.20'
 kotlinx-serialization-json = '1.4.1'
+kotlinx-collections-immutable = '0.3.5'
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -35,6 +36,7 @@ google-material = { group = "com.google.android.material", name = "material", ve
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
 [plugins]
 android-app = { id = "com.android.application", version.ref = "android-build-tools" }

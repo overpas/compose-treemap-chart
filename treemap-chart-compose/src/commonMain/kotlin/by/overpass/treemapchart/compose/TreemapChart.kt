@@ -19,7 +19,7 @@ import by.overpass.treemapchart.core.tree.Tree
  * @param data items to be displayed
  * @param evaluateItem function that evaluates an item
  * @param modifier compose modifier
- * @param ItemContent UI for a leaf treemap item
+ * @param ItemContent UI for a leaf treemap item; Must contain exactly 1 top-level Composable
  */
 @Composable
 fun <T> TreemapChart(
@@ -43,7 +43,7 @@ fun <T> TreemapChart(
  * @param data items to be displayed
  * @param evaluateItem function that evaluates an item
  * @param modifier compose modifier
- * @param NodeContent UI for a treemap node (leaf or group)
+ * @param NodeContent UI for a treemap node (leaf or group); Must contain exactly 1 top-level Composable
  */
 @Composable
 fun <T> TreemapChart(

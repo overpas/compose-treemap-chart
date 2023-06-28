@@ -6,12 +6,15 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -21,180 +24,73 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import by.overpass.treemapchart.compose.TreemapChart
 import by.overpass.treemapchart.core.tree.Tree
-import by.overpass.treemapchart.sample.shared.asColor
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-
-private const val SAMPLE_JSON = """
-   [
-      {
-        "Category": "01",
-        "Description": "Live animals",
-        "Value": 50000000,
-        "Color": "#FF4287f5",
-        "Subcategories": [
-          {
-            "Category": "0101",
-            "Description": "Live horses, asses, mules, and hinnies",
-            "Value": 10000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0102",
-            "Description": "Live bovine animals",
-            "Value": 20000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0103",
-            "Description": "Live swine",
-            "Value": 20000000,
-            "Color": null,
-            "Subcategories": []
-          }
-        ]
-      },
-      {
-        "Category": "02",
-        "Description": "Meat and edible meat offal",
-        "Value": 35000000,
-        "Color": "#FFf54287",
-        "Subcategories": [
-          {
-            "Category": "0201",
-            "Description": "Meat of bovine animals",
-            "Value": 12000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0202",
-            "Description": "Meat of poultry",
-            "Value": 18000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0203",
-            "Description": "Meat of swine",
-            "Value": 5000000,
-            "Color": null,
-            "Subcategories": []
-          }
-        ]
-      },
-      {
-        "Category": "03",
-        "Description": "Fish and crustaceans, molluscs, and other aquatic invertebrates",
-        "Value": 20000000,
-        "Color": "#FF42f578",
-        "Subcategories": [
-          {
-            "Category": "0301",
-            "Description": "Live fish",
-            "Value": 7000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0302",
-            "Description": "Fish, fresh or chilled",
-            "Value": 6000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0303",
-            "Description": "Fish, frozen",
-            "Value": 7000000,
-            "Color": null,
-            "Subcategories": []
-          }
-        ]
-      },
-      {
-        "Category": "04",
-        "Description": "Dairy products; birds' eggs; natural honey; edible products of animal origin, not elsewhere specified or included",
-        "Value": 18000000,
-        "Color": "#FFf2f542",
-        "Subcategories": [
-          {
-            "Category": "0401",
-            "Description": "Milk and cream",
-            "Value": 7000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0402",
-            "Description": "Cheese and curd",
-            "Value": 5000000,
-            "Color": null,
-            "Subcategories": []
-          },
-          {
-            "Category": "0403",
-            "Description": "Butter and other fats and oils derived from milk",
-            "Value": 6000000,
-            "Color": null,
-            "Subcategories": []
-          }
-        ]
-      },
-      {
-        "Category": "05",
-        "Description": "Products of animal origin, not elsewhere specified or included",
-        "Value": 12000000,
-        "Color": "#FFf54242",
-        "Subcategories": []
-      }
-   ]
-"""
 
 @Composable
 internal fun ComplexChart(
     modifier: Modifier = Modifier,
-    onItemClick: (CategoryItem) -> Unit,
 ) {
-    var tree by remember { mutableStateOf<Tree<CategoryItem>?>(null) }
-    LaunchedEffect(Unit) {
-        tree = getTree()
+    val exportsState by loadExports()
+    var productExportItemSelected by remember { mutableStateOf<Export.Product?>(null) }
+    when (val state = exportsState) {
+        is ExportsState.Parsing -> {
+            ParsingExports(modifier)
+        }
+
+        is ExportsState.Loaded -> {
+            CountryExportsTreemapChart(state.tree, modifier) {
+                productExportItemSelected = it
+            }
+        }
     }
-    tree?.let {
-        ComplexTreemapChart(it, modifier, onItemClick)
+    Box(modifier.fillMaxSize()) {
+        productExportItemSelected?.let { productExport ->
+            ProductExportPopup(productExport) {
+                productExportItemSelected = null
+            }
+        }
+    }
+}
+
+private sealed class ExportsState {
+
+    data class Loaded(
+        val tree: Tree<Export>,
+    ) : ExportsState()
+
+    object Parsing : ExportsState()
+}
+
+@Composable
+private fun loadExports(): State<ExportsState> = produceState<ExportsState>(ExportsState.Parsing) {
+    value = ExportsState.Loaded(ExportTreeDataProvider.get())
+}
+
+@Composable
+private fun ParsingExports(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier,
+        contentAlignment = Alignment.Center,
+    ) {
+        Text("Parsing Exports data...")
     }
 }
 
 @Composable
-private fun ComplexTreemapChart(
-    tree: Tree<CategoryItem>,
+private fun CountryExportsTreemapChart(
+    tree: Tree<Export>,
     modifier: Modifier = Modifier,
-    onItemClick: (CategoryItem) -> Unit,
+    onItemClick: (Export.Product) -> Unit,
 ) {
     TreemapChart(
         data = tree,
-        evaluateItem = { it.value.toDouble() },
+        evaluateItem = Export::exportsValue,
         modifier = modifier,
     ) { node, GroupContent ->
-        if (node.children.isEmpty()) {
-            CategoryItem(item = node.data, onClick = onItemClick)
-        } else {
-            val color = node.data.color
-            if (color != null) {
-                Box(
-                    modifier = Modifier
-                        .background(color)
-                        .border(2.dp, Color.White),
-                ) {
-                    GroupContent(node)
-                }
-            } else {
+        val export = node.data
+        if (node.children.isEmpty() && export is Export.Product) {
+            ProductExportItem(item = export, onClick = onItemClick)
+        } else if (export is Export.Section) {
+            SectionExportItem(export.color) {
                 GroupContent(node)
             }
         }
@@ -202,81 +98,45 @@ private fun ComplexTreemapChart(
 }
 
 @Composable
-private fun CategoryItem(
-    item: CategoryItem,
+private fun ProductExportItem(
+    item: Export.Product,
     modifier: Modifier = Modifier,
-    onClick: (CategoryItem) -> Unit,
+    onClick: (Export.Product) -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = modifier
-            .border(1.dp, Color.White)
+            .border(0.5.dp, Color.White)
             .clickable { onClick(item) }
             .padding(4.dp),
     ) {
-        Text(text = item.name, textAlign = TextAlign.Center)
-        Text(text = item.percent.formatPercent())
-    }
-}
-
-internal expect fun Double.formatPercent(): String
-
-internal data class CategoryItem(
-    val name: String,
-    val value: Long,
-    val percent: Double,
-    val color: Color?,
-)
-
-@Serializable
-private data class Category(
-    @SerialName("Category") val name: String,
-    @SerialName("Description") val description: String,
-    @SerialName("Value") val value: Long,
-    @SerialName("Color") val color: String?,
-    @SerialName("Subcategories") val subcategories: List<Category>,
-)
-
-private suspend fun getCategoriesData(): List<Category> = withContext(Dispatchers.Default) {
-    Json.decodeFromString(SAMPLE_JSON)
-}
-
-private suspend fun getTree(): Tree<CategoryItem> = withContext(Dispatchers.Default) {
-    val categories = getCategoriesData()
-    val totalSum = categories.sumOf { it.value }
-    val root = Tree.Node(
-        CategoryItem(
-            "Total",
-            totalSum,
-            100.0,
-            null,
-        ),
-    )
-    val tree = Tree(root)
-    fun add(node: Tree.Node<CategoryItem>, category: Category) {
-        for (subcategory in category.subcategories) {
-            val item = CategoryItem(
-                subcategory.description,
-                subcategory.value,
-                subcategory.value.toDouble() / totalSum * 100,
-                subcategory.color.asColor(),
-            )
-            val newNode = Tree.Node(item)
-            node.addChild(newNode)
-            add(newNode, subcategory)
-        }
-    }
-    for (category in categories) {
-        val item = CategoryItem(
-            category.description,
-            category.value,
-            category.value.toDouble() / totalSum * 100,
-            category.color.asColor(),
+        Text(
+            text = item.name,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.overline,
         )
-        val newNode = Tree.Node(item)
-        root.addChild(newNode)
-        add(newNode, category)
+        Text(
+            text = item.percentage.formatPercentage(),
+            style = MaterialTheme.typography.overline,
+        )
     }
-    tree
+}
+
+@Composable
+private fun SectionExportItem(
+    sectionColor: Color?,
+    modifier: Modifier = Modifier,
+    Content: @Composable () -> Unit,
+) {
+    if (sectionColor != null) {
+        Box(
+            modifier = modifier
+                .background(sectionColor)
+        ) {
+            Content()
+        }
+    } else {
+        Content()
+    }
 }

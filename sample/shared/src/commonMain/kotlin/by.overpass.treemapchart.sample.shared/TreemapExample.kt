@@ -12,20 +12,17 @@ import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import by.overpass.treemapchart.sample.shared.complex.ComplexChart
 import by.overpass.treemapchart.sample.shared.simple.SimpleChart
-import kotlinx.coroutines.launch
 
 @Composable
 internal fun TreemapChartSample(
     modifier: Modifier = Modifier,
 ) {
     val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
     var showComplexChart by rememberSaveable { mutableStateOf(false) }
     Scaffold(
         scaffoldState = scaffoldState,
@@ -37,11 +34,7 @@ internal fun TreemapChartSample(
         modifier = modifier,
     ) { paddingValues ->
         if (showComplexChart) {
-            ComplexChart(modifier.padding(paddingValues)) { item ->
-                coroutineScope.launch {
-                    scaffoldState.snackbarHostState.showSnackbar("${item.name} clicked!")
-                }
-            }
+            ComplexChart(modifier.padding(paddingValues))
         } else {
             SimpleChart(modifier.padding(paddingValues)) {
                 showComplexChart = true
@@ -60,7 +53,7 @@ private fun TreemapChartSampleTopAppBar(
         title = {
             Text(
                 text = if (showComplexChart) {
-                    "Complex chart"
+                    "Japan Exports 2021"
                 } else {
                     "Simple chart"
                 },

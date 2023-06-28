@@ -19,6 +19,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "compose-treemap-chart"
 
-include(":treemap-example")
 include(":treemap-core")
 include(":treemap-chart-compose")
+include(":sample:shared")
+include(":sample:android")
+include(":sample:desktop")

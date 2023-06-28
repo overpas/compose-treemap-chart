@@ -1,6 +1,6 @@
 [versions]
 kotlin = '1.8.20'
-android-build-tools = '7.3.0'
+android-build-tools = '7.4.2'
 compose = '1.4.0'
 compose-compiler = '1.4.6'
 compose-multiplatform = '1.4.0'
@@ -17,10 +17,12 @@ kover = '0.5.1'
 gradle-nexus-plugin = '1.1.0'
 dokka = '1.8.20'
 kotlinx-serialization-json = '1.4.1'
+kotlinx-collections-immutable = '0.3.5'
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose" }
 compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview", version.ref = "compose" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "compose" }
@@ -34,6 +36,7 @@ google-material = { group = "com.google.android.material", name = "material", ve
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 
 [plugins]
 android-app = { id = "com.android.application", version.ref = "android-build-tools" }

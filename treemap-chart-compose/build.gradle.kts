@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+
 plugins {
     id("com.android.library")
     kotlin("multiplatform")
@@ -33,9 +35,12 @@ android {
     }
 }
 
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
 kotlin {
 
     jvmToolchain(17)
+
+    targetHierarchy.default()
 
     jvm("desktop")
     android()
@@ -63,16 +68,7 @@ kotlin {
                 implementation(libs.compose.ui.tooling)
             }
         }
-
-        val iosX64Main by getting
-        val iosArm64Main by getting
-        val iosSimulatorArm64Main by getting
-        val iosMain by creating {
-            dependsOn(commonMain)
-            iosX64Main.dependsOn(this)
-            iosArm64Main.dependsOn(this)
-            iosSimulatorArm64Main.dependsOn(this)
-        }
+        val iosMain by getting
 
         val commonTest by getting {
             dependencies {
@@ -90,15 +86,7 @@ kotlin {
             }
         }
         val desktopTest by getting
-        val iosX64Test by getting
-        val iosArm64Test by getting
-        val iosSimulatorArm64Test by getting
-        val iosTest by creating {
-            dependsOn(commonTest)
-            iosX64Test.dependsOn(this)
-            iosArm64Test.dependsOn(this)
-            iosSimulatorArm64Test.dependsOn(this)
-        }
+        val iosTest by getting
     }
 }
 

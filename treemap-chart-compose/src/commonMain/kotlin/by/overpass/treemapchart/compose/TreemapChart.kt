@@ -19,20 +19,20 @@ import by.overpass.treemapchart.core.tree.Tree
  * @param data Items to be displayed
  * @param evaluateItem Function that evaluates an item
  * @param modifier Modifier to be applied to the layout
- * @param ItemContent UI for a leaf treemap item; Must contain exactly 1 top-level Composable
+ * @param itemContent UI for a leaf treemap item; Must contain exactly 1 top-level Composable
  */
 @Composable
 fun <T> TreemapChart(
     data: Tree<T>,
     evaluateItem: (T) -> Double,
     modifier: Modifier = Modifier,
-    ItemContent: @Composable (T) -> Unit,
+    itemContent: @Composable (T) -> Unit,
 ) {
     Box(modifier) {
         TreemapChartNode(
             data = data.root,
             evaluateItem = evaluateItem,
-            ItemContent = ItemContent,
+            itemContent = itemContent,
         )
     }
 }
@@ -43,14 +43,14 @@ fun <T> TreemapChart(
  * @param data Items to be displayed
  * @param evaluateItem Function that evaluates an item
  * @param modifier Modifier to be applied to the layout
- * @param NodeContent UI for a treemap node (leaf or group); Must contain exactly 1 top-level Composable
+ * @param nodeContent UI for a treemap node (leaf or group); Must contain exactly 1 top-level Composable
  */
 @Composable
 fun <T> TreemapChart(
     data: Tree<T>,
     evaluateItem: (T) -> Double,
     modifier: Modifier = Modifier,
-    NodeContent: @Composable (
+    nodeContent: @Composable (
         data: Tree.Node<T>,
         groupContent: @Composable (Tree.Node<T>) -> Unit,
     ) -> Unit,
@@ -59,7 +59,7 @@ fun <T> TreemapChart(
         TreemapChartNode(
             data = data.root,
             evaluateItem = evaluateItem,
-            NodeContent = NodeContent,
+            nodeContent = nodeContent,
         )
     }
 }
@@ -69,20 +69,20 @@ fun <T> TreemapChart(
  *
  * @param data Item to be displayed
  * @param evaluateItem Function that evaluates an item
- * @param ItemContent UI for a leaf treemap item
+ * @param itemContent UI for a leaf treemap item
  */
 @Composable
 fun <T> TreemapChartNode(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
-    ItemContent: @Composable (T) -> Unit,
+    itemContent: @Composable (T) -> Unit,
 ) {
     TreemapChartNode(
         data = data,
         evaluateItem = evaluateItem,
     ) { node, GroupContent ->
         if (node.children.isEmpty()) {
-            ItemContent(node.data)
+            itemContent(node.data)
         } else {
             GroupContent(node)
         }
@@ -94,32 +94,29 @@ fun <T> TreemapChartNode(
  *
  * @param data Item to be displayed
  * @param evaluateItem Function that evaluates an item
- * @param NodeContent UI for a treemap node (leaf or group)
+ * @param nodeContent UI for a treemap node (leaf or group)
  */
 @Composable
 fun <T> TreemapChartNode(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
-    NodeContent: @Composable (
+    nodeContent: @Composable (
         data: Tree.Node<T>,
         groupContent: @Composable (Tree.Node<T>) -> Unit,
     ) -> Unit,
 ) {
-    NodeContent(
-        data = data,
-        groupContent = { node ->
-            TreemapChartLayout(
-                data = node,
+    nodeContent(data) { node ->
+        TreemapChartLayout(
+            data = node,
+            evaluateItem = evaluateItem,
+        ) { childNode ->
+            TreemapChartNode(
+                data = childNode,
                 evaluateItem = evaluateItem,
-            ) { childNode ->
-                TreemapChartNode(
-                    data = childNode,
-                    evaluateItem = evaluateItem,
-                    NodeContent = NodeContent,
-                )
-            }
-        },
-    )
+                nodeContent = nodeContent,
+            )
+        }
+    }
 }
 
 /**
@@ -128,20 +125,20 @@ fun <T> TreemapChartNode(
  * @param data Item to be displayed
  * @param evaluateItem Function that evaluates an item
  * @param modifier Modifier to be applied to the layout.
- * @param ItemContent UI for a leaf treemap item
+ * @param itemContent UI for a leaf treemap item
  */
 @Composable
 fun <T> TreemapChartLayout(
     data: Tree.Node<T>,
     evaluateItem: (T) -> Double,
     modifier: Modifier = Modifier,
-    ItemContent: @Composable (Tree.Node<T>) -> Unit,
+    itemContent: @Composable (Tree.Node<T>) -> Unit,
 ) {
     val treemapChartMeasurer = LocalTreemapChartMeasurer.current
     Layout(
         content = {
             data.children.forEach { node ->
-                ItemContent(node)
+                itemContent(node)
             }
         },
         modifier = modifier,

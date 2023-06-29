@@ -35,21 +35,23 @@ internal fun ComplexChart(
 ) {
     val exportsState by loadExports()
     var productExportItemSelected by remember { mutableStateOf<Export.Product?>(null) }
-    when (val state = exportsState) {
-        is ExportsState.Parsing -> {
-            ParsingExports(modifier)
-        }
+    Box(modifier.fillMaxSize()) {
+        when (val state = exportsState) {
+            is ExportsState.Parsing -> {
+                ParsingExports(Modifier.fillMaxSize())
+            }
 
-        is ExportsState.Loaded -> {
-            CountryExportsTreemapChart(state.tree, modifier) {
-                productExportItemSelected = it
+            is ExportsState.Loaded -> {
+                CountryExportsTreemapChart(state.tree) {
+                    productExportItemSelected = it
+                }
             }
         }
-    }
-    Box(modifier.fillMaxSize()) {
-        productExportItemSelected?.let { productExport ->
-            ProductExportPopup(productExport) {
-                productExportItemSelected = null
+        Box(Modifier.fillMaxSize()) {
+            productExportItemSelected?.let { productExport ->
+                ProductExportPopup(productExport) {
+                    productExportItemSelected = null
+                }
             }
         }
     }
@@ -121,14 +123,15 @@ private fun ProductExportItem(
     }
 }
 
+@Suppress("LongParameterList")
 @Composable
 private fun ShrinkableHidableText(
     text: String,
     minSize: TextUnit,
+    modifier: Modifier = Modifier,
     shrinkSizeFactor: Float = 0.9F,
     textAlign: TextAlign = TextAlign.Center,
     style: TextStyle = MaterialTheme.typography.body1,
-    modifier: Modifier = Modifier,
 ) {
     var fontStyle by remember { mutableStateOf(style) }
     var shouldDraw by remember { mutableStateOf(false) }

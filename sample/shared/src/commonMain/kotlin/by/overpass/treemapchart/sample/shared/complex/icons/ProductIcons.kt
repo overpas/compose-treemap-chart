@@ -27,17 +27,17 @@ import kotlin.collections.List as ____KtList
 
 public object ProductIcons
 
-private var __AllIcons: ____KtList<ImageVector>? = null
+private var allIcons: ____KtList<ImageVector>? = null
 
 public val ProductIcons.AllIcons: ____KtList<ImageVector>
   get() {
-    if (__AllIcons != null) {
-      return __AllIcons!!
+    if (allIcons != null) {
+      return allIcons!!
     }
-    __AllIcons= listOf(FootwearAndHeadwear, PreciousMetals, Unspecified, AnimalHides,
+    allIcons= listOf(FootwearAndHeadwear, PreciousMetals, Unspecified, AnimalHides,
         ArtsAndAntiques, Transportation, Instruments, Weapons, AnimalAndVegetableBiProducts,
         WoodProducts, MineralProducts, Metals, AnimalProducts, Textiles, PaperGoods, Miscellaneous,
         Machines, ChemicalProducts, PlasticsAndRubbers, VegetableProducts, StoneAndGlass,
         Foodstuffs)
-    return __AllIcons!!
+    return allIcons!!
   }

@@ -6,6 +6,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.window.Popup
 
+@Suppress("LongParameterList")
 @Composable
 internal actual fun FocusablePopup(
     alignment: Alignment,

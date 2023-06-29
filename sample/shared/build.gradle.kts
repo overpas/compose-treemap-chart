@@ -106,6 +106,10 @@ kotlin {
     }
 }
 
+dependencies {
+    detektPlugins(libs.compose.detekt.rules)
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = "17"

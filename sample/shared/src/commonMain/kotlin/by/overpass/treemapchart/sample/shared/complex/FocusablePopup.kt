@@ -5,6 +5,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.unit.IntOffset
 
+@Suppress("LongParameterList")
 @Composable
 internal expect fun FocusablePopup(
     alignment: Alignment = Alignment.TopStart,

@@ -34,9 +34,9 @@ internal fun TreemapChartSample(
         modifier = modifier,
     ) { paddingValues ->
         if (showComplexChart) {
-            ComplexChart(modifier.padding(paddingValues))
+            ComplexChart(Modifier.padding(paddingValues))
         } else {
-            SimpleChart(modifier.padding(paddingValues)) {
+            SimpleChart(Modifier.padding(paddingValues)) {
                 showComplexChart = true
             }
         }

@@ -49,4 +49,5 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.activity.compose)
+    detektPlugins(libs.compose.detekt.rules)
 }

@@ -73,6 +73,10 @@ kotlin {
     }
 }
 
+dependencies {
+    detektPlugins(libs.compose.detekt.rules)
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "17"

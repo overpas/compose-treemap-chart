@@ -10,21 +10,23 @@ plugins {
 }
 
 android {
-
+    namespace = "by.overpass.treemapchart.sample.shared"
     compileSdk = 33
     defaultConfig {
         minSdk = 24
     }
-
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-
     kotlin {
         jvmToolchain(17)
     }
-
     sourceSets {
         named("main") {
             manifest.srcFile("src/androidMain/AndroidManifest.xml")

@@ -20,7 +20,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
@@ -49,5 +49,6 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.activity.compose)
+    debugImplementation(libs.compose.runtime.tracing)
     detektPlugins(libs.compose.detekt.rules)
 }

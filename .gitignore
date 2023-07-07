@@ -12,3 +12,4 @@ local.properties
 xcuserdata
 Pods
 *.lock
+*.trace

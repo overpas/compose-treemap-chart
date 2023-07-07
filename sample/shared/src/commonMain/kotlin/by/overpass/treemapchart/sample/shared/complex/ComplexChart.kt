@@ -91,13 +91,13 @@ private fun CountryExportsTreemapChart(
         data = tree,
         evaluateItem = Export::exportsValue,
         modifier = modifier,
-    ) { node, GroupContent ->
+    ) { node, groupContent ->
         val export = node.data
         if (node.children.isEmpty() && export is Export.Product) {
             ProductExportItem(item = export, onClick = onItemClick)
         } else if (export is Export.Section) {
             SectionExportItem(export.color) {
-                GroupContent(node)
+                groupContent(node)
             }
         }
     }
@@ -168,16 +168,16 @@ private fun ShrinkableHidableText(
 private fun SectionExportItem(
     sectionColor: Color?,
     modifier: Modifier = Modifier,
-    Content: @Composable () -> Unit,
+    content: @Composable () -> Unit,
 ) {
     if (sectionColor != null) {
         Box(
             modifier = modifier
                 .background(sectionColor)
         ) {
-            Content()
+            content()
         }
     } else {
-        Content()
+        content()
     }
 }

@@ -21,7 +21,7 @@ class TreeTest {
     }
 
     @Test
-    fun `tree is created correctly`() {
+    fun treeIsCreatedCorrectly() {
         assertEquals(listOf(10, 6, 4, 2, 1, 1, 3, 2, 1, 1), testTree.dfs())
     }
 }

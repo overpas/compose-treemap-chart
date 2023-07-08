@@ -10,7 +10,7 @@ class SliceAndDiceMeasurerTest {
     private val values = listOf(6.0, 6.0, 4.0, 3.0, 2.0, 2.0, 1.0)
 
     @Test
-    fun `nodes are measured correctly the slice-and-dice way - vertical`() {
+    fun nodesAreMeasuredCorrectlyTheSliceAndDiceWayVerticalScreen() {
         val expectedNodes = listOf(
             TreemapNode(width = 1080, height = 480, offsetX = 0, offsetY = 0),
             TreemapNode(width = 1080, height = 480, offsetX = 0, offsetY = 480),
@@ -26,7 +26,7 @@ class SliceAndDiceMeasurerTest {
     }
 
     @Test
-    fun `nodes are measured correctly the slice-and-dice way - horizontal`() {
+    fun nodesAreMeasuredCorrectlyTheSliceAndDiceWayHorizontalScreen() {
         val expectedNodes = listOf(
             TreemapNode(width = 480, height = 1080, offsetX = 0, offsetY = 0),
             TreemapNode(width = 480, height = 1080, offsetX = 480, offsetY = 0),

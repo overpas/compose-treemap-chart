@@ -10,7 +10,7 @@ class SquarifiedMeasurerTest {
     private val values = listOf(6.0, 6.0, 4.0, 3.0, 2.0, 2.0, 1.0)
 
     @Test
-    fun `nodes are measured according to the squarified algorithm - vertical`() {
+    fun nodesAreMeasuredCorrectlyWithSquarifiedAlgorithmVerticalScreen() {
         val expectedNodes = listOf(
             TreemapNode(width = 540, height = 960, offsetX = 0, offsetY = 0),
             TreemapNode(width = 540, height = 960, offsetX = 540, offsetY = 0),
@@ -26,7 +26,7 @@ class SquarifiedMeasurerTest {
     }
 
     @Test
-    fun `nodes are measured according to the squarified algorithm - horizontal`() {
+    fun nodesAreMeasuredCorrectlyWithSquarifiedAlgorithmHorizontalScreen() {
         val expectedNodes = listOf(
             TreemapNode(width = 960, height = 540, offsetX = 0, offsetY = 0),
             TreemapNode(width = 960, height = 540, offsetX = 0, offsetY = 540),

@@ -38,7 +38,9 @@ android {
     }
 }
 
-@OptIn(ExperimentalKotlinGradlePluginApi::class)
+@OptIn(
+    ExperimentalKotlinGradlePluginApi::class,
+)
 kotlin {
 
     cocoapods {
@@ -62,6 +64,9 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    js(IR) {
+        browser()
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -91,10 +96,16 @@ kotlin {
             androidMain.dependsOn(this)
         }
         val iosMain by getting
+        val jsMain by getting {
+            dependencies {
+                implementation(libs.kotlin.wrappers.js)
+            }
+        }
         val nonAndroidMain by creating {
             dependsOn(commonMain)
             desktopMain.dependsOn(this)
             iosMain.dependsOn(this)
+            jsMain.dependsOn(this)
         }
 
         val commonTest by getting {

@@ -1,22 +1,25 @@
 package by.overpass.treemapchart.sample.shared.complex
 
+import platform.Foundation.NSLocale
 import platform.Foundation.NSNumber
 import platform.Foundation.NSNumberFormatter
-import platform.Foundation.NSNumberFormatterDecimalStyle
+import platform.Foundation.NSNumberFormatterCurrencyStyle
+import platform.Foundation.NSNumberFormatterPercentStyle
 
 internal actual fun Double.formatPercentage(): String {
-    val formatter = decimalFormatter(2)
-    val stringFromNumber = formatter.stringFromNumber(NSNumber(this)) ?: toString()
-    return "$stringFromNumber%"
+    val formatter = NSNumberFormatter().apply {
+        maximumFractionDigits = 2.toULong()
+        numberStyle = NSNumberFormatterPercentStyle
+    }
+    return formatter.stringFromNumber(NSNumber(this)) ?: toString()
 }
 
 internal actual fun Double.formatDollarAmount(): String {
-    val formatter = decimalFormatter(1)
-    val stringFromNumber = formatter.stringFromNumber(NSNumber(this)) ?: toString()
-    return "$$stringFromNumber"
-}
-
-private fun decimalFormatter(fractionDigits: Int): NSNumberFormatter = NSNumberFormatter().apply {
-    maximumFractionDigits = fractionDigits.toULong()
-    numberStyle = NSNumberFormatterDecimalStyle
+    val formatter = NSNumberFormatter().apply {
+        maximumFractionDigits = 1.toULong()
+        numberStyle = NSNumberFormatterCurrencyStyle
+        currencyCode = "USD"
+        locale = NSLocale("en_US")
+    }
+    return formatter.stringFromNumber(NSNumber(this)) ?: toString()
 }

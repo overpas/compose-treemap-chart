@@ -37,7 +37,9 @@ android {
     }
 }
 
-@OptIn(ExperimentalKotlinGradlePluginApi::class)
+@OptIn(
+    ExperimentalKotlinGradlePluginApi::class,
+)
 kotlin {
 
     jvmToolchain(17)
@@ -49,6 +51,9 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
+    js(IR) {
+        browser()
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -71,6 +76,7 @@ kotlin {
             }
         }
         val iosMain by getting
+        val jsMain by getting
 
         val commonTest by getting {
             dependencies {

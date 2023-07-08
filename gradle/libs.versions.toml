@@ -20,6 +20,7 @@ kotlinx-serialization-json = '1.5.1'
 kotlinx-collections-immutable = '0.3.5'
 compose-detekt-rules = '0.0.26'
 compose-runtime-tracing = '1.0.0-alpha03'
+kotlin-wrappers-js = '1.0.0-pre.589'
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -41,6 +42,7 @@ activity-compose = { group = "androidx.activity", name = "activity-compose", ver
 kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "kotlinx-collections-immutable" }
 compose-detekt-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "compose-detekt-rules"}
+kotlin-wrappers-js = { group = "org.jetbrains.kotlin-wrappers", name = "kotlin-js", version.ref = "kotlin-wrappers-js" }
 
 [plugins]
 android-app = { id = "com.android.application", version.ref = "android-build-tools" }

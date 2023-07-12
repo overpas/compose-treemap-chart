@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "by.overpass.treemapchart.sample.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "by.overpass.treemapchart.sample.android"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -26,10 +26,17 @@ android {
         }
     }
     buildTypes {
-        getByName("release") {
+        val release = getByName("release") {
             isMinifyEnabled = true
+            isShrinkResources = true
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        create("benchmark") {
+            initWith(release)
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks.add("release")
+            proguardFiles("benchmark-rules.pro")
         }
     }
     compileOptions {
@@ -49,6 +56,7 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.activity.compose)
+    implementation(libs.androidx.profile.installer)
     debugImplementation(libs.compose.runtime.tracing)
     detektPlugins(libs.compose.detekt.rules)
 }

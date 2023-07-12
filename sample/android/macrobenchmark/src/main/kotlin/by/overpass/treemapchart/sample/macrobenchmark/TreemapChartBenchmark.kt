@@ -44,8 +44,8 @@ class TreemapChartBenchmark {
             Until.hasObject(
                 By.text(
                     """
-                    |Combustion Engines
-                    |65.07%
+                    |Cars
+                    |12.11%
                     """.trimMargin(),
                 ),
             ), 5000
@@ -68,14 +68,14 @@ class TreemapChartBenchmark {
         device.findObject(
             By.text(
                 """
-                |Combustion Engines
-                |65.07%
+                |Cars
+                |12.11%
                 """.trimMargin(),
             ),
         ).click()
 
         device.wait(Until.hasObject(By.text("Exports value")), 5000)
-        device.wait(Until.hasObject(By.text("$4.8B")), 5000)
+        device.wait(Until.hasObject(By.text("$88.6B")), 5000)
     }
 
     private fun measureRepeated(block: MacrobenchmarkScope.() -> Unit) {

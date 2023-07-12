@@ -14,7 +14,7 @@ internal object ExportsTreeBuilder {
             Export.Section(
                 name = "Total Exports",
                 exportsValue = total,
-                percentage = 100.0,
+                percentage = 1.0,
                 color = null,
             ),
         ) {
@@ -26,7 +26,7 @@ internal object ExportsTreeBuilder {
                 .sortedByDescending { it.second }
                 .forEach { (sectionId, sectionTotal, sectionProductTrades) ->
                     val productSection = ProductSection.byId(sectionId)
-                    val sectionPercentage = sectionTotal / total * 100
+                    val sectionPercentage = sectionTotal / total
                     node(
                         Export.Section(
                             name = productSection.title,
@@ -38,7 +38,7 @@ internal object ExportsTreeBuilder {
                         sectionProductTrades
                             .sortedByDescending(ProductTrade::tradeValue)
                             .forEach { productTrade ->
-                                val productPercentage = productTrade.tradeValue / total * 100
+                                val productPercentage = productTrade.tradeValue / total
                                 node(
                                     Export.Product(
                                         name = productTrade.hs4Name,

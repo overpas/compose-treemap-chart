@@ -13,6 +13,7 @@ android {
         minSdk = 26
         targetSdk = 34
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
     }
 
     compileOptions {
@@ -26,9 +27,9 @@ android {
     testOptions {
         managedDevices {
             devices {
-                create<ManagedVirtualDevice>("pixel6Api31") {
-                    device = "Pixel 6"
-                    apiLevel = 31
+                create<ManagedVirtualDevice>("pixel2Api33") {
+                    device = "Pixel 2"
+                    apiLevel = 33
                     systemImageSource = "aosp"
                 }
             }
@@ -39,7 +40,6 @@ android {
 
     buildTypes {
         create("benchmark") {
-            isDebuggable = true
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
         }

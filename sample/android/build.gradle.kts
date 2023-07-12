@@ -34,7 +34,6 @@ android {
         }
         create("benchmark") {
             initWith(release)
-            isProfileable = true
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks.add("release")
             proguardFiles("benchmark-rules.pro")
@@ -57,6 +56,7 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.activity.compose)
+    implementation(libs.androidx.profile.installer)
     debugImplementation(libs.compose.runtime.tracing)
     detektPlugins(libs.compose.detekt.rules)
 }

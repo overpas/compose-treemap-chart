@@ -24,6 +24,6 @@ jobs:
       - name: UI tests + Macrobenchmark
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 33
+          api-level: 29
           profile: Pixel 2
           script: ./gradlew :treemap-chart-compose:connectedCheck :sample:android:macrobenchmark:connectedBenchmarkAndroidTest

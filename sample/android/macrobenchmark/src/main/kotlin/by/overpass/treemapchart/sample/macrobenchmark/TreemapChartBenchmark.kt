@@ -48,7 +48,8 @@ class TreemapChartBenchmark {
                     |12.11%
                     """.trimMargin(),
                 ),
-            ), 5000
+            ),
+            5000,
         )
     }
 
@@ -65,6 +66,17 @@ class TreemapChartBenchmark {
         device.findObject(By.text("Show more complex chart"))
             .click()
 
+        device.wait(
+            Until.hasObject(
+                By.text(
+                    """
+                    |Cars
+                    |12.11%
+                    """.trimMargin(),
+                ),
+            ),
+            5000,
+        )
         device.findObject(
             By.text(
                 """

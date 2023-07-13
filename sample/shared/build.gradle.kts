@@ -71,7 +71,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":treemap-core"))
+                implementation(project(":treemap-chart"))
                 implementation(project(":treemap-chart-compose"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)

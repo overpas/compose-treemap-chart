@@ -19,7 +19,7 @@ jobs:
 
         # Builds the release artifacts of the library
       - name: Release build
-        run: ./gradlew :treemap-core:assemble :treemap-compose-android:assembleRelease
+        run: ./gradlew :treemap-chart:assemble :treemap-compose-android:assembleRelease
 
         # Generates other artifacts
       - name: Source jar

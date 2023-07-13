@@ -59,7 +59,6 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
-                api(libs.kotlinx.collections.immutable)
             }
         }
         val desktopMain by getting {

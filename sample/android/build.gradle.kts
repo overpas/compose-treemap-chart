@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace = "by.overpass.treemapchart.sample.android"
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     defaultConfig {
         applicationId = "by.overpass.treemapchart.sample.android"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = properties["android.targetSdk"].toString().toInt()
         versionCode = 1
         versionName = "1.0"
     }

@@ -11,9 +11,9 @@ plugins {
 
 android {
     namespace = "by.overpass.treemapchart.sample.shared"
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = properties["android.minSdk"].toString().toInt()
     }
     packaging {
         resources {
@@ -71,7 +71,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":treemap-core"))
+                implementation(project(":treemap-chart"))
                 implementation(project(":treemap-chart-compose"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)

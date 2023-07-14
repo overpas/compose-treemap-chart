@@ -13,3 +13,4 @@ xcuserdata
 Pods
 *.lock
 *.trace
+*.gpg

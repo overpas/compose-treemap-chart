@@ -31,8 +31,6 @@ ui-automator = '2.2.0'
 androidx-test-rules = '1.5.0'
 # Other
 detekt = '1.23.0'
-gradle-nexus-plugin = '1.1.0'
-dokka = '1.8.20'
 
 [libraries]
 # Kotlin
@@ -81,5 +79,3 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 # Other
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-nexus-publish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "gradle-nexus-plugin" }

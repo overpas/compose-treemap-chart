@@ -5,13 +5,19 @@ plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     alias(libs.plugins.detekt)
+    id("publication")
 }
+
+group = properties["lib.group"].toString()
+version = properties["lib.version"].toString()
+
+println("group = $group, version = $version")
 
 android {
     namespace = "by.overpass.treemapchart.compose"
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = properties["android.minSdk"].toString().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     packaging {
@@ -47,7 +53,9 @@ kotlin {
     targetHierarchy.default()
 
     jvm("desktop")
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -58,7 +66,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":treemap-core"))
+                implementation(project(":treemap-chart"))
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)

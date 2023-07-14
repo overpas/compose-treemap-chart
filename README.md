@@ -1,17 +1,22 @@
 # Compose Treemap Chart
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-compose-android/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-compose-android)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose)
 [![Test](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml)
 [![Static analysis](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml)
 [![codecov](https://codecov.io/gh/overpas/compose-treemap-chart/branch/master/graph/badge.svg?token=CHYdQiizEr)](https://codecov.io/gh/overpas/compose-treemap-chart)
+![Badge-Android](https://img.shields.io/badge/platform-android-blue)
+![Badge-JVM](https://img.shields.io/badge/platform-jvm-blue)
+![Badge-iOS](https://img.shields.io/badge/platform-ios-blue)
+![Badge-JS](https://img.shields.io/badge/platform-js-blue)
 
 Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart implementation
+<img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_complex_chart.png" width="500">
 
 ## Usage
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.0.4"
-implementation "io.github.overpas:treemap-chart-compose:0.0.4"
+implementation "io.github.overpas:treemap-chart:0.1.0"
+implementation "io.github.overpas:treemap-chart-compose:0.1.0"
 ```
 ### Sample code
 ```kotlin

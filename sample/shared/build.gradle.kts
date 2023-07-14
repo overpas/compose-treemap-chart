@@ -11,9 +11,9 @@ plugins {
 
 android {
     namespace = "by.overpass.treemapchart.sample.shared"
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = properties["android.minSdk"].toString().toInt()
     }
     packaging {
         resources {

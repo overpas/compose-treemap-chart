@@ -6,13 +6,17 @@ plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     alias(libs.plugins.detekt)
+    id("publication")
 }
+
+group = properties["lib.group"].toString()
+version = properties["lib.version"].toString()
 
 android {
     namespace = "by.overpass.treemapchart.core"
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     defaultConfig {
-        minSdk = 24
+        minSdk = properties["android.minSdk"].toString().toInt()
     }
     packaging {
         resources {
@@ -47,7 +51,9 @@ kotlin {
     targetHierarchy.default()
 
     jvm("desktop")
-    android()
+    android {
+        publishLibraryVariants("release", "debug")
+    }
     iosX64()
     iosArm64()
     iosSimulatorArm64()

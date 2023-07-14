@@ -6,12 +6,12 @@ plugins {
 }
 
 android {
-    compileSdk = 34
+    compileSdk = properties["android.compileSdk"].toString().toInt()
     namespace = "by.overpass.treemapchart.sample.macrobenchmark"
 
     defaultConfig {
         minSdk = 26
-        targetSdk = 34
+        targetSdk = properties["android.targetSdk"].toString().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["androidx.benchmark.suppressErrors"] = "EMULATOR"
     }

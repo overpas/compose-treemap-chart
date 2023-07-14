@@ -25,7 +25,7 @@ if (secretPropsFile.exists()) {
 } else {
     ext["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
     ext["signing.password"] = System.getenv("SIGNING_PASSWORD")
-    ext["signing.key"] = System.getenv("SIGNING_SECRET_KEY")
+    ext["signing.key"] = System.getenv("SIGNING_KEY")
     ext["ossrhUsername"] = System.getenv("OSSRH_USERNAME")
     ext["ossrhPassword"] = System.getenv("OSSRH_PASSWORD")
 }

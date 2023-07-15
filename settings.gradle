@@ -1,4 +1,0 @@
-rootProject.name = "compose-treemap-chart"
-include ':treemap-example'
-include ':treemap-core'
-include ':treemap-compose-android'

@@ -1,17 +1,22 @@
 # Compose Treemap Chart
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-compose-android/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-compose-android)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose)
 [![Test](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml)
 [![Static analysis](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml)
 [![codecov](https://codecov.io/gh/overpas/compose-treemap-chart/branch/master/graph/badge.svg?token=CHYdQiizEr)](https://codecov.io/gh/overpas/compose-treemap-chart)
+![Badge-Android](https://img.shields.io/badge/platform-android-blue)
+![Badge-JVM](https://img.shields.io/badge/platform-jvm-blue)
+![Badge-iOS](https://img.shields.io/badge/platform-ios-blue)
+![Badge-JS](https://img.shields.io/badge/platform-js-blue)
 
 Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart implementation
+<img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_complex_chart.png" width="500">
 
 ## Usage
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-core:0.0.3"
-implementation "io.github.overpas:treemap-compose-android:0.0.3"
+implementation "io.github.overpas:treemap-chart:0.1.0"
+implementation "io.github.overpas:treemap-chart-compose:0.1.0"
 ```
 ### Sample code
 ```kotlin
@@ -44,26 +49,15 @@ class MainActivity : ComponentActivity() {
                             .fillMaxHeight()
                             .fillMaxWidth(),
                     ) { item ->
-                        TreemapItem(item = item)
+                        SimpleTreemapItem(item = item.toString())
                     }
                 }
             }
         }
     }
 }
-
-@Composable
-fun TreemapItem(item: Int, modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier.border(1.dp, MaterialTheme.colors.onBackground),
-    ) {
-        Text(
-            text = item.toString(),
-            textAlign = TextAlign.Center,
-        )
-    }
-}
 ```
 The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
+
+For more advanced Kotlin Multiplatform samples check out the /sample directory

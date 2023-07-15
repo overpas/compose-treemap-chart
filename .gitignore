@@ -4,7 +4,13 @@
 .idea
 .DS_Store
 /build
+build
 /captures
 .externalNativeBuild
 .cxx
 local.properties
+xcuserdata
+Pods
+*.lock
+*.trace
+*.gpg

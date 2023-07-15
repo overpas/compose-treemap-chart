@@ -1,6 +1,6 @@
 # Compose Treemap Chart
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose)
-[![Test](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/test.yml)
+[![Build](https://github.com/overpas/compose-treemap-chart/actions/workflows/build.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/build.yml)
 [![Static analysis](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/static-analysis.yml)
 [![codecov](https://codecov.io/gh/overpas/compose-treemap-chart/branch/master/graph/badge.svg?token=CHYdQiizEr)](https://codecov.io/gh/overpas/compose-treemap-chart)
 ![Badge-Android](https://img.shields.io/badge/platform-android-blue)

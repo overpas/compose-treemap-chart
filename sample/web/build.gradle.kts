@@ -1,19 +1,14 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
     alias(libs.plugins.detekt)
 }
 
-@OptIn(
-    ExperimentalKotlinGradlePluginApi::class,
-)
 kotlin {
 
     jvmToolchain(17)
 
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
     js(IR) {
         browser()

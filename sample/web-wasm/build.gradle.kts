@@ -7,14 +7,11 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-@OptIn(
-    ExperimentalKotlinGradlePluginApi::class,
-)
 kotlin {
 
     jvmToolchain(17)
 
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {

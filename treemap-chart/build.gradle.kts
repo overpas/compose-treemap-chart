@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -42,17 +41,14 @@ android {
     }
 }
 
-@OptIn(
-    ExperimentalKotlinGradlePluginApi::class,
-)
 kotlin {
 
     jvmToolchain(17)
 
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
 
     jvm("desktop")
-    android {
+    androidTarget {
         publishLibraryVariants("release", "debug")
     }
     iosX64()

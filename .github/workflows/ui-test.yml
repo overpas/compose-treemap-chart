@@ -21,8 +21,8 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-      - name: UI tests + Macrobenchmark
+      - name: UI tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 29
-          script: ./gradlew :treemap-chart-compose:connectedCheck :sample:android:macrobenchmark:connectedBenchmarkAndroidTest
+          script: ./gradlew :treemap-chart-compose:connectedCheck

@@ -7,6 +7,7 @@
 ![Badge-JVM](https://img.shields.io/badge/platform-jvm-blue)
 ![Badge-iOS](https://img.shields.io/badge/platform-ios-blue)
 ![Badge-JS](https://img.shields.io/badge/platform-js-blue)
+![Badge-Wasm](https://img.shields.io/badge/platform-wasm-blue)
 
 Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart implementation
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_complex_chart.png" width="500">

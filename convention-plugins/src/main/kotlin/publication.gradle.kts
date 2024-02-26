@@ -102,4 +102,5 @@ tasks.matching { it.name.endsWith("PublicationToSonatypeRepository") }
         dependsOn(tasks.matching { it.name == "signKotlinMultiplatformPublication" })
         dependsOn(tasks.matching { it.name == "signAndroidDebugPublication" })
         dependsOn(tasks.matching { it.name == "signAndroidReleasePublication" })
+        dependsOn(tasks.matching { it.name == "signWasmJsPublication'" })
     }

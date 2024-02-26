@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
 
 plugins {
     id("com.android.library")
@@ -67,6 +68,10 @@ kotlin {
     js(IR) {
         browser()
     }
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
 
     sourceSets {
         val commonMain by getting {
@@ -101,11 +106,13 @@ kotlin {
                 implementation(libs.kotlin.wrappers.js)
             }
         }
+        val wasmJsMain by getting
         val nonAndroidMain by creating {
             dependsOn(commonMain)
             desktopMain.dependsOn(this)
             iosMain.dependsOn(this)
             jsMain.dependsOn(this)
+            wasmJsMain.dependsOn(this)
         }
 
         val commonTest by getting {

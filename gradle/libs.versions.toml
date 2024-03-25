@@ -30,7 +30,7 @@ macrobenchmark = '1.2.0-alpha16'
 ui-automator = '2.2.0'
 androidx-test-rules = '1.5.0'
 # Other
-detekt = '1.23.0'
+detekt = '1.23.6'
 
 [libraries]
 # Kotlin

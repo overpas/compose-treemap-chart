@@ -26,7 +26,7 @@ kover = '0.5.1'
 junit = '4.13.2'
 androidx-test-junit-ext = '1.1.5'
 androidx-test-espresso-core = '3.5.1'
-macrobenchmark = '1.2.0-alpha16'
+macrobenchmark = '1.2.4'
 ui-automator = '2.2.0'
 androidx-test-rules = '1.5.0'
 # Other

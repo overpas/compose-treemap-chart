@@ -36,25 +36,14 @@ private val simpleTreeData = tree(10) {
     node(1)
 }
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            ComposetreemapchartTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    TreemapChart(
-                        data = simpleTreeData,
-                        evaluateItem = { it.toDouble() },
-                        treemapChartMeasurer = remember { SquarifiedMeasurer() },
-                        modifier = Modifier
-                            .fillMaxHeight()
-                            .fillMaxWidth(),
-                    ) { item ->
-                        SimpleTreemapItem(item = item.toString())
-                    }
-                }
-            }
-        }
+@Composable
+fun MyChart() {
+    TreemapChart(
+        data = simpleTreeData,
+        evaluateItem = Int::toDouble,
+        modifier = Modifier.fillMaxSize(),
+    ) { item ->
+        SimpleTreemapItem(item = item.toString())
     }
 }
 ```

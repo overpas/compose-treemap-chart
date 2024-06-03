@@ -7,7 +7,7 @@ android-build-tools = '8.2.2'
 # Compose
 compose = '1.6.2'
 compose-compiler = '1.5.8'
-compose-multiplatform = '1.6.0-rc03'
+compose-multiplatform = '1.6.11'
 compose-detekt-rules = '0.0.26'
 compose-runtime-tracing = '1.0.0-beta01'
 # AndroidX

@@ -1,7 +1,7 @@
 [versions]
 # Kotlin
 kotlin = '1.9.22'
-kotlin-wrappers-js = '1.0.0-pre.593'
+kotlin-wrappers-js = '1.0.0-pre.767'
 # AGP
 android-build-tools = '8.2.2'
 # Compose

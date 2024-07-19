@@ -1,6 +1,6 @@
 [versions]
 # Kotlin
-kotlin = '1.9.22'
+kotlin = '1.9.25'
 kotlin-wrappers-js = '1.0.0-pre.593'
 # AGP
 android-build-tools = '8.2.2'

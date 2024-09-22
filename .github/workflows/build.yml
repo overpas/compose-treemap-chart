@@ -4,11 +4,9 @@ on:
   push:
     branches:
       - master
-      - rework
   pull_request:
     branches:
       - master
-      - rework
 
   workflow_dispatch:
 

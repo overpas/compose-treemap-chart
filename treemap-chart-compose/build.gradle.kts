@@ -49,6 +49,9 @@ kotlin {
     jvm("desktop")
     androidTarget {
         publishLibraryVariants("release", "debug")
+//        //https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-test.html
+//        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+//        instrumentedTestVariant.sourceSetTree.set(KotlinSourceSetTree.test)
     }
     iosX64()
     iosArm64()
@@ -56,7 +59,6 @@ kotlin {
     js(IR) {
         browser()
     }
-
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
@@ -97,9 +99,6 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.test.ext.junit)
                 implementation(libs.androidx.test.espresso.core)
-//                implementation(libs.compose.ui.test.junit4)
-//                implementation(libs.compose.ui.test.manifest)
-//                implementation(libs.compose.ui.tooling)
             }
         }
         val desktopTest by getting
@@ -111,6 +110,10 @@ dependencies {
     detektPlugins(libs.compose.detekt.rules)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+//    //temporary fix: https://youtrack.jetbrains.com/issue/CMP-5864
+//    androidTestImplementation("androidx.test:monitor") {
+//        version { strictly("1.6.1") }
+//    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {

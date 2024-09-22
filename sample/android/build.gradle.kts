@@ -1,6 +1,8 @@
 plugins {
-    id("com.android.application")
-    kotlin("android")
+    alias(libs.plugins.android.app)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
 }
 
@@ -17,9 +19,6 @@ android {
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -32,29 +31,26 @@ android {
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-        create("benchmark") {
-            initWith(release)
-            signingConfig = signingConfigs.getByName("debug")
-            matchingFallbacks.add("release")
-            proguardFiles("benchmark-rules.pro")
-        }
+//        create("benchmark") {
+//            initWith(release)
+//            signingConfig = signingConfigs.getByName("debug")
+//            matchingFallbacks.add("release")
+//            proguardFiles("benchmark-rules.pro")
+//        }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        jvmToolchain(17)
+        sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
+        targetCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
     }
 }
 
 dependencies {
     implementation(project(":sample:shared"))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling)
-    implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.material)
+    implementation(compose.ui)
+    implementation(compose.foundation)
+    implementation(compose.material)
+    implementation(compose.uiTooling)
+    implementation(compose.components.uiToolingPreview)
     implementation(libs.activity.compose)
     implementation(libs.androidx.profile.installer)
     debugImplementation(libs.compose.runtime.tracing)

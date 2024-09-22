@@ -1,13 +1,13 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
 }
 
 kotlin {
-
-    jvmToolchain(17)
-
     applyDefaultHierarchyTemplate()
 
     js(IR) {
@@ -30,7 +30,7 @@ kotlin {
 }
 
 compose.experimental {
-    web.application {}
+
 }
 
 dependencies {
@@ -38,7 +38,7 @@ dependencies {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "17"
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
 }

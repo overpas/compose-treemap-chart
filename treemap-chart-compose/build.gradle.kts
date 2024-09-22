@@ -1,10 +1,12 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
-
+import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    id("com.android.library")
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.android.lib)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
     id("publication")
 }
@@ -27,11 +29,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        jvmToolchain(17)
+        sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
+        targetCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
     }
     sourceSets {
         named("main") {
@@ -45,9 +44,6 @@ android {
 }
 
 kotlin {
-
-    jvmToolchain(17)
-
     applyDefaultHierarchyTemplate()
 
     jvm("desktop")
@@ -73,6 +69,7 @@ kotlin {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
                 implementation(compose.material)
+                implementation(compose.components.uiToolingPreview)
             }
         }
         val desktopMain by getting {
@@ -82,8 +79,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation(libs.compose.ui.test.manifest)
-                implementation(libs.compose.ui.tooling)
+                implementation(compose.uiTooling)
             }
         }
         val iosMain by getting
@@ -92,6 +88,8 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                @OptIn(ExperimentalComposeLibrary::class)
+                implementation(compose.uiTest)
             }
         }
         val androidUnitTest by getting
@@ -99,9 +97,9 @@ kotlin {
             dependencies {
                 implementation(libs.androidx.test.ext.junit)
                 implementation(libs.androidx.test.espresso.core)
-                implementation(libs.compose.ui.test.junit4)
-                implementation(libs.compose.ui.test.manifest)
-                implementation(libs.compose.ui.tooling)
+//                implementation(libs.compose.ui.test.junit4)
+//                implementation(libs.compose.ui.test.manifest)
+//                implementation(libs.compose.ui.tooling)
             }
         }
         val desktopTest by getting
@@ -111,10 +109,12 @@ kotlin {
 
 dependencies {
     detektPlugins(libs.compose.detekt.rules)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "17"
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
 }

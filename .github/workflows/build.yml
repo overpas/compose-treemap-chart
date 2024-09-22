@@ -15,16 +15,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Gradle cache
+        uses: gradle/actions/setup-gradle@v3
       - uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
       - name: Build
         run: ./gradlew build
-      - name: Collect test coverage
-        run: ./gradlew koverReport
-      - name: Submit coverage report
-        run: |
-          curl -Os https://uploader.codecov.io/latest/linux/codecov
-          chmod +x codecov
-          ./codecov -f "build/reports/kover/report.xml"

@@ -2,6 +2,7 @@ package by.overpass.treemapchart.core.tree
 
 /**
  * Basic data structure to be used in treemap chart
+ * TODO: Fix stability
  *
  * @param root the root node
  */

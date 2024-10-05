@@ -3,7 +3,7 @@
 kotlin = '2.1.0-Beta1'
 kotlin-wrappers-js = '1.0.0-pre.810'
 # AGP
-agp = '8.6.1'
+agp = '8.7.0'
 # Compose
 compose = '1.7.0-beta02'
 compose-detekt-rules = '0.0.26'

@@ -1,10 +1,12 @@
-import org.jetbrains.kotlin.gradle.targets.js.dsl.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("com.android.library")
-    kotlin("multiplatform")
-    id("org.jetbrains.compose")
+    alias(libs.plugins.android.lib)
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.compose)
+    alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
     id("publication")
 }
@@ -24,11 +26,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlin {
-        jvmToolchain(17)
+        sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
+        targetCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
     }
     sourceSets {
         named("main") {
@@ -42,9 +41,6 @@ android {
 }
 
 kotlin {
-
-    jvmToolchain(17)
-
     applyDefaultHierarchyTemplate()
 
     jvm("desktop")
@@ -94,8 +90,8 @@ dependencies {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = "17"
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
 }
 

@@ -30,7 +30,7 @@ androidx-test-rules = '1.6.1'
 androidx-compose-ui-test = "1.7.3"
 robolectric = "4.13"
 # Other
-detekt = '1.23.6'
+detekt = '1.23.7'
 
 [libraries]
 # Kotlin

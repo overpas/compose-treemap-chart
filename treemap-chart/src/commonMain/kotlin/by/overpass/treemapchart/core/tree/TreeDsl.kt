@@ -4,6 +4,8 @@
 
 package by.overpass.treemapchart.core.tree
 
+import kotlinx.collections.immutable.toImmutableList
+
 @DslMarker
 annotation class TreeDslMarker
 
@@ -15,19 +17,18 @@ interface NodeDsl<in T> {
 }
 
 @TreeDslMarker
-private class NodeDslImpl<T>(private val node: Tree.Node<T>) : NodeDsl<T> {
+private class NodeDslImpl<T> : NodeDsl<T> {
 
-    private val childNodes = mutableListOf<NodeDslImpl<T>>()
+    private val nodes = mutableListOf<Tree.Node<T>>()
 
     override fun node(value: T, nodeBuilder: NodeDsl<T>.() -> Unit) {
-        childNodes += NodeDslImpl(Tree.Node(value)).apply(nodeBuilder)
+        nodes += NodeDslImpl<T>()
+            .apply(nodeBuilder)
+            .build(value)
     }
 
-    fun build(): Tree.Node<T> {
-        childNodes.forEach {
-            node.addChild(it.build())
-        }
-        return node
+    fun build(value: T): Tree.Node<T> {
+        return Tree.Node(value, nodes.toImmutableList())
     }
 }
 
@@ -35,15 +36,17 @@ private class NodeDslImpl<T>(private val node: Tree.Node<T>) : NodeDsl<T> {
 interface TreeDsl<in T> : NodeDsl<T>
 
 @TreeDslMarker
-private class TreeDslImpl<T>(rootValue: T) : TreeDsl<T> {
+private class TreeDslImpl<T>(
+    private val rootValue: T,
+) : TreeDsl<T> {
 
-    private val rootNode = NodeDslImpl(Tree.Node(rootValue))
+    private val rootNode = NodeDslImpl<T>()
 
     override fun node(value: T, nodeBuilder: NodeDsl<T>.() -> Unit) {
         rootNode.node(value, nodeBuilder)
     }
 
-    fun build(): Tree<T> = Tree(rootNode.build())
+    fun build(): Tree<T> = Tree(rootNode.build(rootValue))
 }
 
 @TreeDslMarker

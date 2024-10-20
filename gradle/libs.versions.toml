@@ -1,7 +1,7 @@
 [versions]
 # Kotlin
 kotlin = '2.1.0-Beta1'
-kotlin-wrappers-js = '1.0.0-pre.819'
+kotlin-wrappers-js = '1.0.0-pre.820'
 # AGP
 agp = '8.7.1'
 # Compose

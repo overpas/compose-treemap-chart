@@ -63,6 +63,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(compose.runtime)
+                api(libs.kotlinx.collections.immutable)
             }
         }
         val desktopMain by getting {
@@ -92,6 +93,14 @@ dependencies {
 tasks.withType<KotlinCompile> {
     compilerOptions {
         jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
+    }
+}
+
+composeCompiler {
+    stabilityConfigurationFiles.add(project.layout.projectDirectory.file("stability.conf"))
+    composeCompiler {
+        reportsDestination = layout.buildDirectory.dir("compose_compiler")
+        metricsDestination = layout.buildDirectory.dir("compose_compiler")
     }
 }
 

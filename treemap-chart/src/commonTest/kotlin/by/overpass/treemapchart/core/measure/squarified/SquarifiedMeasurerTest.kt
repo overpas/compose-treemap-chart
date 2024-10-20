@@ -3,6 +3,7 @@ package by.overpass.treemapchart.core.measure.squarified
 import by.overpass.treemapchart.core.measure.TreemapNode
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.time.measureTimedValue
 
 class SquarifiedMeasurerTest {
 
@@ -20,9 +21,13 @@ class SquarifiedMeasurerTest {
             TreemapNode(width = 450, height = 384, offsetX = 630, offsetY = 1344),
             TreemapNode(width = 450, height = 192, offsetX = 630, offsetY = 1728),
         )
-        val nodes = squarifiedMeasurer.measureNodes(values, 1080, 1920)
 
-        assertEquals(expectedNodes, nodes)
+        val actual = measureTimedValue {
+            squarifiedMeasurer.measureNodes(values, 1080, 1920)
+        }
+
+        assertEquals(expectedNodes, actual.value)
+        println("Time: ${actual.duration}")
     }
 
     @Test
@@ -36,8 +41,12 @@ class SquarifiedMeasurerTest {
             TreemapNode(width = 384, height = 450, offsetX = 1344, offsetY = 630),
             TreemapNode(width = 192, height = 450, offsetX = 1728, offsetY = 630),
         )
-        val nodes = squarifiedMeasurer.measureNodes(values, 1920, 1080)
 
-        assertEquals(expectedNodes, nodes)
+        val actual = measureTimedValue {
+            squarifiedMeasurer.measureNodes(values, 1920, 1080)
+        }
+
+        assertEquals(expectedNodes, actual.value)
+        println("Time: ${actual.duration}")
     }
 }

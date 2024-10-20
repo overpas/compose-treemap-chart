@@ -122,6 +122,14 @@ dependencies {
     detektPlugins(libs.compose.detekt.rules)
 }
 
+composeCompiler {
+    stabilityConfigurationFiles.add(project.layout.projectDirectory.file("stability.conf"))
+    composeCompiler {
+        reportsDestination = layout.buildDirectory.dir("compose_compiler")
+        metricsDestination = layout.buildDirectory.dir("compose_compiler")
+    }
+}
+
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     compilerOptions {
         jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())

@@ -31,7 +31,13 @@ android {
             isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-//        create("benchmark") {
+        create("benchmark") {
+            initWith(buildTypes.getByName("release"))
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
+        //        create("benchmark") {
 //            initWith(release)
 //            signingConfig = signingConfigs.getByName("debug")
 //            matchingFallbacks.add("release")

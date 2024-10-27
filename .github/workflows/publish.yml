@@ -16,11 +16,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Install GPG
+      - name: Export signing key to secring.gpg
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          brew install gpg
           echo "$SIGNING_KEY" | gpg --dearmor > ${HOME}/secring.gpg
 
       - name: Setup Gradle

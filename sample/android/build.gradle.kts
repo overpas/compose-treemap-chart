@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     alias(libs.plugins.android.app)
     alias(libs.plugins.kotlin.android)
@@ -37,12 +40,6 @@ android {
             matchingFallbacks += listOf("release")
             isDebuggable = false
         }
-        //        create("benchmark") {
-//            initWith(release)
-//            signingConfig = signingConfigs.getByName("debug")
-//            matchingFallbacks.add("release")
-//            proguardFiles("benchmark-rules.pro")
-//        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
@@ -61,4 +58,10 @@ dependencies {
     implementation(libs.androidx.profile.installer)
     debugImplementation(libs.compose.runtime.tracing)
     detektPlugins(libs.compose.detekt.rules)
+}
+
+tasks.withType<KotlinCompile> {
+    compilerOptions {
+        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
+    }
 }

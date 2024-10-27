@@ -31,6 +31,7 @@ androidx-compose-ui-test = "1.7.4"
 robolectric = "4.13"
 # Other
 detekt = '1.23.7'
+maven-publish-plugin = "0.30.0"
 
 [libraries]
 # Kotlin
@@ -59,6 +60,8 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose-ui-test" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui-test" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+# Other
+maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish-plugin" }
 
 [plugins]
 # Android

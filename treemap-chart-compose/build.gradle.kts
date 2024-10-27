@@ -8,13 +8,11 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
-    id("publication")
+    id("publish")
 }
 
 group = properties["lib.group"].toString()
 version = properties["lib.version"].toString()
-
-println("group = $group, version = $version")
 
 android {
     namespace = "by.overpass.treemapchart.compose"

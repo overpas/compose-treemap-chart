@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
-    id("publication")
+    id("publish")
 }
 
 group = properties["lib.group"].toString()

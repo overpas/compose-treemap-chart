@@ -14,8 +14,8 @@ Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart imple
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.1.2"
-implementation "io.github.overpas:treemap-chart-compose:0.1.2"
+implementation "io.github.overpas:treemap-chart:0.1.3"
+implementation "io.github.overpas:treemap-chart-compose:0.1.3"
 ```
 ### Sample code
 ```kotlin
@@ -48,4 +48,4 @@ fun MyChart() {
 The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
 
-For more advanced Kotlin Multiplatform samples check out the /sample directory
+For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory

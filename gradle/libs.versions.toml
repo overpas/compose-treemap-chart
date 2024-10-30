@@ -7,7 +7,7 @@ agp = '8.7.1'
 # Compose
 compose = '1.7.0'
 compose-detekt-rules = '0.0.26'
-compose-runtime-tracing = '1.7.4'
+compose-runtime-tracing = '1.7.5'
 # AndroidX
 core-ktx = '1.13.1'
 appcompat = '1.7.0'

@@ -1,8 +1,9 @@
 name: Publish
 
 on:
-  release:
-    types: [released]
+  push:
+    branches:
+      - test-publish
 
 jobs:
   publish:
@@ -20,7 +21,6 @@ jobs:
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          brew reinstall gnupg
           echo "$SIGNING_KEY" | gpg --dearmor > ${HOME}/secring.gpg
 
       - name: Setup Gradle

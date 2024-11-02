@@ -20,7 +20,6 @@ jobs:
         env:
           SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
         run: |
-          brew reinstall gnupg
           echo "$SIGNING_KEY" | gpg --dearmor > ${HOME}/secring.gpg
 
       - name: Setup Gradle

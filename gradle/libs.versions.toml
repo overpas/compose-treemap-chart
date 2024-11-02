@@ -11,7 +11,7 @@ compose-runtime-tracing = '1.7.4'
 # AndroidX
 core-ktx = '1.15.0'
 appcompat = '1.7.0'
-lifecycle-runtime-ktx = '2.8.6'
+lifecycle-runtime-ktx = '2.8.7'
 activity-compose = '1.9.3'
 androidx-profile-installer = '1.4.1'
 # Google

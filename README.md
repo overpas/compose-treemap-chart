@@ -1,5 +1,5 @@
 # Compose Treemap Chart
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.overpas/treemap-chart-compose)
+![Maven Central](https://img.shields.io/maven-central/v/io.github.overpas/treemap-chart-compose)
 [![Build](https://github.com/overpas/compose-treemap-chart/actions/workflows/build.yml/badge.svg)](https://github.com/overpas/compose-treemap-chart/actions/workflows/build.yml)
 ![Badge-Android](https://img.shields.io/badge/platform-android-blue)
 ![Badge-JVM](https://img.shields.io/badge/platform-jvm-blue)

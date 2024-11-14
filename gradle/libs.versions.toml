@@ -5,7 +5,7 @@ kotlin-wrappers-js = '1.0.0-pre.827'
 # AGP
 agp = '8.7.0'
 # Compose
-compose = '1.7.0'
+compose = '1.8.0+check'
 compose-detekt-rules = '0.0.26'
 compose-runtime-tracing = '1.7.5'
 # AndroidX

@@ -1,6 +1,6 @@
 [versions]
 # Kotlin
-kotlin = '2.1.0-Beta1'
+kotlin = '2.1.0'
 kotlin-wrappers-js = '1.0.0-pre.827'
 # AGP
 agp = '8.7.0'

@@ -30,7 +30,7 @@ androidx-test-rules = '1.6.1'
 androidx-compose-ui-test = "1.7.6"
 robolectric = "4.14.1"
 # Other
-detekt = '1.23.7'
+detekt = '1.23.8'
 maven-publish-plugin = "0.30.0"
 
 [libraries]

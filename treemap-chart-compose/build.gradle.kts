@@ -21,6 +21,9 @@ kotlin {
         namespace = "by.overpass.treemapchart.compose"
         compileSdk = properties["android.compileSdk"].toString().toInt()
         minSdk = properties["android.minSdk"].toString().toInt()
+        androidResources {
+            enable = true
+        }
         withHostTest {}
         withDeviceTest {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

@@ -1,10 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.android.app)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.detekt)
 }
@@ -49,19 +44,13 @@ android {
 
 dependencies {
     implementation(project(":sample:shared"))
-    implementation(compose.ui)
-    implementation(compose.foundation)
-    implementation(compose.material)
-    implementation(compose.uiTooling)
-    implementation(compose.components.uiToolingPreview)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.activity.compose)
     implementation(libs.androidx.profile.installer)
     debugImplementation(libs.compose.runtime.tracing)
     detektPlugins(libs.compose.detekt.rules)
-}
-
-tasks.withType<KotlinCompile> {
-    compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
-    }
 }

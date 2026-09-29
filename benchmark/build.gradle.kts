@@ -1,9 +1,5 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 plugins {
     alias(libs.plugins.android.test)
-    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -13,10 +9,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
         targetCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
-    }
-
-    kotlinOptions {
-        jvmTarget = properties["jvm.version"].toString()
     }
 
     defaultConfig {
@@ -53,11 +45,5 @@ dependencies {
 androidComponents {
     beforeVariants(selector().all()) {
         it.enable = it.buildType == "benchmark"
-    }
-}
-
-tasks.withType<KotlinCompile> {
-    compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
 }

@@ -34,14 +34,15 @@ kotlin {
     }
     iosArm64()
     iosSimulatorArm64()
+    // Compose's web test checks need a webpack bundle to load the Skiko runtime (CMP-4906)
     js {
         browser()
-        // Compose's JS test check needs a webpack bundle to load the Skiko runtime (CMP-4906)
         binaries.executable()
     }
     @OptIn(ExperimentalWasmDsl::class)
     wasmJs {
         browser()
+        binaries.executable()
     }
 
     sourceSets {

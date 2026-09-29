@@ -24,23 +24,23 @@ object SliceAndDiceMeasurer : TreemapChartMeasurer {
         return values.map { value ->
             val dimension = dividedDimension / totalAmount * value
             if (orientation == LayoutOrientation.VERTICAL) { // vertical
-                val node = TreemapNode(
-                    width = width,
-                    height = dimension.roundToInt(),
-                    offsetX = 0,
-                    offsetY = yPosition.roundToInt(),
-                )
+                val offsetY = yPosition.roundToInt()
                 yPosition += dimension
-                node
+                TreemapNode(
+                    width = width,
+                    height = yPosition.roundToInt() - offsetY,
+                    offsetX = 0,
+                    offsetY = offsetY,
+                )
             } else { // horizontal
-                val node = TreemapNode(
-                    width = dimension.roundToInt(),
+                val offsetX = xPosition.roundToInt()
+                xPosition += dimension
+                TreemapNode(
+                    width = xPosition.roundToInt() - offsetX,
                     height = height,
-                    offsetX = xPosition.roundToInt(),
+                    offsetX = offsetX,
                     offsetY = 0,
                 )
-                xPosition += dimension
-                node
             }
         }
     }

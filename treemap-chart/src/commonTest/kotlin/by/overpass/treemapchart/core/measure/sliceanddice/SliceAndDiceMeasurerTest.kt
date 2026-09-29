@@ -1,6 +1,9 @@
 package by.overpass.treemapchart.core.measure.sliceanddice
 
 import by.overpass.treemapchart.core.measure.TreemapNode
+import by.overpass.treemapchart.core.measure.assertNodesFillBoundsWithoutGaps
+import by.overpass.treemapchart.core.measure.gapProneSizes
+import by.overpass.treemapchart.core.measure.gapProneValues
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -41,5 +44,16 @@ class SliceAndDiceMeasurerTest {
         val actual = sut.measureNodes(values, 1920, 1080)
 
         assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun nodesFillBoundsWithoutGaps() {
+        gapProneValues.forEach { values ->
+            gapProneSizes.forEach { (width, height) ->
+                val nodes = sut.measureNodes(values, width, height)
+
+                assertNodesFillBoundsWithoutGaps(nodes, width, height)
+            }
+        }
     }
 }

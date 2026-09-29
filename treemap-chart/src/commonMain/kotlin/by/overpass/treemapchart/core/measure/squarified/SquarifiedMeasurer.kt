@@ -133,9 +133,9 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
                 val h = area / rowWidth
                 element.top = top + topItem
                 element.left = left
-                element.width = rowWidth
-                element.height = h
+                element.right = left + rowWidth
                 topItem += h
+                element.bottom = top + topItem
             }
             widthLeft -= rowWidth
             // this.heightLeft -= w;
@@ -152,9 +152,9 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
                 val wi = area / rowHeight
                 item.top = top
                 item.left = left + rowLeft
-                item.height = rowHeight
-                item.width = wi
+                item.bottom = top + rowHeight
                 rowLeft += wi
+                item.right = left + rowLeft
             }
             // this.widthLeft -= rowHeight;
             heightLeft -= rowHeight

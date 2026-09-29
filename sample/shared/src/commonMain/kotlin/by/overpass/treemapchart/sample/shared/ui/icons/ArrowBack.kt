@@ -6,10 +6,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
 
-/**
- * Material "arrow back" icon, inlined because Compose Multiplatform no longer
- * ships material-icons-core with the material library.
- */
 internal val ArrowBack: ImageVector by lazy {
     ImageVector.Builder(
         name = "AutoMirrored.Filled.ArrowBack",

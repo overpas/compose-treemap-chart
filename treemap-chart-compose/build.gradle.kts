@@ -54,7 +54,6 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
-            implementation(libs.compose.ui.test)
         }
         getByName("androidDeviceTest").dependencies {
             implementation(libs.androidx.test.ext.junit)

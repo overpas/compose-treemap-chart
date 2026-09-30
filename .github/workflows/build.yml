@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ${{ github.workflow }}
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
 
@@ -28,10 +28,22 @@ jobs:
       - name: Gradle cache
         uses: gradle/actions/setup-gradle@v6
       - name: Build
-        run: ./gradlew build
+        run: >-
+          ./gradlew
+          :treemap-chart:build
+          :treemap-chart-compose:build
+          :sample:shared:compileKotlinIosArm64
+          :sample:shared:compileKotlinIosSimulatorArm64
+          :sample:shared:compileKotlinJs
+          :sample:shared:compileKotlinWasmJs
+          :sample:android:assembleDebug
+          :sample:android:check
+          :sample:desktop:build
+          :sample:web:compileKotlinJs
+          :sample:web-wasm:compileKotlinWasmJs
+          :benchmark:compileBenchmarkKotlin
 
   androidTest:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 55
     strategy:

@@ -44,7 +44,6 @@ jobs:
           :benchmark:compileBenchmarkKotlin
 
   androidTest:
-    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 55
     strategy:

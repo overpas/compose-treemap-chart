@@ -13,7 +13,7 @@ jobs:
   publish:
     name: Publish
     runs-on: macos-latest
-    timeout-minutes: 90
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 
@@ -27,13 +27,7 @@ jobs:
 
       - name: Check release tag matches lib.version
         if: github.event_name == 'release'
-        run: |
-          LIB_VERSION=$(sed -n 's/^lib.version=//p' gradle.properties)
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
-          if [ "$LIB_VERSION" != "$TAG_VERSION" ]; then
-            echo "::error::Release tag $GITHUB_REF_NAME does not match lib.version=$LIB_VERSION"
-            exit 1
-          fi
+        run: .github/scripts/check-release-version.sh "$GITHUB_REF_NAME"
 
       - name: Publish To Maven Central
         env:

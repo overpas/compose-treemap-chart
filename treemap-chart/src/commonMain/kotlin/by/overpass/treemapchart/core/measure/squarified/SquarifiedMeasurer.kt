@@ -24,12 +24,20 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
     private var layoutOrientation = LayoutOrientation.VERTICAL
     private val children = mutableListOf<TreemapElement>()
 
-    override fun measureNodes(values: List<Double>, width: Int, height: Int): List<TreemapNode> {
+    override fun measureNodes(
+        values: List<Double>,
+        width: Int,
+        height: Int,
+    ): List<TreemapNode> {
         setupSizeAndValues(width.toDouble(), height.toDouble(), values)
         return measureNodes()
     }
 
-    private fun setupSizeAndValues(width: Double, height: Double, values: List<Double>) {
+    private fun setupSizeAndValues(
+        width: Double,
+        height: Double,
+        values: List<Double>,
+    ) {
         this.width = width
         this.height = height
         left = 0.0
@@ -53,20 +61,18 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         widthLeft = width
         squarify(ArrayList(children), ArrayList(), minimumSide())
         for (child in children) {
-            val treemapNode = TreemapNode(
-                child.width.toInt(),
-                child.height.toInt(),
-                child.left.toInt(),
-                child.top.toInt()
-            )
-            treemapNodeList.add(treemapNode)
+            treemapNodeList.add(child.toNode())
             check(child.top <= height) { "Top is bigger than height" }
             check(child.left <= width) { "Left is bigger than width" }
         }
         return treemapNodeList
     }
 
-    private fun squarify(children: List<TreemapElement>, row: List<TreemapElement>, w: Double) {
+    private fun squarify(
+        children: List<TreemapElement>,
+        row: List<TreemapElement>,
+        w: Double,
+    ) {
         val remainPopped = ArrayDeque(children)
         val c = remainPopped.removeFirst()
         val concatRow: MutableList<TreemapElement> = ArrayList(row)
@@ -86,7 +92,10 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         }
     }
 
-    private fun worst(ch: List<TreemapElement>, w: Double): Double {
+    private fun worst(
+        ch: List<TreemapElement>,
+        w: Double,
+    ): Double {
         if (ch.isEmpty()) {
             return Double.MAX_VALUE
         }
@@ -103,11 +112,14 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         val sqAreaSum = areaSum * areaSum
         return max(
             sqw * maxArea / sqAreaSum,
-            sqAreaSum / (sqw * minArea)
+            sqAreaSum / (sqw * minArea),
         )
     }
 
-    private fun layoutRow(row: List<TreemapElement>, w: Double) {
+    private fun layoutRow(
+        row: List<TreemapElement>,
+        w: Double,
+    ) {
         var totalArea = 0.0
         for (element in row) {
             val area = element.area
@@ -126,7 +138,7 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
                 topItem += h
             }
             widthLeft -= rowWidth
-            //this.heightLeft -= w;
+            // this.heightLeft -= w;
             left += rowWidth
             val minimumSide = minimumSide()
             if (!isDoubleEqual(minimumSide, heightLeft)) {
@@ -144,7 +156,7 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
                 item.width = wi
                 rowLeft += wi
             }
-            //this.widthLeft -= rowHeight;
+            // this.widthLeft -= rowHeight;
             heightLeft -= rowHeight
             top += rowHeight
             val minimumSide = minimumSide()
@@ -163,14 +175,16 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
             }
     }
 
-    private fun isDoubleEqual(one: Double, two: Double): Boolean {
+    private fun isDoubleEqual(
+        one: Double,
+        two: Double,
+    ): Boolean {
         val eps = 0.00001
         return abs(one - two) < eps
     }
 
-    private fun minimumSide(): Double {
-        return min(heightLeft, widthLeft)
-    }
+    private fun minimumSide(): Double =
+        min(heightLeft, widthLeft)
 
     private fun scaleArea(children: List<TreemapElement>) {
         val areaGiven = width * height

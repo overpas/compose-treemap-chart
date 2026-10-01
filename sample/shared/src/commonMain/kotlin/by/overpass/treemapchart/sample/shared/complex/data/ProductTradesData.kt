@@ -1,9 +1,5 @@
 package by.overpass.treemapchart.sample.shared.complex.data
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -10886,64 +10882,10 @@ private val japan2021ExportsJson = """
     }
 """.trimIndent()
 
-@Serializable
-internal data class ExportsResponse(
-    @SerialName("data")
-    val data: List<ProductTrade>,
-    @SerialName("source")
-    val source: List<Source>,
-)
-
-@Serializable
-internal data class ProductTrade(
-    @SerialName("Section ID")
-    val sectionId: Long,
-    @SerialName("Section")
-    val sectionName: String,
-    @SerialName("HS2 ID")
-    val hs2Id: Long,
-    @SerialName("HS2")
-    val hs2Name: String,
-    @SerialName("HS4 ID")
-    val hs4Id: Long,
-    @SerialName("HS4")
-    val hs4Name: String,
-    @SerialName("Trade Value")
-    val tradeValue: Double,
-)
-
-@Serializable
-internal data class Source(
-    @SerialName("name")
-    val name: String,
-    @SerialName("measures")
-    val measures: List<String>,
-    @SerialName("annotations")
-    val annotations: Annotations,
-)
-
-@Serializable
-internal data class Annotations(
-    @SerialName("source_name")
-    val sourceName: String,
-    @SerialName("dataset_link")
-    val datasetLink: String,
-    @SerialName("topic")
-    val topic: String,
-    @SerialName("dataset_name")
-    val datasetName: String,
-    @SerialName("subtopic")
-    val subtopic: String,
-    @SerialName("source_description")
-    val sourceDescription: String,
-    @SerialName("table")
-    val table: String,
-)
-
 internal object ProductTradesRepository {
 
-    suspend fun getJapan2021Exports(): List<ProductTrade> = withContext(Dispatchers.Default) {
+    fun getJapan2021Exports(): List<ProductTrade> {
         val exportsResponse: ExportsResponse = Json.decodeFromString(japan2021ExportsJson)
-        exportsResponse.data
+        return exportsResponse.data
     }
 }

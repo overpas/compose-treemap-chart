@@ -1,8 +1,11 @@
 package by.overpass.treemapchart.sample.shared.complex
 
 private external object Intl {
-    class NumberFormat(locales: String, options: dynamic) {
-        fun format(value: Double): String
+    class NumberFormat(
+        locales: String,
+        options: dynamic,
+    ) {
+        val format: (Double) -> String
     }
 }
 

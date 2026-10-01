@@ -6,7 +6,7 @@ import kotlin.test.assertEquals
 
 class SliceAndDiceMeasurerTest {
 
-    private val sliceAndDiceMeasurer = SliceAndDiceMeasurer
+    private val sut = SliceAndDiceMeasurer
     private val values = listOf(6.0, 6.0, 4.0, 3.0, 2.0, 2.0, 1.0)
 
     @Test
@@ -20,9 +20,10 @@ class SliceAndDiceMeasurerTest {
             TreemapNode(width = 1080, height = 160, offsetX = 0, offsetY = 1680),
             TreemapNode(width = 1080, height = 80, offsetX = 0, offsetY = 1840),
         )
-        val nodes = sliceAndDiceMeasurer.measureNodes(values, 1080, 1920)
 
-        assertEquals(expectedNodes, nodes)
+        val actual = sut.measureNodes(values, 1080, 1920)
+
+        assertEquals(expectedNodes, actual)
     }
 
     @Test
@@ -36,8 +37,9 @@ class SliceAndDiceMeasurerTest {
             TreemapNode(width = 160, height = 1080, offsetX = 1680, offsetY = 0),
             TreemapNode(width = 80, height = 1080, offsetX = 1840, offsetY = 0),
         )
-        val nodes = sliceAndDiceMeasurer.measureNodes(values, 1920, 1080)
 
-        assertEquals(expectedNodes, nodes)
+        val actual = sut.measureNodes(values, 1920, 1080)
+
+        assertEquals(expectedNodes, actual)
     }
 }

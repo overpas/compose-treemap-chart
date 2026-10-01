@@ -6,8 +6,10 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import by.overpass.treemapchart.sample.shared.App
 
-fun main() = application {
-    Window(title = "Treemap Chart Desktop Sample", onCloseRequest = ::exitApplication) {
-        App(Modifier.fillMaxSize())
+fun main() {
+    application {
+        Window(title = "Treemap Chart Desktop Sample", onCloseRequest = ::exitApplication) {
+            App(Modifier.fillMaxSize())
+        }
     }
 }

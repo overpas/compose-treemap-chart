@@ -18,47 +18,47 @@ import by.overpass.treemapchart.sample.shared.simple.SimpleChart
 import by.overpass.treemapchart.sample.shared.ui.icons.ArrowBack
 
 @Composable
-internal fun TreemapChartSample(
-    modifier: Modifier = Modifier,
-) {
+internal fun TreemapChartSample(modifier: Modifier = Modifier) {
     val scaffoldState = rememberScaffoldState()
-    var showComplexChart by rememberSaveable { mutableStateOf(false) }
+    var isComplexChartShown by rememberSaveable { mutableStateOf(false) }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
-            TreemapChartSampleTopAppBar(showComplexChart = showComplexChart) {
-                showComplexChart = false
-            }
+            TreemapChartSampleTopAppBar(
+                isComplexChartShown = isComplexChartShown,
+                onBackClick = { isComplexChartShown = false },
+            )
         },
         modifier = modifier,
     ) { paddingValues ->
-        if (showComplexChart) {
+        if (isComplexChartShown) {
             ComplexChart(Modifier.padding(paddingValues))
         } else {
-            SimpleChart(Modifier.padding(paddingValues)) {
-                showComplexChart = true
-            }
+            SimpleChart(
+                onGoToComplexChartClick = { isComplexChartShown = true },
+                modifier = Modifier.padding(paddingValues),
+            )
         }
     }
 }
 
 @Composable
 private fun TreemapChartSampleTopAppBar(
-    showComplexChart: Boolean,
-    modifier: Modifier = Modifier,
+    isComplexChartShown: Boolean,
     onBackClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     TopAppBar(
         title = {
             Text(
-                text = if (showComplexChart) {
+                text = if (isComplexChartShown) {
                     "Japan Exports 2021"
                 } else {
                     "Simple chart"
                 },
             )
         },
-        navigationIcon = if (showComplexChart) {
+        navigationIcon = if (isComplexChartShown) {
             {
                 IconButton(
                     onClick = onBackClick,
@@ -69,7 +69,9 @@ private fun TreemapChartSampleTopAppBar(
                     )
                 }
             }
-        } else null,
+        } else {
+            null
+        },
         modifier = modifier,
     )
 }

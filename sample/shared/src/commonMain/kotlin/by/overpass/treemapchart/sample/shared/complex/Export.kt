@@ -5,13 +5,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
 @Stable
-internal sealed class Export {
+internal sealed interface Export {
 
-    abstract val name: String
+    val name: String
 
-    abstract val exportsValue: Double
+    val exportsValue: Double
 
-    abstract val percentage: Double
+    val percentage: Double
 
     @Stable
     data class Product(
@@ -21,7 +21,7 @@ internal sealed class Export {
         val sectionName: String,
         val icon: ImageVector,
         val color: Color,
-    ) : Export()
+    ) : Export
 
     @Stable
     data class Section(
@@ -29,5 +29,5 @@ internal sealed class Export {
         override val exportsValue: Double,
         override val percentage: Double,
         val color: Color?,
-    ) : Export()
+    ) : Export
 }

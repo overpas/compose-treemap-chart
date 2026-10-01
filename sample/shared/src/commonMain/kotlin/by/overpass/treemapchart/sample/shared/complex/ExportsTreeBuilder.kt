@@ -3,14 +3,12 @@ package by.overpass.treemapchart.sample.shared.complex
 import by.overpass.treemapchart.core.tree.Tree
 import by.overpass.treemapchart.core.tree.tree
 import by.overpass.treemapchart.sample.shared.complex.data.ProductTrade
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 internal object ExportsTreeBuilder {
 
-    suspend fun buildTree(productTrades: List<ProductTrade>): Tree<Export> = withContext(Dispatchers.Default) {
+    fun build(productTrades: List<ProductTrade>): Tree<Export> {
         val total = productTrades.sumOf(ProductTrade::tradeValue)
-        tree(
+        return tree(
             Export.Section(
                 name = "Total Exports",
                 exportsValue = total,

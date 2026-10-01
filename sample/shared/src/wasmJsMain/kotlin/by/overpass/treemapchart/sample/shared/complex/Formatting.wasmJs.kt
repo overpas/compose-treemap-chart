@@ -1,13 +1,18 @@
 package by.overpass.treemapchart.sample.shared.complex
 
 private external object Intl {
-    class NumberFormat(locales: String, options: JsAny) {
+    class NumberFormat(
+        locales: String,
+        options: JsAny,
+    ) {
         fun format(@Suppress("UNUSED_PARAMETER") l: Double): String
     }
 }
 
-private fun formatPercentageOptions(): JsAny = js("({ style: 'percent', maximumFractionDigits: 2 })")
-private fun formatAsUSDOptions(): JsAny = js("({ style: 'currency', currency: 'USD',})")
+private fun formatPercentageOptions(): JsAny =
+    js("({ style: 'percent', maximumFractionDigits: 2 })")
+private fun formatAsUSDOptions(): JsAny =
+    js("({ style: 'currency', currency: 'USD',})")
 
 internal actual fun Double.formatPercentage(): String {
     val format = Intl.NumberFormat(

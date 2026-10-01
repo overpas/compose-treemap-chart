@@ -25,8 +25,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 internal fun ProductExportPopup(
     export: Export.Product,
-    modifier: Modifier = Modifier,
     onDismiss: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     FocusablePopup(
         alignment = Alignment.Center,
@@ -42,7 +42,10 @@ internal fun ProductExportPopup(
 }
 
 @Composable
-private fun ProductExportCard(export: Export.Product, modifier: Modifier = Modifier) {
+private fun ProductExportCard(
+    export: Export.Product,
+    modifier: Modifier = Modifier,
+) {
     Surface(
         shape = MaterialTheme.shapes.medium,
         modifier = modifier,
@@ -59,7 +62,10 @@ private fun ProductExportCard(export: Export.Product, modifier: Modifier = Modif
 }
 
 @Composable
-private fun ProductTitleRow(export: Export.Product, modifier: Modifier = Modifier) {
+private fun ProductTitleRow(
+    export: Export.Product,
+    modifier: Modifier = Modifier,
+) {
     Row(
         horizontalArrangement = Arrangement.Start,
         verticalAlignment = Alignment.CenterVertically,
@@ -90,7 +96,10 @@ private fun ProductTitleRow(export: Export.Product, modifier: Modifier = Modifie
 }
 
 @Composable
-private fun ProductExportsValueRow(exportsValue: Double, modifier: Modifier = Modifier) {
+private fun ProductExportsValueRow(
+    exportsValue: Double,
+    modifier: Modifier = Modifier,
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -107,7 +116,10 @@ private fun ProductExportsValueRow(exportsValue: Double, modifier: Modifier = Mo
 }
 
 @Composable
-private fun ProductPercentageRow(percentage: Double, modifier: Modifier = Modifier) {
+private fun ProductPercentageRow(
+    percentage: Double,
+    modifier: Modifier = Modifier,
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,

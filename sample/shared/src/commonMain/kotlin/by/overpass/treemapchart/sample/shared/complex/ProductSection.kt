@@ -166,7 +166,8 @@ internal enum class ProductSection(
         title = "Unspecified",
         color = Color(0xFFFA5656),
         icon = ProductIcons.Unspecified,
-    );
+    ),
+    ;
 
     companion object {
 

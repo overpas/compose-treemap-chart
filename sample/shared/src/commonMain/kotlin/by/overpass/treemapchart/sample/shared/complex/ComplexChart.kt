@@ -29,10 +29,15 @@ import androidx.compose.ui.unit.sp
 import by.overpass.treemapchart.compose.TreemapChart
 import by.overpass.treemapchart.core.tree.Tree
 
+private sealed interface ExportsState {
+
+    data class Loaded(val tree: Tree<Export>) : ExportsState
+
+    data object Parsing : ExportsState
+}
+
 @Composable
-internal fun ComplexChart(
-    modifier: Modifier = Modifier,
-) {
+internal fun ComplexChart(modifier: Modifier = Modifier) {
     val exportsState by loadExports()
     var productExportItemSelected by remember { mutableStateOf<Export.Product?>(null) }
     Box(modifier.fillMaxSize()) {
@@ -42,34 +47,28 @@ internal fun ComplexChart(
             }
 
             is ExportsState.Loaded -> {
-                CountryExportsTreemapChart(state.tree) {
-                    productExportItemSelected = it
-                }
+                CountryExportsTreemapChart(
+                    tree = state.tree,
+                    onItemClick = { productExportItemSelected = it },
+                )
             }
         }
         Box(Modifier.fillMaxSize()) {
             productExportItemSelected?.let { productExport ->
-                ProductExportPopup(productExport) {
-                    productExportItemSelected = null
-                }
+                ProductExportPopup(
+                    export = productExport,
+                    onDismiss = { productExportItemSelected = null },
+                )
             }
         }
     }
 }
 
-private sealed class ExportsState {
-
-    data class Loaded(
-        val tree: Tree<Export>,
-    ) : ExportsState()
-
-    object Parsing : ExportsState()
-}
-
 @Composable
-private fun loadExports(): State<ExportsState> = produceState<ExportsState>(ExportsState.Parsing) {
-    value = ExportsState.Loaded(ExportTreeDataProvider.get())
-}
+private fun loadExports(): State<ExportsState> =
+    produceState<ExportsState>(ExportsState.Parsing) {
+        value = ExportsState.Loaded(ExportTreeDataProvider.get())
+    }
 
 @Composable
 private fun ParsingExports(modifier: Modifier = Modifier) {
@@ -84,8 +83,8 @@ private fun ParsingExports(modifier: Modifier = Modifier) {
 @Composable
 private fun CountryExportsTreemapChart(
     tree: Tree<Export>,
-    modifier: Modifier = Modifier,
     onItemClick: (Export.Product) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     TreemapChart(
         data = tree,
@@ -106,8 +105,8 @@ private fun CountryExportsTreemapChart(
 @Composable
 private fun ProductExportItem(
     item: Export.Product,
-    modifier: Modifier = Modifier,
     onClick: (Export.Product) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -134,13 +133,13 @@ private fun ShrinkableHidableText(
     style: TextStyle = MaterialTheme.typography.body1,
 ) {
     var fontStyle by remember { mutableStateOf(style) }
-    var shouldDraw by remember { mutableStateOf(false) }
-    val show by remember { derivedStateOf { fontStyle.fontSize >= minSize } }
-    if (show) {
+    var isFitting by remember { mutableStateOf(false) }
+    val isVisible by remember { derivedStateOf { fontStyle.fontSize >= minSize } }
+    if (isVisible) {
         Text(
             text = text,
             modifier = modifier.drawWithContent {
-                if (shouldDraw) {
+                if (isFitting) {
                     drawContent()
                 }
             },
@@ -156,7 +155,7 @@ private fun ShrinkableHidableText(
                         },
                     )
                 } else {
-                    shouldDraw = true
+                    isFitting = true
                 }
             },
             style = fontStyle,
@@ -170,14 +169,10 @@ private fun SectionExportItem(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
-    if (sectionColor != null) {
-        Box(
-            modifier = modifier
-                .background(sectionColor)
-        ) {
-            content()
-        }
-    } else {
+    Box(
+        modifier = modifier.then(sectionColor?.let { Modifier.background(it) } ?: Modifier),
+        propagateMinConstraints = true,
+    ) {
         content()
     }
 }

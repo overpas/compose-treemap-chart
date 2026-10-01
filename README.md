@@ -49,3 +49,9 @@ The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
 
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
+
+## Development
+Set the git hooks path to `config/git-hooks` to run detekt before each commit:
+```shell
+git config --local core.hooksPath config/git-hooks
+```

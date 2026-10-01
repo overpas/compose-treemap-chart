@@ -1,0 +1,341 @@
+Compose:
+  ConditionHoist:
+    active: true
+  InvalidReadOnlyComposable:
+    active: true
+  MissingNonRestartableComposable:
+    active: true
+  MissingReadOnlyComposable:
+    active: true
+  StaleRememberUpdatedStateInRemember:
+    active: true
+  UnnecessaryComposable:
+    active: true
+  UnnecessaryLaunchedEffect:
+    active: true
+  VarsWithoutStateBacking:
+    active: true
+
+complexity:
+  LongParameterList:
+    active: true
+    allowedFunctionParameters: 3
+    allowedConstructorParameters: 6
+    ignoreDefaultParameters: false
+    ignoreDataClasses: true
+    ignoreAnnotatedParameter: []
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/di/**']
+  NamedArguments:
+    active: true
+    allowedArguments: 3
+    ignoreMethods: []
+    ignoreArgumentsMatchingNames: false
+  NestedScopeFunctions:
+    active: true
+    allowedDepth: 2
+    functions:
+      - 'kotlin.apply'
+      - 'kotlin.run'
+      - 'kotlin.with'
+      - 'kotlin.let'
+      - 'kotlin.also'
+  ReplaceSafeCallChainWithRun:
+    active: true
+
+coroutines:
+  CoroutineLaunchedInTestWithoutRunTest:
+    active: true
+  InjectDispatcher:
+    active: true
+    excludes: ['**/di/**']
+    dispatcherNames:
+      - 'IO'
+      - 'Default'
+      - 'Unconfined'
+  RedundantSuspendModifier:
+    active: true
+  SleepInsteadOfDelay:
+    active: true
+  SuspendFunInFinallySection:
+    active: true
+  SuspendFunSwallowedCancellation:
+    active: true
+  SuspendFunWithCoroutineScopeReceiver:
+    active: true
+    aliases: ['SuspendFunctionOnCoroutineScope']
+  SuspendFunWithFlowReturnType:
+    active: true
+
+exceptions:
+  ErrorUsageWithThrowable:
+    active: true
+  InstanceOfCheckForException:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
+  ObjectExtendsThrowable:
+    active: true
+  ReturnFromFinally:
+    active: true
+    ignoreLabeled: false
+
+overpas-architecture:
+  RepeatedCollaboratorType:
+    active: true
+    excludedTypes: ['kotlin.Boolean', 'kotlin.Char', 'kotlin.Number', 'kotlin.UByte', 'kotlin.UShort', 'kotlin.UInt', 'kotlin.ULong', 'kotlin.CharSequence', 'kotlin.collections.Iterable', 'kotlin.collections.Map', 'kotlin.Array', 'kotlin.BooleanArray', 'kotlin.CharArray', 'kotlin.ByteArray', 'kotlin.ShortArray', 'kotlin.IntArray', 'kotlin.LongArray', 'kotlin.FloatArray', 'kotlin.DoubleArray', 'kotlin.sequences.Sequence', 'kotlin.Function', 'kotlin.Enum', 'kotlin.time.Duration', 'kotlin.time.Instant', 'kotlin.uuid.Uuid', 'kotlin.coroutines.CoroutineContext', 'kotlinx.coroutines.CoroutineDispatcher']
+    ignoredSupertypes: ['kotlin.Any', 'kotlin.Comparable', 'java.io.Serializable']
+    areDataClassesIgnored: true
+
+naming:
+  BooleanPropertyNaming:
+    active: true
+    allowedPattern: '^(is|has|are)'
+  MemberNameEqualsClassName:
+    active: true
+    ignoreOverridden: true
+  NoNameShadowing:
+    active: true
+  NonBooleanPropertyPrefixedWithIs:
+    active: true
+    allowSingleTypedGenerics: false
+
+performance:
+  ArrayPrimitive:
+    active: true
+  CouldBeSequence:
+    active: true
+    allowedOperations: 2
+  SpreadOperator:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
+
+potential-bugs:
+  AvoidReferentialEquality:
+    active: true
+    forbiddenTypePatterns:
+      - 'kotlin.String'
+  CastNullableToNonNullableType:
+    active: true
+    ignorePlatformTypes: true
+  CastToNullableType:
+    active: true
+  CharArrayToStringCall:
+    active: true
+  Deprecation:
+    active: true
+    aliases: ['DEPRECATION']
+  DontDowncastCollectionTypes:
+    active: true
+  DoubleMutabilityForCollection:
+    active: true
+    aliases: ['DoubleMutability']
+    mutableTypes:
+      - 'kotlin.collections.MutableList'
+      - 'kotlin.collections.MutableMap'
+      - 'kotlin.collections.MutableSet'
+      - 'java.util.ArrayList'
+      - 'java.util.LinkedHashSet'
+      - 'java.util.HashSet'
+      - 'java.util.LinkedHashMap'
+      - 'java.util.HashMap'
+  ElseCaseInsteadOfExhaustiveWhen:
+    active: true
+    ignoredSubjectTypes: []
+  ExitOutsideMain:
+    active: true
+  HasPlatformType:
+    active: true
+  IgnoredReturnValue:
+    active: true
+    restrictToConfig: true
+    returnValueAnnotations:
+      - 'CheckResult'
+      - '*.CheckResult'
+      - 'CheckReturnValue'
+      - '*.CheckReturnValue'
+    ignoreReturnValueAnnotations:
+      - 'CanIgnoreReturnValue'
+      - '*.CanIgnoreReturnValue'
+    returnValueTypes:
+      - 'kotlin.Function*'
+      - 'kotlin.sequences.Sequence'
+      - 'kotlinx.coroutines.flow.*Flow'
+      - 'java.util.stream.*Stream'
+    ignoreFunctionCall: []
+  ImplicitDefaultLocale:
+    active: true
+  ImplicitUnitReturnType:
+    active: true
+    ignoreAnnotated: ['Test']
+    allowExplicitReturnType: true
+  MapGetWithNotNullAssertionOperator:
+    active: true
+  MissingSuperCall:
+    active: true
+    mustInvokeSuperAnnotations:
+      - 'androidx.annotation.CallSuper'
+      - 'javax.annotation.OverridingMethodsMustInvokeSuper'
+  MissingUseCall:
+    active: true
+    excludes: ['**/di/**']
+    ignoreClass:
+      - 'java.io.ByteArrayInputStream'
+      - 'java.io.ByteArrayOutputStream'
+      - 'okio.BufferedSink'
+  NullCheckOnMutableProperty:
+    active: true
+  NullableToStringCall:
+    active: true
+  PropertyUsedBeforeDeclaration:
+    active: true
+  UnnamedParameterUse:
+    active: false
+    allowAdjacentDifferentTypeParams: true
+    allowSingleParamUse: true
+    ignoreArgumentsMatchingNames: true
+    ignoreFunctionCall: []
+  UnnecessaryNotNullCheck:
+    active: true
+  UnnecessaryNotNullOperator:
+    active: true
+  UnnecessarySafeCall:
+    active: true
+  UnreachableCatchBlock:
+    active: true
+  UnreachableCode:
+    active: true
+  UnsafeCallOnNullableType:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**']
+  UnsafeCast:
+    active: true
+    aliases: ['UNCHECKED_CAST']
+  UnusedUnaryOperator:
+    active: true
+
+style:
+  AbstractClassCanBeConcreteClass:
+    active: true
+  AbstractClassCanBeInterface:
+    active: true
+    ignoreSealedClasses: false
+  CanBeNonNullable:
+    active: true
+  DoubleNegativeExpression:
+    active: true
+  ExplicitCollectionElementAccessMethod:
+    active: true
+  ForbiddenAnnotation:
+    active: true
+    annotations:
+      - reason: 'it is a java annotation. Use `Suppress` instead.'
+        value: 'java.lang.SuppressWarnings'
+      - reason: 'it is a java annotation. Use `kotlin.Deprecated` instead.'
+        value: 'java.lang.Deprecated'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.MustBeDocumented` instead.'
+        value: 'java.lang.annotation.Documented'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Target` instead.'
+        value: 'java.lang.annotation.Target'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Retention` instead.'
+        value: 'java.lang.annotation.Retention'
+      - reason: 'it is a java annotation. Use `kotlin.annotation.Repeatable` instead.'
+        value: 'java.lang.annotation.Repeatable'
+  ForbiddenMethodCall:
+    active: false
+    methods:
+      - reason: 'print does not allow you to configure the output stream. Use a logger instead.'
+        value: 'kotlin.io.print'
+      - reason: 'println does not allow you to configure the output stream. Use a logger instead.'
+        value: 'kotlin.io.println'
+      - reason: 'using `BigDecimal(Double)` can result in unexpected floating point precision behavior. Use `BigDecimal.valueOf(Double)` or `String.toBigDecimalOrNull()` instead.'
+        value: 'java.math.BigDecimal.<init>(kotlin.Double)'
+      - reason: 'using `BigDecimal(String)` can result in a `NumberFormatException`. Use `String.toBigDecimalOrNull()`'
+        value: 'java.math.BigDecimal.<init>(kotlin.String)'
+      - reason: 'It is marked as obsolete. Use `kotlin.time.measureTime` instead.'
+        value: 'kotlin.system.measureTimeMillis'
+  ForbiddenNamedParam:
+    active: true
+    methods: []
+  ForbiddenOptIn:
+    active: true
+    markerClasses: []
+  ForbiddenVoid:
+    active: true
+    ignoreOverridden: false
+    ignoreUsageInGenerics: false
+  MaxChainedCallsOnSameLine:
+    active: true
+    maxChainedCalls: 5
+  MultilineLambdaItParameter:
+    active: true
+  NullableBooleanCheck:
+    active: true
+  ObjectLiteralToLambda:
+    active: true
+  OptionalUnit:
+    active: true
+  RedundantExplicitType:
+    active: true
+  RedundantHigherOrderMapUsage:
+    active: true
+  UnnecessaryAny:
+    active: true
+  UnnecessaryApply:
+    active: true
+  UnnecessaryBracesAroundTrailingLambda:
+    active: true
+  UnnecessaryFilter:
+    active: true
+  UnnecessaryFullyQualifiedName:
+    active: true
+    ignoredFullyQualifiedNames: []
+  UnnecessaryInnerClass:
+    active: true
+  UnnecessaryLet:
+    active: false
+  UnnecessaryReversed:
+    active: true
+  UnusedImport:
+    active: false
+    additionalOperatorSet: []
+  UnusedPrivateFunction:
+    active: true
+    aliases: ['unused']
+    allowedNames: ''
+  UnusedPrivateProperty:
+    active: false
+    aliases: ['unused']
+    allowedNames: 'ignored|expected|serialVersionUID'
+  UnusedVariable:
+    active: true
+    aliases: ['UNUSED_VARIABLE', 'unused']
+    allowedNames: 'ignored|_'
+  UseAnyOrNoneInsteadOfFind:
+    active: true
+  UseCheckNotNull:
+    active: true
+  UseCheckOrError:
+    active: true
+  UseDataClass:
+    active: true
+    allowVars: false
+  UseEmptyCounterpart:
+    active: true
+  UseIfEmptyOrIfBlank:
+    active: true
+  UseIsNullOrEmpty:
+    active: true
+  UseOrEmpty:
+    active: true
+  UseRequire:
+    active: true
+  UseRequireNotNull:
+    active: true
+  UseSumOfInsteadOfFlatMapSize:
+    active: true
+  UselessCallOnNotNull:
+    active: true
+  VarCouldBeVal:
+    active: true
+    aliases: ['CanBeVal']
+    ignoreLateinitVar: true

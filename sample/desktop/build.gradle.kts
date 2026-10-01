@@ -3,19 +3,21 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    id("static-analysis")
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.detekt)
+    alias(libs.plugins.kotlin.multiplatform)
 }
+
+val jvmVersion = properties["jvm.version"].toString()
 
 kotlin {
     jvm()
     sourceSets {
         val jvmMain by getting {
             dependencies {
-                implementation(compose.desktop.currentOs)
                 implementation(project(":sample:shared"))
+                implementation(compose.desktop.currentOs)
             }
         }
     }
@@ -32,17 +34,13 @@ compose.desktop {
     }
 }
 
-dependencies {
-    detektPlugins(libs.compose.detekt.rules)
-}
-
 java {
-    sourceCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
-    targetCompatibility = JavaVersion.toVersion(properties["jvm.version"].toString())
+    sourceCompatibility = JavaVersion.toVersion(jvmVersion)
+    targetCompatibility = JavaVersion.toVersion(jvmVersion)
 }
 
 tasks.withType<KotlinCompile> {
     compilerOptions {
-        jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
+        jvmTarget = JvmTarget.fromTarget(jvmVersion)
     }
 }

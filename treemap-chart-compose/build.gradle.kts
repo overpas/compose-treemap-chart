@@ -2,12 +2,12 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    id("publish")
+    id("static-analysis")
     alias(libs.plugins.android.kmp.lib)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.detekt)
-    id("publish")
+    alias(libs.plugins.kotlin.multiplatform)
 }
 
 group = properties["lib.group"].toString()
@@ -42,35 +42,31 @@ kotlin {
     }
 
     sourceSets {
+        getByName("androidDeviceTest").dependencies {
+            implementation(libs.androidx.compose.ui.test.junit4)
+            implementation(libs.androidx.compose.ui.test.manifest)
+            implementation(libs.androidx.test.espresso.core)
+            implementation(libs.androidx.test.ext.junit)
+        }
+        androidMain.dependencies {
+            implementation(libs.compose.ui.tooling)
+        }
         commonMain.dependencies {
             implementation(project(":treemap-chart"))
-            implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.material)
+            implementation(libs.compose.runtime)
             implementation(libs.compose.ui.tooling.preview)
+        }
+        commonTest.dependencies {
+            implementation(kotlin("test"))
         }
         val desktopMain by getting {
             dependencies {
                 implementation(libs.compose.desktop)
             }
         }
-        androidMain.dependencies {
-            implementation(libs.compose.ui.tooling)
-        }
-        commonTest.dependencies {
-            implementation(kotlin("test"))
-        }
-        getByName("androidDeviceTest").dependencies {
-            implementation(libs.androidx.test.ext.junit)
-            implementation(libs.androidx.test.espresso.core)
-            implementation(libs.androidx.compose.ui.test.junit4)
-            implementation(libs.androidx.compose.ui.test.manifest)
-        }
     }
-}
-
-dependencies {
-    detektPlugins(libs.compose.detekt.rules)
 }
 
 composeCompiler {

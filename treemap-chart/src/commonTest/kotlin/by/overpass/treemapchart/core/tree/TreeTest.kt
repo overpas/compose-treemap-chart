@@ -5,7 +5,7 @@ import kotlin.test.assertEquals
 
 class TreeTest {
 
-    private val testTree = tree(10) {
+    private val sut = tree(10) {
         node(6) {
             node(4)
             node(2) {
@@ -22,6 +22,10 @@ class TreeTest {
 
     @Test
     fun treeIsCreatedCorrectly() {
-        assertEquals(listOf(10, 6, 4, 2, 1, 1, 3, 2, 1, 1), testTree.dfs())
+        val expected = listOf(10, 6, 4, 2, 1, 1, 3, 2, 1, 1)
+
+        val actual = sut.dfs()
+
+        assertEquals(expected, actual)
     }
 }

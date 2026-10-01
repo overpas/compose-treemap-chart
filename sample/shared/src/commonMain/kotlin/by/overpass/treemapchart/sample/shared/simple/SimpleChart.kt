@@ -27,8 +27,8 @@ private val simpleTreeData = tree(10) {
 
 @Composable
 internal fun SimpleChart(
-    modifier: Modifier = Modifier,
     onGoToComplexChartClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -4,23 +4,23 @@ import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.ImmutableList
 
 /**
- * Basic data structure to be used in treemap chart
+ * Basic data structure to be used in treemap chart.
  *
- * @param root the root node
+ * @param T type of the node values
+ * @property root the root node
  */
 @Stable
-class Tree<T>(
-    val root: Node<T>,
-) {
+data class Tree<T>(val root: Node<T>) {
 
     /**
-     * Represents a tree node
+     * Represents a tree node.
      *
-     * @param data value of the node
-     * @param children child nodes of the node
+     * @param T type of the node value
+     * @property data value of the node
+     * @property children child nodes of the node
      */
     @Stable
-    class Node<T>(
+    data class Node<T>(
         val data: T,
         val children: ImmutableList<Node<T>>,
     )

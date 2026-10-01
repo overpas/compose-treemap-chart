@@ -27,7 +27,6 @@ private class TreeDslImpl<T>(private val rootValue: T) : TreeDsl<T> {
  * @param treeBuilder builder of the child nodes
  * @return the built tree
  */
-@TreeDslMarker
 fun <T> tree(
     rootValue: T,
     treeBuilder: TreeDsl<T>.() -> Unit,

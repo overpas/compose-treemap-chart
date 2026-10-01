@@ -5,7 +5,6 @@ import kotlinx.collections.immutable.toImmutableList
 @TreeDslMarker
 interface NodeDsl<in T> {
 
-    @TreeDslMarker
     fun node(
         value: T,
         nodeBuilder: NodeDsl<T>.() -> Unit = {},

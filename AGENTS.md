@@ -20,6 +20,21 @@
 - Write any comments in the code
 - Suppress any static analysis findings with `@Suppress` and don't baseline them
 
+## Git
+
+- Work only in a linked worktree under `.claude/worktrees/`, never in the main checkout. Parallel
+  sessions in one checkout break each other's branches and uncommitted changes.
+- If the session is in the main checkout, call `EnterWorktree` first. If it is already in a
+  worktree, stay there and do not create a nested worktree.
+- In the worktree, create a new branch from `develop` (or the base branch that the user names):
+  `git checkout -b <branch> develop`.
+- One branch per session, unless the user deviates from initial topic - in this case ask the user if
+  you should continue working in the same branch or create a new one.
+- At the end commit all the work. Keep the branch and report its name. Do not merge it, unless the
+  user asks for it.
+- Push the branch and open a PR into `develop`. Never push to `develop` or `main` directly.
+- Fixes, corrections, improvements belong in the same branch.
+
 ## Verification
 
 ### L1: Build

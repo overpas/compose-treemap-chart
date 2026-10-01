@@ -3,12 +3,12 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    id("publish")
+    id("static-analysis")
     alias(libs.plugins.android.kmp.lib)
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.detekt)
-    id("publish")
+    alias(libs.plugins.kotlin.multiplatform)
 }
 
 group = properties["lib.group"].toString()
@@ -49,10 +49,6 @@ kotlin {
             implementation(kotlin("test"))
         }
     }
-}
-
-dependencies {
-    detektPlugins(libs.compose.detekt.rules)
 }
 
 tasks.withType<KotlinCompile> {

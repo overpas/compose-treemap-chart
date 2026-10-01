@@ -1,10 +1,10 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    id("static-analysis")
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.detekt)
+    alias(libs.plugins.kotlin.multiplatform)
 }
 
 kotlin {
@@ -18,15 +18,10 @@ kotlin {
 
     sourceSets {
         wasmJsMain.dependencies {
-            implementation(libs.compose.runtime)
-            implementation(libs.compose.foundation)
-            implementation(libs.compose.ui)
-
             implementation(project(":sample:shared"))
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.ui)
         }
     }
-}
-
-dependencies {
-    detektPlugins(libs.compose.detekt.rules)
 }

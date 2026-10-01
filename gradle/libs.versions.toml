@@ -5,7 +5,6 @@ kotlin = '2.4.20'
 agp = '9.4.1'
 # Compose
 compose = '1.12.1'
-compose-detekt-rules = '0.0.26'
 compose-runtime-tracing = '1.12.1'
 # AndroidX
 core-ktx = '1.19.0'
@@ -29,7 +28,8 @@ androidx-test-rules = '1.7.0'
 androidx-compose-ui-test = "1.12.1"
 robolectric = "4.17"
 # Other
-detekt = '1.23.8'
+detekt = '2.0.0-alpha.6'
+detekt-compose-rules = '0.6.6'
 maven-publish-plugin = "0.37.0"
 
 [libraries]
@@ -43,7 +43,6 @@ compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-pre
 compose-desktop = { module = "org.jetbrains.compose.desktop:desktop", version.ref = "compose" }
 # Compose Android
 compose-runtime-tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "compose-runtime-tracing" }
-compose-detekt-rules = { group = "com.twitter.compose.rules", name = "detekt", version.ref = "compose-detekt-rules" }
 # AndroidX
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -65,6 +64,9 @@ androidx-test-rules = { group = "androidx.test", name = "rules", version.ref = "
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "androidx-compose-ui-test" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "androidx-compose-ui-test" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+# Detekt
+detekt-compose-rules = { module = "io.nlopez.compose.rules:detekt", version.ref = "detekt-compose-rules" }
+detekt-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 # Other
 maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish-plugin" }
 
@@ -83,4 +85,4 @@ compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinx-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 # Other
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }

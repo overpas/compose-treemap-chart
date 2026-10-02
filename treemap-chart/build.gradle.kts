@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -9,6 +10,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlinx.kover)
 }
 
 group = properties["lib.group"].toString()
@@ -16,6 +18,9 @@ version = properties["lib.version"].toString()
 
 kotlin {
     applyDefaultHierarchyTemplate()
+
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation()
 
     jvm("desktop")
     android {

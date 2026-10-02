@@ -157,12 +157,12 @@ overpas-style:
 overpas-testing:
   ComplexAssertion:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     assertionPrefixes: ['assert', 'verify', 'fail']
   ExceptionMessageAssertion:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     exceptionAccessors: ['message', 'localizedMessage', 'stackTraceToString']
   HelperFunctionInTest:
@@ -171,23 +171,23 @@ overpas-testing:
     lifecycleAnnotations: ['Test', 'BeforeTest', 'AfterTest', 'Before', 'After', 'BeforeClass', 'AfterClass', 'BeforeEach', 'AfterEach', 'BeforeAll', 'AfterAll']
   IncorrectUnitTestFormat:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     assertionPrefixes: ['assert', 'verify', 'fail']
   MisplacedAssertion:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     assertionPrefixes: ['assert', 'verify', 'fail']
   MissingSubjectUnderTest:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     assertionPrefixes: ['assert', 'verify', 'fail']
     subjectName: 'sut'
   MultipleAssertions:
     active: true
-    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**']
+    excludes: ['**/androidTest/**', '**/androidDeviceTest/**', '**/androidInstrumentedTest/**', '**/uiTest/**', '**/ui-test/**', '**/*UiTest.kt']
     testAnnotations: ['Test']
     assertionPrefixes: ['assert', 'verify', 'fail']
   PreviewInTest:

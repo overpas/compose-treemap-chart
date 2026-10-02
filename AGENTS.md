@@ -43,6 +43,33 @@
 ./gradlew build
 ```
 
+The build also runs static analysis, the ABI check and the common tests, including the Compose UI
+tests on the desktop, iOS simulator, JS and Wasm targets.
+
+### L2: Public API
+
+```shell
+./gradlew updateKotlinAbi
+```
+
+Run it only after an intended public API change of a library module and commit the changed ABI
+dumps. An unintended change fails the ABI check in L1.
+
+### L3: Coverage
+
+```shell
+./gradlew koverHtmlReport
+```
+
+### L4: Instrumented tests
+
+```shell
+./gradlew connectedCheck connectedAndroidDeviceTest
+```
+
+Run them on an emulator or device. The device tests also run the common tests, so a new Compose UI
+test belongs in the common test source set, unless it needs an Android API.
+
 ## Self-editing
 
 When editing .md files, including this file:

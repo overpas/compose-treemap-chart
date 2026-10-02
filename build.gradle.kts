@@ -9,6 +9,11 @@ plugins {
     alias(libs.plugins.kotlinx.kover)
 }
 
+dependencies {
+    kover(project(":treemap-chart"))
+    kover(project(":treemap-chart-compose"))
+}
+
 tasks.register("cleanAll", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }

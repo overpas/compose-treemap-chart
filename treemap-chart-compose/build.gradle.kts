@@ -1,5 +1,6 @@
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
 
 plugins {
     id("publish")
@@ -8,6 +9,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.kotlinx.kover)
 }
 
 group = properties["lib.group"].toString()
@@ -15,6 +17,9 @@ version = properties["lib.version"].toString()
 
 kotlin {
     applyDefaultHierarchyTemplate()
+
+    @OptIn(ExperimentalAbiValidation::class)
+    abiValidation()
 
     jvm("desktop")
     android {
@@ -24,8 +29,9 @@ kotlin {
         androidResources {
             enable = true
         }
-        withHostTest {}
-        withDeviceTest {
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
             instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         }
     }
@@ -43,7 +49,7 @@ kotlin {
 
     sourceSets {
         getByName("androidDeviceTest").dependencies {
-            implementation(libs.androidx.compose.ui.test.junit4)
+            implementation(kotlin("test-junit"))
             implementation(libs.androidx.compose.ui.test.manifest)
             implementation(libs.androidx.test.espresso.core)
             implementation(libs.androidx.test.ext.junit)
@@ -60,10 +66,16 @@ kotlin {
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
+            implementation(libs.compose.ui.test)
         }
         val desktopMain by getting {
             dependencies {
                 implementation(libs.compose.desktop)
+            }
+        }
+        val desktopTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
             }
         }
     }

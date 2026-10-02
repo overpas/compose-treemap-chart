@@ -93,7 +93,7 @@ internal fun Activity.showComparisonScreen(
         addView(column("View", viewChart), columnParams())
     }
     setContentView(root)
-    return ComparisonScreen(root, composeChart, viewChart, composeBounds)
+    return ComparisonScreen(root, viewChart, composeBounds)
 }
 
 private fun Activity.column(
@@ -146,7 +146,7 @@ internal fun ComparisonScreen.saveScreenshot(name: String): File {
     val cropped = Bitmap.createBitmap(screenshot, location[0], location[1], width, height)
     val outputDir = InstrumentationRegistry.getArguments().getString("additionalTestOutputDir")
         ?.let(::File)
-        ?: File(instrumentation.targetContext.externalMediaDirs.first(), "additional_test_output")
+        ?: File(instrumentation.targetContext.getExternalFilesDir(null), "additional_test_output")
     outputDir.mkdirs()
     val file = File(outputDir, "$name.png")
     file.outputStream().use { cropped.compress(Bitmap.CompressFormat.PNG, 100, it) }

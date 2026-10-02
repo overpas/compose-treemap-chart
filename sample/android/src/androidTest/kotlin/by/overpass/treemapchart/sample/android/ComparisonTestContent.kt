@@ -27,19 +27,24 @@ import by.overpass.treemapchart.view.TreemapChartView
 import java.io.File
 import kotlin.math.roundToInt
 
-internal val comparisonTreeData = tree(Item(0, 10)) {
-    node(Item(1, 6)) {
+internal val comparisonTreeData = tree(Item(0, 20)) {
+    node(Item(1, 8)) {
         node(Item(2, 4))
-        node(Item(3, 2)) {
-            node(Item(4, 1))
-            node(Item(5, 1))
-        }
+        node(Item(3, 2))
+        node(Item(4, 1))
+        node(Item(5, 1))
     }
-    node(Item(6, 3)) {
-        node(Item(7, 2))
-        node(Item(8, 1))
+    node(Item(6, 5)) {
+        node(Item(7, 3))
+        node(Item(8, 2))
     }
-    node(Item(9, 1))
+    node(Item(9, 3))
+    node(Item(10, 2)) {
+        node(Item(11, 1))
+        node(Item(12, 1))
+    }
+    node(Item(13, 1))
+    node(Item(14, 1))
 }
 
 internal fun Activity.showComparisonScreen(

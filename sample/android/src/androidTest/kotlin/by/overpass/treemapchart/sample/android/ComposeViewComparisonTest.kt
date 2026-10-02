@@ -19,7 +19,7 @@ class ComposeViewComparisonTest {
         composeRule.runOnUiThread {
             screen = composeRule.activity.showComparisonScreen(SquarifiedMeasurer(), SquarifiedMeasurer())
         }
-        composeRule.waitUntil { screen.composeBounds.size == 6 }
+        composeRule.waitUntil { screen.composeBounds.size == 11 }
         composeRule.waitForIdle()
 
         val viewBounds = composeRule.runOnUiThread { screen.viewBounds() }
@@ -33,7 +33,7 @@ class ComposeViewComparisonTest {
         composeRule.runOnUiThread {
             screen = composeRule.activity.showComparisonScreen(SliceAndDiceMeasurer, SliceAndDiceMeasurer)
         }
-        composeRule.waitUntil { screen.composeBounds.size == 6 }
+        composeRule.waitUntil { screen.composeBounds.size == 11 }
         composeRule.waitForIdle()
 
         val viewBounds = composeRule.runOnUiThread { screen.viewBounds() }

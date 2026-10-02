@@ -32,6 +32,7 @@ jobs:
           ./gradlew
           :treemap-chart:build
           :treemap-chart-compose:build
+          :treemap-chart-view:build
           :sample:shared:compileKotlinIosArm64
           :sample:shared:compileKotlinIosSimulatorArm64
           :sample:shared:compileKotlinJs
@@ -93,3 +94,11 @@ jobs:
           disk-size: 6000M
           heap-size: 600M
           script: ./gradlew connectedCheck :treemap-chart-compose:connectedAndroidDeviceTest --daemon
+
+      - name: Upload Compose vs View screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: compose-vs-view-screenshots-api-${{ matrix.api-level }}
+          path: sample/android/build/outputs/connected_android_test_additional_output/
+          if-no-files-found: ignore

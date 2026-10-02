@@ -48,6 +48,21 @@ fun MyChart() {
 The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
 
+### Android Views
+For Android projects that do not use Compose, use the `treemap-chart-view` module:
+```gradle
+implementation "io.github.overpas:treemap-chart:0.1.3"
+implementation "io.github.overpas:treemap-chart-view:0.1.3"
+```
+```kotlin
+val chart = findViewById<TreemapChartView>(R.id.treemap_chart)
+chart.measurer = SquarifiedMeasurer()
+chart.setData(simpleTreeData, Int::toDouble) { parent, item ->
+    SimpleTreemapItemView(parent.context).apply { text = item.toString() }
+}
+```
+Use `setNodeData` to create a view for each group node too. The group view contains the child nodes.
+
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
 
 ## Development

@@ -16,3 +16,4 @@ Pods
 *.gpg
 .kotlin
 .claude/worktrees/
+.claude/worktrees

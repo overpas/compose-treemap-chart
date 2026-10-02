@@ -15,6 +15,7 @@ android {
         targetSdk = properties["android.targetSdk"].toString().toInt()
         versionCode = 1
         versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     buildFeatures {
         compose = true
@@ -54,4 +55,10 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.ui.tooling.preview)
     debugImplementation(libs.compose.runtime.tracing)
+    androidTestImplementation(project(":treemap-chart"))
+    androidTestImplementation(project(":treemap-chart-compose"))
+    androidTestImplementation(project(":treemap-chart-view"))
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.test.espresso.core)
+    androidTestImplementation(libs.androidx.test.ext.junit)
 }

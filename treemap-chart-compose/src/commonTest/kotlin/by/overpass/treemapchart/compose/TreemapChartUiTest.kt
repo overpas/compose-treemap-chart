@@ -1,7 +1,7 @@
 package by.overpass.treemapchart.compose
 
 import androidx.compose.ui.test.ExperimentalTestApi
-import androidx.compose.ui.test.runComposeUiTest
+import androidx.compose.ui.test.v2.runComposeUiTest
 import by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer
 import by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer
 import kotlin.test.Test

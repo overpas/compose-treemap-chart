@@ -82,6 +82,7 @@ internal fun Activity.showComparisonScreen(
     }
     val root = LinearLayout(this).apply {
         orientation = LinearLayout.HORIZONTAL
+        isBaselineAligned = false
         setBackgroundColor(Color.WHITE)
         addView(column("Compose", composeChart), columnParams())
         addView(column("View", viewChart), columnParams())

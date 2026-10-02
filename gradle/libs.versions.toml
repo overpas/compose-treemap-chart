@@ -7,7 +7,7 @@ agp = '9.4.1'
 compose = '1.12.1'
 compose-runtime-tracing = '1.12.1'
 # AndroidX
-core-ktx = '1.19.0'
+core-ktx = '1.19.1'
 appcompat = '1.8.0'
 lifecycle-runtime-ktx = '2.11.0'
 activity-compose = '1.13.0'
@@ -17,7 +17,7 @@ material = '1.14.0'
 # KotlinX
 kotlinx-serialization-json = '1.11.0'
 kotlinx-collections-immutable = '0.5.2'
-kover = '0.9.9'
+kover = '0.9.11'
 # Test
 junit = '4.13.2'
 androidx-test-junit-ext = '1.3.0'
@@ -29,7 +29,7 @@ androidx-compose-ui-test = "1.12.1"
 robolectric = "4.17"
 # Other
 detekt = '2.0.0-alpha.6'
-detekt-compose-rules = '0.6.6'
+detekt-compose-rules = '0.6.7'
 
 [libraries]
 # Compose Multiplatform

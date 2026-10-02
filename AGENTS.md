@@ -44,7 +44,8 @@
 ```
 
 The build also runs static analysis, the ABI check and the common tests, including the Compose UI
-tests on the desktop, iOS simulator, JS and Wasm targets.
+tests on the desktop, iOS simulator and Wasm targets. Compose UI tests do not support the JS
+target.
 
 ### L2: Public API
 

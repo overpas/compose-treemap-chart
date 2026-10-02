@@ -92,3 +92,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
 }
+
+tasks.named("jsBrowserTest") {
+    enabled = false
+}

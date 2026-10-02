@@ -1,7 +1,6 @@
 # Architecture
 
-This is a **Kotlin Multiplatform** library with **Compose Multiplatform** UI. It publishes two
-modules and has a sample app and an Android macrobenchmark.
+This is a **Kotlin Multiplatform** library with **Compose Multiplatform** UI.
 
 ## Modules
 
@@ -36,9 +35,3 @@ The library modules are published, so a public declaration is a promise to the u
 A layout algorithm implements the shared measurer abstraction of the core library in its own
 subpackage. It holds no Compose UI code, so it stays testable in common tests. The Compose
 library gets the measurer from a composition local and never checks which algorithm it is.
-
-## Stability
-
-Each Compose module has a stability configuration file. Add a type there only when it is immutable
-in practice but the compiler cannot infer it. Check the compiler reports in the module's build
-directory after a change to a composable's parameters.

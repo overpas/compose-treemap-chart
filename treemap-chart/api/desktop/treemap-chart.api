@@ -1,0 +1,91 @@
+public final class by/overpass/treemapchart/core/measure/LayoutOrientation : java/lang/Enum {
+	public static final field HORIZONTAL Lby/overpass/treemapchart/core/measure/LayoutOrientation;
+	public static final field VERTICAL Lby/overpass/treemapchart/core/measure/LayoutOrientation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lby/overpass/treemapchart/core/measure/LayoutOrientation;
+	public static fun values ()[Lby/overpass/treemapchart/core/measure/LayoutOrientation;
+}
+
+public abstract interface class by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
+	public abstract fun measureNodes (Ljava/util/List;II)Ljava/util/List;
+}
+
+public final class by/overpass/treemapchart/core/measure/TreemapNode {
+	public static final field $stable I
+	public fun <init> (IIII)V
+	public final fun component1 ()I
+	public final fun component2 ()I
+	public final fun component3 ()I
+	public final fun component4 ()I
+	public final fun copy (IIII)Lby/overpass/treemapchart/core/measure/TreemapNode;
+	public static synthetic fun copy$default (Lby/overpass/treemapchart/core/measure/TreemapNode;IIIIILjava/lang/Object;)Lby/overpass/treemapchart/core/measure/TreemapNode;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getHeight ()I
+	public final fun getOffsetX ()I
+	public final fun getOffsetY ()I
+	public final fun getWidth ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class by/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
+	public static final field $stable I
+	public static final field INSTANCE Lby/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer;
+	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
+}
+
+public final class by/overpass/treemapchart/core/measure/squarified/SquarifiedMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
+	public static final field $stable I
+	public fun <init> ()V
+	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
+}
+
+public abstract interface class by/overpass/treemapchart/core/tree/NodeDsl {
+	public abstract fun node (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)V
+	public static synthetic fun node$default (Lby/overpass/treemapchart/core/tree/NodeDsl;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class by/overpass/treemapchart/core/tree/NodeDsl$DefaultImpls {
+	public static synthetic fun node$default (Lby/overpass/treemapchart/core/tree/NodeDsl;Ljava/lang/Object;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
+}
+
+public final class by/overpass/treemapchart/core/tree/Tree {
+	public static final field $stable I
+	public fun <init> (Lby/overpass/treemapchart/core/tree/Tree$Node;)V
+	public final fun component1 ()Lby/overpass/treemapchart/core/tree/Tree$Node;
+	public final fun copy (Lby/overpass/treemapchart/core/tree/Tree$Node;)Lby/overpass/treemapchart/core/tree/Tree;
+	public static synthetic fun copy$default (Lby/overpass/treemapchart/core/tree/Tree;Lby/overpass/treemapchart/core/tree/Tree$Node;ILjava/lang/Object;)Lby/overpass/treemapchart/core/tree/Tree;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getRoot ()Lby/overpass/treemapchart/core/tree/Tree$Node;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class by/overpass/treemapchart/core/tree/Tree$Node {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/Object;Lkotlinx/collections/immutable/ImmutableList;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun component2 ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun copy (Ljava/lang/Object;Lkotlinx/collections/immutable/ImmutableList;)Lby/overpass/treemapchart/core/tree/Tree$Node;
+	public static synthetic fun copy$default (Lby/overpass/treemapchart/core/tree/Tree$Node;Ljava/lang/Object;Lkotlinx/collections/immutable/ImmutableList;ILjava/lang/Object;)Lby/overpass/treemapchart/core/tree/Tree$Node;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getChildren ()Lkotlinx/collections/immutable/ImmutableList;
+	public final fun getData ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class by/overpass/treemapchart/core/tree/TreeDsl : by/overpass/treemapchart/core/tree/NodeDsl {
+}
+
+public final class by/overpass/treemapchart/core/tree/TreeDslKt {
+	public static final fun tree (Ljava/lang/Object;Lkotlin/jvm/functions/Function1;)Lby/overpass/treemapchart/core/tree/Tree;
+}
+
+public abstract interface annotation class by/overpass/treemapchart/core/tree/TreeDslMarker : java/lang/annotation/Annotation {
+}
+
+public final class by/overpass/treemapchart/core/tree/TreeKt {
+	public static final fun dfs (Lby/overpass/treemapchart/core/tree/Tree;)Ljava/util/List;
+}
+

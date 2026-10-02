@@ -1,0 +1,107 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <io.github.overpas:treemap-chart>
+open annotation class by.overpass.treemapchart.core.tree/TreeDslMarker : kotlin/Annotation { // by.overpass.treemapchart.core.tree/TreeDslMarker|null[0]
+    constructor <init>() // by.overpass.treemapchart.core.tree/TreeDslMarker.<init>|<init>(){}[0]
+}
+
+final enum class by.overpass.treemapchart.core.measure/LayoutOrientation : kotlin/Enum<by.overpass.treemapchart.core.measure/LayoutOrientation> { // by.overpass.treemapchart.core.measure/LayoutOrientation|null[0]
+    enum entry HORIZONTAL // by.overpass.treemapchart.core.measure/LayoutOrientation.HORIZONTAL|null[0]
+    enum entry VERTICAL // by.overpass.treemapchart.core.measure/LayoutOrientation.VERTICAL|null[0]
+
+    final val entries // by.overpass.treemapchart.core.measure/LayoutOrientation.entries|#static{}entries[0]
+        final fun <get-entries>(): kotlin.enums/EnumEntries<by.overpass.treemapchart.core.measure/LayoutOrientation> // by.overpass.treemapchart.core.measure/LayoutOrientation.entries.<get-entries>|<get-entries>#static(){}[0]
+
+    final fun valueOf(kotlin/String): by.overpass.treemapchart.core.measure/LayoutOrientation // by.overpass.treemapchart.core.measure/LayoutOrientation.valueOf|valueOf#static(kotlin.String){}[0]
+    final fun values(): kotlin/Array<by.overpass.treemapchart.core.measure/LayoutOrientation> // by.overpass.treemapchart.core.measure/LayoutOrientation.values|values#static(){}[0]
+}
+
+abstract interface <#A: in kotlin/Any?> by.overpass.treemapchart.core.tree/NodeDsl { // by.overpass.treemapchart.core.tree/NodeDsl|null[0]
+    abstract fun node(#A, kotlin/Function1<by.overpass.treemapchart.core.tree/NodeDsl<#A>, kotlin/Unit> = ...) // by.overpass.treemapchart.core.tree/NodeDsl.node|node(1:0;kotlin.Function1<by.overpass.treemapchart.core.tree.NodeDsl<1:0>,kotlin.Unit>){}[0]
+}
+
+abstract interface <#A: in kotlin/Any?> by.overpass.treemapchart.core.tree/TreeDsl : by.overpass.treemapchart.core.tree/NodeDsl<#A> // by.overpass.treemapchart.core.tree/TreeDsl|null[0]
+
+abstract interface by.overpass.treemapchart.core.measure/TreemapChartMeasurer { // by.overpass.treemapchart.core.measure/TreemapChartMeasurer|null[0]
+    abstract fun measureNodes(kotlin.collections/List<kotlin/Double>, kotlin/Int, kotlin/Int): kotlin.collections/List<by.overpass.treemapchart.core.measure/TreemapNode> // by.overpass.treemapchart.core.measure/TreemapChartMeasurer.measureNodes|measureNodes(kotlin.collections.List<kotlin.Double>;kotlin.Int;kotlin.Int){}[0]
+}
+
+final class <#A: kotlin/Any?> by.overpass.treemapchart.core.tree/Tree { // by.overpass.treemapchart.core.tree/Tree|null[0]
+    constructor <init>(by.overpass.treemapchart.core.tree/Tree.Node<#A>) // by.overpass.treemapchart.core.tree/Tree.<init>|<init>(by.overpass.treemapchart.core.tree.Tree.Node<1:0>){}[0]
+
+    final val root // by.overpass.treemapchart.core.tree/Tree.root|{}root[0]
+        final fun <get-root>(): by.overpass.treemapchart.core.tree/Tree.Node<#A> // by.overpass.treemapchart.core.tree/Tree.root.<get-root>|<get-root>(){}[0]
+
+    final fun component1(): by.overpass.treemapchart.core.tree/Tree.Node<#A> // by.overpass.treemapchart.core.tree/Tree.component1|component1(){}[0]
+    final fun copy(by.overpass.treemapchart.core.tree/Tree.Node<#A> = ...): by.overpass.treemapchart.core.tree/Tree<#A> // by.overpass.treemapchart.core.tree/Tree.copy|copy(by.overpass.treemapchart.core.tree.Tree.Node<1:0>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // by.overpass.treemapchart.core.tree/Tree.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // by.overpass.treemapchart.core.tree/Tree.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // by.overpass.treemapchart.core.tree/Tree.toString|toString(){}[0]
+
+    final class <#A1: kotlin/Any?> Node { // by.overpass.treemapchart.core.tree/Tree.Node|null[0]
+        constructor <init>(#A1, kotlinx.collections.immutable/ImmutableList<by.overpass.treemapchart.core.tree/Tree.Node<#A1>>) // by.overpass.treemapchart.core.tree/Tree.Node.<init>|<init>(1:0;kotlinx.collections.immutable.ImmutableList<by.overpass.treemapchart.core.tree.Tree.Node<1:0>>){}[0]
+
+        final val children // by.overpass.treemapchart.core.tree/Tree.Node.children|{}children[0]
+            final fun <get-children>(): kotlinx.collections.immutable/ImmutableList<by.overpass.treemapchart.core.tree/Tree.Node<#A1>> // by.overpass.treemapchart.core.tree/Tree.Node.children.<get-children>|<get-children>(){}[0]
+        final val data // by.overpass.treemapchart.core.tree/Tree.Node.data|{}data[0]
+            final fun <get-data>(): #A1 // by.overpass.treemapchart.core.tree/Tree.Node.data.<get-data>|<get-data>(){}[0]
+
+        final fun component1(): #A1 // by.overpass.treemapchart.core.tree/Tree.Node.component1|component1(){}[0]
+        final fun component2(): kotlinx.collections.immutable/ImmutableList<by.overpass.treemapchart.core.tree/Tree.Node<#A1>> // by.overpass.treemapchart.core.tree/Tree.Node.component2|component2(){}[0]
+        final fun copy(#A1 = ..., kotlinx.collections.immutable/ImmutableList<by.overpass.treemapchart.core.tree/Tree.Node<#A1>> = ...): by.overpass.treemapchart.core.tree/Tree.Node<#A1> // by.overpass.treemapchart.core.tree/Tree.Node.copy|copy(1:0;kotlinx.collections.immutable.ImmutableList<by.overpass.treemapchart.core.tree.Tree.Node<1:0>>){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // by.overpass.treemapchart.core.tree/Tree.Node.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // by.overpass.treemapchart.core.tree/Tree.Node.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // by.overpass.treemapchart.core.tree/Tree.Node.toString|toString(){}[0]
+    }
+}
+
+final class by.overpass.treemapchart.core.measure.squarified/SquarifiedMeasurer : by.overpass.treemapchart.core.measure/TreemapChartMeasurer { // by.overpass.treemapchart.core.measure.squarified/SquarifiedMeasurer|null[0]
+    constructor <init>() // by.overpass.treemapchart.core.measure.squarified/SquarifiedMeasurer.<init>|<init>(){}[0]
+
+    final fun measureNodes(kotlin.collections/List<kotlin/Double>, kotlin/Int, kotlin/Int): kotlin.collections/List<by.overpass.treemapchart.core.measure/TreemapNode> // by.overpass.treemapchart.core.measure.squarified/SquarifiedMeasurer.measureNodes|measureNodes(kotlin.collections.List<kotlin.Double>;kotlin.Int;kotlin.Int){}[0]
+}
+
+final class by.overpass.treemapchart.core.measure/TreemapNode { // by.overpass.treemapchart.core.measure/TreemapNode|null[0]
+    constructor <init>(kotlin/Int, kotlin/Int, kotlin/Int, kotlin/Int) // by.overpass.treemapchart.core.measure/TreemapNode.<init>|<init>(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+
+    final val height // by.overpass.treemapchart.core.measure/TreemapNode.height|{}height[0]
+        final fun <get-height>(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.height.<get-height>|<get-height>(){}[0]
+    final val offsetX // by.overpass.treemapchart.core.measure/TreemapNode.offsetX|{}offsetX[0]
+        final fun <get-offsetX>(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.offsetX.<get-offsetX>|<get-offsetX>(){}[0]
+    final val offsetY // by.overpass.treemapchart.core.measure/TreemapNode.offsetY|{}offsetY[0]
+        final fun <get-offsetY>(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.offsetY.<get-offsetY>|<get-offsetY>(){}[0]
+    final val width // by.overpass.treemapchart.core.measure/TreemapNode.width|{}width[0]
+        final fun <get-width>(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.width.<get-width>|<get-width>(){}[0]
+
+    final fun component1(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.component1|component1(){}[0]
+    final fun component2(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.component2|component2(){}[0]
+    final fun component3(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.component3|component3(){}[0]
+    final fun component4(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.component4|component4(){}[0]
+    final fun copy(kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ..., kotlin/Int = ...): by.overpass.treemapchart.core.measure/TreemapNode // by.overpass.treemapchart.core.measure/TreemapNode.copy|copy(kotlin.Int;kotlin.Int;kotlin.Int;kotlin.Int){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // by.overpass.treemapchart.core.measure/TreemapNode.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // by.overpass.treemapchart.core.measure/TreemapNode.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // by.overpass.treemapchart.core.measure/TreemapNode.toString|toString(){}[0]
+}
+
+final object by.overpass.treemapchart.core.measure.sliceanddice/SliceAndDiceMeasurer : by.overpass.treemapchart.core.measure/TreemapChartMeasurer { // by.overpass.treemapchart.core.measure.sliceanddice/SliceAndDiceMeasurer|null[0]
+    final fun measureNodes(kotlin.collections/List<kotlin/Double>, kotlin/Int, kotlin/Int): kotlin.collections/List<by.overpass.treemapchart.core.measure/TreemapNode> // by.overpass.treemapchart.core.measure.sliceanddice/SliceAndDiceMeasurer.measureNodes|measureNodes(kotlin.collections.List<kotlin.Double>;kotlin.Int;kotlin.Int){}[0]
+}
+
+final val by.overpass.treemapchart.core.measure.sliceanddice/by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop // by.overpass.treemapchart.core.measure.sliceanddice/by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop|#static{}by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop[0]
+final val by.overpass.treemapchart.core.measure.squarified/by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop // by.overpass.treemapchart.core.measure.squarified/by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop|#static{}by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop[0]
+final val by.overpass.treemapchart.core.measure/by_overpass_treemapchart_core_measure_TreemapNode$stableprop // by.overpass.treemapchart.core.measure/by_overpass_treemapchart_core_measure_TreemapNode$stableprop|#static{}by_overpass_treemapchart_core_measure_TreemapNode$stableprop[0]
+final val by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree$stableprop // by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree$stableprop|#static{}by_overpass_treemapchart_core_tree_Tree$stableprop[0]
+final val by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree_Node$stableprop // by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree_Node$stableprop|#static{}by_overpass_treemapchart_core_tree_Tree_Node$stableprop[0]
+
+final fun <#A: kotlin/Any?> (by.overpass.treemapchart.core.tree/Tree<#A>).by.overpass.treemapchart.core.tree/dfs(): kotlin.collections/List<#A> // by.overpass.treemapchart.core.tree/dfs|dfs@by.overpass.treemapchart.core.tree.Tree<0:0>(){0§<kotlin.Any?>}[0]
+final fun <#A: kotlin/Any?> by.overpass.treemapchart.core.tree/tree(#A, kotlin/Function1<by.overpass.treemapchart.core.tree/TreeDsl<#A>, kotlin/Unit>): by.overpass.treemapchart.core.tree/Tree<#A> // by.overpass.treemapchart.core.tree/tree|tree(0:0;kotlin.Function1<by.overpass.treemapchart.core.tree.TreeDsl<0:0>,kotlin.Unit>){0§<kotlin.Any?>}[0]
+final fun by.overpass.treemapchart.core.measure.sliceanddice/by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop_getter(): kotlin/Int // by.overpass.treemapchart.core.measure.sliceanddice/by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop_getter|by_overpass_treemapchart_core_measure_sliceanddice_SliceAndDiceMeasurer$stableprop_getter(){}[0]
+final fun by.overpass.treemapchart.core.measure.squarified/by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop_getter(): kotlin/Int // by.overpass.treemapchart.core.measure.squarified/by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop_getter|by_overpass_treemapchart_core_measure_squarified_SquarifiedMeasurer$stableprop_getter(){}[0]
+final fun by.overpass.treemapchart.core.measure/by_overpass_treemapchart_core_measure_TreemapNode$stableprop_getter(): kotlin/Int // by.overpass.treemapchart.core.measure/by_overpass_treemapchart_core_measure_TreemapNode$stableprop_getter|by_overpass_treemapchart_core_measure_TreemapNode$stableprop_getter(){}[0]
+final fun by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree$stableprop_getter(): kotlin/Int // by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree$stableprop_getter|by_overpass_treemapchart_core_tree_Tree$stableprop_getter(){}[0]
+final fun by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree_Node$stableprop_getter(): kotlin/Int // by.overpass.treemapchart.core.tree/by_overpass_treemapchart_core_tree_Tree_Node$stableprop_getter|by_overpass_treemapchart_core_tree_Tree_Node$stableprop_getter(){}[0]

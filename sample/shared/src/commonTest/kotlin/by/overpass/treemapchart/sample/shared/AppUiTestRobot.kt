@@ -11,6 +11,10 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 private const val SIMPLE_CHART_TITLE = "Simple chart"
 private const val COMPLEX_CHART_TITLE = "Japan Exports 2021"
@@ -19,7 +23,7 @@ private const val PARSING_TEXT = "Parsing Exports data..."
 private const val EXPORTS_VALUE_LABEL = "Exports value"
 private const val PERCENTAGE_LABEL = "Percentage"
 private const val BACK_DESCRIPTION = "Back"
-private const val LOADING_TIMEOUT_MILLIS = 30_000L
+private const val LOADING_POLL_INTERVAL_MILLIS = 50L
 
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.setAppContent() {
@@ -29,13 +33,13 @@ internal fun ComposeUiTest.setAppContent() {
 }
 
 @OptIn(ExperimentalTestApi::class)
-internal fun ComposeUiTest.openComplexChart() {
+internal suspend fun ComposeUiTest.openComplexChart(pollingDispatcher: CoroutineDispatcher = Dispatchers.Default) {
     onNodeWithText(COMPLEX_CHART_BUTTON)
         .performClick()
-    waitUntil(timeoutMillis = LOADING_TIMEOUT_MILLIS) {
-        onAllNodesWithText(PARSING_TEXT)
-            .fetchSemanticsNodes()
-            .isEmpty()
+    while (onAllNodesWithText(PARSING_TEXT).fetchSemanticsNodes().isNotEmpty()) {
+        withContext(pollingDispatcher) {
+            delay(LOADING_POLL_INTERVAL_MILLIS)
+        }
     }
 }
 

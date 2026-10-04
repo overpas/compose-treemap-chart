@@ -10,6 +10,11 @@ plugins {
     id("maven-central")
 }
 
+dependencies {
+    kover(project(":treemap-chart"))
+    kover(project(":treemap-chart-compose"))
+}
+
 tasks.register("cleanAll", Delete::class) {
     delete(rootProject.layout.buildDirectory)
 }

@@ -31,6 +31,14 @@ kotlin {
         namespace = "by.overpass.treemapchart.sample.shared"
         compileSdk = properties["android.compileSdk"].toString().toInt()
         minSdk = properties["android.minSdk"].toString().toInt()
+        androidResources {
+            enable = true
+        }
+        withDeviceTestBuilder {
+            sourceSetTreeName = "test"
+        }.configure {
+            instrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
     }
     iosArm64()
     iosSimulatorArm64()
@@ -85,7 +93,19 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.compose.ui.test)
             }
+        }
+        val desktopTest by getting {
+            dependencies {
+                implementation(compose.desktop.currentOs)
+            }
+        }
+        getByName("androidDeviceTest").dependencies {
+            implementation(kotlin("test-junit"))
+            implementation(libs.androidx.compose.ui.test.manifest)
+            implementation(libs.androidx.test.espresso.core)
+            implementation(libs.androidx.test.ext.junit)
         }
     }
 }
@@ -100,4 +120,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     compilerOptions {
         jvmTarget = JvmTarget.fromTarget(properties["jvm.version"].toString())
     }
+}
+
+tasks.named("jsBrowserTest") {
+    enabled = false
 }

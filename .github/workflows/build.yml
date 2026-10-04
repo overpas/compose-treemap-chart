@@ -46,6 +46,8 @@ jobs:
           :koverXmlReport
           :koverHtmlReport
           :koverLog
+      - name: Validate Maven Central bundle
+        run: ./gradlew validateMavenCentralBundle
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4

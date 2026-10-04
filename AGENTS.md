@@ -10,7 +10,7 @@
   elements/points. It pertains to explaining what you did, explaining different options to choose,
   or anything else. Any complex piece of information should consist of 1-4 root level elements,
   which in their turn can be expanded or broken down further, if prompted or required.
-- Always start work in a new git branch from `develop`, unless the user names another base branch.
+- Always start work in a new git branch from `master`, unless the user names another base branch.
   Obey "Git".
 - Don't leave any files unstaged and uncommitted. Either stage and commit or add to `.gitignore` if
   it makes sense.
@@ -26,13 +26,13 @@
   sessions in one checkout break each other's branches and uncommitted changes.
 - If the session is in the main checkout, call `EnterWorktree` first. If it is already in a
   worktree, stay there and do not create a nested worktree.
-- In the worktree, create a new branch from `develop` (or the base branch that the user names):
-  `git checkout -b <branch> develop`.
+- In the worktree, create a new branch from `master` (or the base branch that the user names):
+  `git checkout -b <branch> master`.
 - One branch per session, unless the user deviates from initial topic - in this case ask the user if
   you should continue working in the same branch or create a new one.
 - At the end commit all the work. Keep the branch and report its name. Do not merge it, unless the
-  user asks for it.
-- Push the branch and open a PR into `develop`. Never push to `develop` or `main` directly.
+  user asks for it. Then use the merge-branch skill.
+- Push the branch and open a PR into `master`. Never push to `master` directly.
 - Fixes, corrections, improvements belong in the same branch.
 
 ## Verification

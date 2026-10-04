@@ -30,7 +30,6 @@ robolectric = "4.17"
 # Other
 detekt = '2.0.0-alpha.6'
 detekt-compose-rules = '0.6.6'
-maven-publish-plugin = "0.37.0"
 
 [libraries]
 # Compose Multiplatform
@@ -67,8 +66,6 @@ robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectr
 # Detekt
 detekt-compose-rules = { module = "io.nlopez.compose.rules:detekt", version.ref = "detekt-compose-rules" }
 detekt-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
-# Other
-maven-publish-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version.ref = "maven-publish-plugin" }
 
 [plugins]
 # Android

@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose).apply(false)
     alias(libs.plugins.compose.compiler).apply(false)
     alias(libs.plugins.kotlinx.kover)
+    id("maven-central")
 }
 
 dependencies {

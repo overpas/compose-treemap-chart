@@ -6,7 +6,6 @@ plugins {
 
 dependencies {
     implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
-    implementation(libs.maven.publish.plugin)
     implementation(libs.plugins.detekt.toDep())
     implementation(libs.plugins.kotlin.multiplatform.toDep())
 }

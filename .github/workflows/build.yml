@@ -32,6 +32,7 @@ jobs:
           ./gradlew
           :treemap-chart:build
           :treemap-chart-compose:build
+          :treemap-chart-view:build
           :sample:shared:allTests
           :sample:shared:compileKotlinIosArm64
           :sample:shared:compileKotlinIosSimulatorArm64

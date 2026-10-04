@@ -70,6 +70,7 @@ detekt-ktlint-wrapper = { module = "dev.detekt:detekt-rules-ktlint-wrapper", ver
 [plugins]
 # Android
 android-app = { id = "com.android.application", version.ref = "agp" }
+android-lib = { id = "com.android.library", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 android-kmp-lib = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 # Kotlin

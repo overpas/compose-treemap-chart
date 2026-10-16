@@ -46,6 +46,8 @@ android {
 
 dependencies {
     implementation(project(":sample:shared"))
+    implementation(project(":treemap-chart"))
+    implementation(project(":treemap-chart-view"))
     implementation(libs.activity.compose)
     implementation(libs.androidx.profile.installer)
     implementation(libs.compose.foundation)

@@ -19,6 +19,7 @@ rootProject.name = "compose-treemap-chart"
 includeBuild("convention-plugins")
 include(":treemap-chart")
 include(":treemap-chart-compose")
+include(":treemap-chart-view")
 include(":sample:shared")
 include(":sample:android")
 include(":sample:desktop")

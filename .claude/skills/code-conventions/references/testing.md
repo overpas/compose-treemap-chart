@@ -12,6 +12,8 @@ For the commands that build and test the project, see the verification section o
   tests run on every target and need no device.
 - `src/androidDeviceTest/` of the Compose library — Compose UI tests of the chart. They run on an
   Android device or emulator.
+- `src/androidTest/` of the View library — Espresso tests of the chart view. They run on an Android
+  device or emulator.
 - The benchmark module — performance of the chart in the Android sample. Add a benchmark only when
   the task is about performance.
 
@@ -20,7 +22,7 @@ that the chart and its node content are displayed and react to input.
 
 ## Test method naming
 
-Use `` `backticked names with spaces` `` freely — except in `src/androidDeviceTest/`, where methods
+Use `` `backticked names with spaces` `` freely — except in `src/androidDeviceTest/` and `src/androidTest/`, where methods
 must be camelCase.
 
 ## No helper functions in tests

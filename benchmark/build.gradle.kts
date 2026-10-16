@@ -1,9 +1,10 @@
 plugins {
+    id("static-analysis")
     alias(libs.plugins.android.test)
 }
 
 android {
-    namespace = "com.example.benchmark"
+    namespace = "by.overpass.treemapchart.benchmark"
     compileSdk = properties["android.compileSdk"].toString().toInt()
 
     compileOptions {
@@ -20,12 +21,8 @@ android {
     }
 
     buildTypes {
-        // This benchmark buildType is used for benchmarking, and should function like your
-        // release build (for example, with minification on). It"s signed with a debug key
-        // for easy local/CI testing.
         create("benchmark") {
             isDebuggable = true
-//            isMinifyEnabled = true
             signingConfig = getByName("debug").signingConfig
             matchingFallbacks += listOf("release")
         }
@@ -36,10 +33,9 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.test.ext.junit)
-    implementation(libs.androidx.test.espresso.core)
-    implementation(libs.ui.automator)
     implementation(libs.macrobenchmark.junit)
+    implementation(libs.ui.automator)
+    implementation(libs.androidx.test.ext.junit)
 }
 
 androidComponents {

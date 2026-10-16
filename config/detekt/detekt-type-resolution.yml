@@ -522,7 +522,6 @@ intellij-kotlin-redundant-constructs:
     active: true
   UnusedReceiverParameter:
     active: true
-    excludes: ['**/complex/icons/**']
   VariableInitializerIsRedundant:
     active: true
 

@@ -9,9 +9,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.ImageVector.Builder
 import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.unit.dp
-import by.overpass.treemapchart.sample.shared.complex.icons.ProductIcons
 
-private val vegetableproducts: ImageVector by lazy {
+internal val VegetableProducts: ImageVector by lazy {
     Builder(
         name = "Vegetableproducts",
         defaultWidth = 100.0.dp,
@@ -92,6 +91,3 @@ private val vegetableproducts: ImageVector by lazy {
     }
         .build()
 }
-
-public val ProductIcons.VegetableProducts: ImageVector
-    get() = vegetableproducts

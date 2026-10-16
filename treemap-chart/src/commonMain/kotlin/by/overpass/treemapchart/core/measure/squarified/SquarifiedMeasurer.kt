@@ -42,17 +42,17 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         this.height = height
         left = 0.0
         top = 0.0
-        this.children.clear()
+        children.clear()
         for (value in values) {
             val treemapElement = TreemapElement(value)
-            this.children.add(treemapElement)
+            children.add(treemapElement)
         }
         layoutOrientation = if (width > height) {
             LayoutOrientation.VERTICAL
         } else {
             LayoutOrientation.HORIZONTAL
         }
-        scaleArea(this.children)
+        scaleArea(children)
     }
 
     private fun measureNodes(): List<TreemapNode> {

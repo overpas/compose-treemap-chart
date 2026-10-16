@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import kotlin.time.Duration.Companion.milliseconds
 
 private const val SIMPLE_CHART_TITLE = "Simple chart"
 private const val COMPLEX_CHART_TITLE = "Japan Exports 2021"
@@ -23,7 +24,7 @@ private const val PARSING_TEXT = "Parsing Exports data..."
 private const val EXPORTS_VALUE_LABEL = "Exports value"
 private const val PERCENTAGE_LABEL = "Percentage"
 private const val BACK_DESCRIPTION = "Back"
-private const val LOADING_POLL_INTERVAL_MILLIS = 50L
+private val LOADING_POLL_INTERVAL = 50.milliseconds
 
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.setAppContent() {
@@ -38,7 +39,7 @@ internal suspend fun ComposeUiTest.openComplexChart(pollingDispatcher: Coroutine
         .performClick()
     while (onAllNodesWithText(PARSING_TEXT).fetchSemanticsNodes().isNotEmpty()) {
         withContext(pollingDispatcher) {
-            delay(LOADING_POLL_INTERVAL_MILLIS)
+            delay(LOADING_POLL_INTERVAL)
         }
     }
 }

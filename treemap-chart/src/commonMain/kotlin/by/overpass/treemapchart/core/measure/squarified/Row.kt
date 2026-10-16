@@ -1,27 +1,32 @@
 package by.overpass.treemapchart.core.measure.squarified
 
-import kotlin.math.max
+internal class Row {
 
-internal class Row(val elements: List<TreemapElement>) {
+    private var shape = RowShape(
+        area = 0.0,
+        maxArea = Double.NEGATIVE_INFINITY,
+        minArea = Double.POSITIVE_INFINITY,
+    )
+
+    val elements = mutableListOf<TreemapElement>()
 
     val area: Double
-        get() = elements.sumOf { it.area }
+        get() = shape.area
 
-    fun isEmpty(): Boolean =
-        elements.isEmpty()
+    fun add(element: TreemapElement) {
+        elements += element
+        shape += element.area
+    }
 
-    operator fun plus(element: TreemapElement): Row =
-        Row(elements + element)
-
-    fun worst(side: Double): Double {
+    fun accepts(
+        element: TreemapElement,
+        side: Double,
+    ): Boolean {
         if (elements.isEmpty()) {
-            return Double.MAX_VALUE
+            return true
         }
-        val squaredSide = side * side
-        val squaredArea = area * area
-        return max(
-            squaredSide * elements.maxOf { it.area } / squaredArea,
-            squaredArea / (squaredSide * elements.minOf { it.area }),
-        )
+        val rowWorst = shape.worst(side)
+        val extendedWorst = (shape + element.area).worst(side)
+        return rowWorst > extendedWorst || rowWorst.isCloseTo(extendedWorst)
     }
 }

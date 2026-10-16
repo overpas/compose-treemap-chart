@@ -15,7 +15,7 @@ internal class Squarification(
     }
 
     fun nodes(): List<TreemapNode> {
-        squarify(elements, Row(emptyList()), freeSpace.shortSide)
+        squarify()
         return elements.map { element ->
             check(element.top <= height) { "Top is bigger than height" }
             check(element.left <= width) { "Left is bigger than width" }
@@ -23,24 +23,17 @@ internal class Squarification(
         }
     }
 
-    private fun squarify(
-        remaining: List<TreemapElement>,
-        row: Row,
-        side: Double,
-    ) {
-        val extendedRow = row + remaining.first()
-        val rest = remaining.drop(1)
-        val extendedWorst = extendedRow.worst(side)
-        val rowWorst = row.worst(side)
-        if (row.isEmpty() || rowWorst > extendedWorst || rowWorst.isCloseTo(extendedWorst)) {
-            if (rest.isEmpty()) {
-                freeSpace.place(extendedRow, side)
-            } else {
-                squarify(rest, extendedRow, side)
+    private fun squarify() {
+        var row = Row()
+        var side = freeSpace.shortSide
+        elements.forEach { element ->
+            if (!row.accepts(element, side)) {
+                freeSpace.place(row, side)
+                row = Row()
+                side = freeSpace.shortSide
             }
-        } else {
-            freeSpace.place(row, side)
-            squarify(remaining, Row(emptyList()), freeSpace.shortSide)
+            row.add(element)
         }
+        freeSpace.place(row, side)
     }
 }

@@ -84,6 +84,8 @@ overpas-compose:
     active: true
     immutableAnnotations: ['Immutable']
     stableAnnotations: ['Stable']
+  LowLevelUiPrimitive:
+    active: false
   ModifierChainWrapping:
     active: true
     chainStarts: ['Modifier', 'modifier']

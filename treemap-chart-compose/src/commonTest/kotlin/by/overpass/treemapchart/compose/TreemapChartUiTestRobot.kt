@@ -91,7 +91,7 @@ internal fun ComposeUiTest.setTreemapChartContentWithoutWeight() {
 internal fun ComposeUiTest.setTreemapChartContentWithFirstWeight(firstWeight: DoubleState) {
     setContent {
         CompositionLocalProvider(LocalTreemapChartMeasurer provides SliceAndDiceMeasurer) {
-            TreemapChart(Modifier.size(width = 400.dp, height = 100.dp)) {
+            TreemapChart(Modifier.size(width = 200.dp, height = 100.dp)) {
                 BasicText(text = "first", modifier = Modifier.weight(firstWeight.doubleValue).testTag(FIRST_TAG))
                 BasicText(text = "second", modifier = Modifier.weight(1.0))
             }
@@ -102,7 +102,7 @@ internal fun ComposeUiTest.setTreemapChartContentWithFirstWeight(firstWeight: Do
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.assertFirstChildTakesThreeQuarters() {
     onNodeWithTag(FIRST_TAG)
-        .assertWidthIsEqualTo(300.dp)
+        .assertWidthIsEqualTo(150.dp)
 }
 
 @OptIn(ExperimentalTestApi::class)

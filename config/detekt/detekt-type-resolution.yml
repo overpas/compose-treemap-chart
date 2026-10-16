@@ -692,11 +692,23 @@ intellij-kotlin-style-issues:
     active: true
 
 overpas-architecture:
+  HiddenAbstraction:
+    active: true
+  LowCohesion:
+    active: true
   RepeatedCollaboratorType:
     active: true
     excludedTypes: ['kotlin.Boolean', 'kotlin.Char', 'kotlin.Number', 'kotlin.UByte', 'kotlin.UShort', 'kotlin.UInt', 'kotlin.ULong', 'kotlin.CharSequence', 'kotlin.collections.Iterable', 'kotlin.collections.Map', 'kotlin.Array', 'kotlin.BooleanArray', 'kotlin.CharArray', 'kotlin.ByteArray', 'kotlin.ShortArray', 'kotlin.IntArray', 'kotlin.LongArray', 'kotlin.FloatArray', 'kotlin.DoubleArray', 'kotlin.sequences.Sequence', 'kotlin.Function', 'kotlin.Enum', 'kotlin.time.Duration', 'kotlin.time.Instant', 'kotlin.uuid.Uuid', 'kotlin.coroutines.CoroutineContext', 'kotlinx.coroutines.CoroutineDispatcher']
     ignoredSupertypes: ['kotlin.Any', 'kotlin.Comparable', 'java.io.Serializable']
     areDataClassesIgnored: true
+
+overpas-compose:
+  PresentationEntityPassedDown:
+    active: true
+
+overpas-coroutines:
+  TryInCoroutineFunction:
+    active: true
 
 naming:
   BooleanPropertyNaming:

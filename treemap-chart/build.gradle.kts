@@ -69,5 +69,6 @@ composeCompiler {
 }
 
 tasks.register("commonUnitTest") {
+    description = "Runs the common unit tests on the Android host, desktop and iOS simulator targets."
     dependsOn("testAndroidHostTest", "desktopTest", "iosSimulatorArm64Test")
 }

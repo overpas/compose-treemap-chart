@@ -172,7 +172,7 @@ internal enum class ProductSection(
     companion object {
 
         fun byId(id: Long): ProductSection =
-            values()
+            entries
                 .find { section -> section.sectionId == id }
                 ?: UNSPECIFIED
     }

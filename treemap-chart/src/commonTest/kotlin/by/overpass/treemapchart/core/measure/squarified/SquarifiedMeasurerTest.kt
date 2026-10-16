@@ -56,4 +56,14 @@ class SquarifiedMeasurerTest {
             }
         }
     }
+
+    @Test
+    fun tenThousandValuesFillTheBounds() {
+        val values = List(10_000) { index -> (10_000 - index).toDouble() }
+
+        val nodes = sut.measureNodes(values, 1080, 1920)
+        val coveredArea = nodes.sumOf { it.width.toLong() * it.height }
+
+        assertEquals(1080L * 1920, coveredArea)
+    }
 }

@@ -79,6 +79,618 @@ exceptions:
     active: true
     ignoreLabeled: false
 
+intellij-android-compose-preview:
+  ComposePreviewDimensionRespectsLimit:
+    active: true
+  ComposePreviewMustBeTopLevelFunction:
+    active: true
+  ComposePreviewNeedsComposableAnnotation:
+    active: true
+  PreviewAnnotationInFunctionWithParameters:
+    active: true
+  PreviewApiLevelMustBeValid:
+    active: true
+    minApiLevel: 22
+    maxApiLevel: 37
+  PreviewDeviceShouldUseNewSpec:
+    active: true
+  PreviewFontScaleMustBeGreaterThanZero:
+    active: true
+  PreviewMultipleParameterProviders:
+    active: true
+  PreviewParameterProviderOnFirstParameter:
+    active: true
+  PreviewShouldNotBeCalledRecursively:
+    active: false
+  PreviewWrapperUsage:
+    active: true
+
+intellij-android-glance-preview:
+  GlancePreviewDimensionRespectsLimit:
+    active: true
+  GlancePreviewMustBeTopLevelFunction:
+    active: true
+  GlancePreviewNeedsComposableAnnotation:
+    active: true
+
+intellij-android-wear-tile-preview:
+  WearTilePreviewComposableAnnotationIsNotSupported:
+    active: true
+  WearTilePreviewContextComesFromParameter:
+    active: true
+  WearTilePreviewHasValidMethodSignature:
+    active: true
+  WearTilePreviewMethodIsAnnotatedWithTilePreviewAnnotation:
+    active: true
+  WearTilePreviewShouldBeTopLevelFunction:
+    active: true
+
+intellij-compose-multiplatform-preview:
+  MultiplatformPreviewAnnotationInFunctionWithParameters:
+    active: true
+  MultiplatformPreviewMultipleParameterProviders:
+    active: true
+
+intellij-jvm-code-maturity:
+  MarkedForRemoval:
+    active: true
+    isSameOutermostClassIgnored: true
+
+intellij-jvm-declaration-redundancy:
+  SameParameterValue:
+    active: true
+    highestModifier: 'protected'
+    minimalUsageCount: 1
+  SameReturnValue:
+    active: true
+
+intellij-jvm-general:
+  BlockingMethodInNonBlockingContext:
+    active: true
+    isUnknownContextBlocking: true
+    isSuspendContextNonBlocking: true
+    blockingAnnotations:
+      - 'org.jetbrains.annotations.Blocking'
+      - 'io.micronaut.core.annotation.Blocking'
+      - 'io.smallrye.common.annotation.Blocking'
+    nonBlockingAnnotations:
+      - 'org.jetbrains.annotations.NonBlocking'
+      - 'io.micronaut.core.annotation.NonBlocking'
+      - 'io.smallrye.common.annotation.NonBlocking'
+  MissingDeprecatedAnnotationOnScheduledForRemovalApi:
+    active: true
+  MustAlreadyBeRemovedApi:
+    active: true
+    currentVersion: ''
+  NonExtendableApiUsage:
+    active: true
+  OverrideOnly:
+    active: true
+  SerializableHasSerialVersionUIDField:
+    active: false
+    isAnonymousClassIgnored: false
+    ignoredSuperClasses:
+      - 'java.awt.Component'
+  SuppressionAnnotation:
+    active: false
+    allowedSuppressions: []
+  SystemGetProperty:
+    active: true
+  ThreadRun:
+    active: true
+  UnstableApiUsage:
+    active: true
+    unstableApiAnnotations:
+      - 'org.jetbrains.annotations.ApiStatus.ScheduledForRemoval'
+      - 'org.jetbrains.annotations.ApiStatus.Experimental'
+      - 'org.jetbrains.annotations.ApiStatus.Internal'
+      - 'com.google.common.annotations.Beta'
+      - 'io.reactivex.annotations.Beta'
+      - 'io.reactivex.annotations.Experimental'
+      - 'rx.annotations.Experimental'
+      - 'rx.annotations.Beta'
+      - 'org.apache.http.annotation.Beta'
+      - 'org.gradle.api.Incubating'
+    isInsideImportsIgnored: true
+    isApiDeclaredInThisProjectIgnored: true
+  UnstableTypeUsedInSignature:
+    active: false
+    unstableApiAnnotations:
+      - 'org.jetbrains.annotations.ApiStatus.ScheduledForRemoval'
+      - 'org.jetbrains.annotations.ApiStatus.Experimental'
+      - 'org.jetbrains.annotations.ApiStatus.Internal'
+      - 'com.google.common.annotations.Beta'
+      - 'io.reactivex.annotations.Beta'
+      - 'io.reactivex.annotations.Experimental'
+      - 'rx.annotations.Experimental'
+      - 'rx.annotations.Beta'
+      - 'org.apache.http.annotation.Beta'
+      - 'org.gradle.api.Incubating'
+  UrlHashCode:
+    active: true
+
+intellij-jvm-junit:
+  AssertEqualsCalledOnArray:
+    active: false
+  AssertEqualsMayBeAssertSame:
+    active: false
+  IgnoredJUnitTest:
+    active: false
+    isReasonAccepted: true
+  JUnit3StyleTestMethodInJUnit4Class:
+    active: true
+  JUnit5AssertionsConverter:
+    active: true
+  JUnitMalformedDeclaration:
+    active: true
+    ignorableAnnotations:
+      - 'mockit.Mocked'
+      - 'org.junit.jupiter.api.io.TempDir'
+    areSuspendFunctionsAllowed: false
+  JUnitMixedFramework:
+    active: true
+  Junit4RunWithInspection:
+    active: true
+  MigrateAssertToMatcherAssert:
+    active: false
+  ParameterizedParametersStaticCollection:
+    active: false
+  SuperTearDownInFinally:
+    active: false
+  UseOfObsoleteAssert:
+    active: false
+
+intellij-jvm-logging:
+  LogStatementNotGuardedByLogCondition:
+    active: false
+    limitLevelType: 'DEBUG_AND_LOWER'
+    isUnguardedConstantFlagged: false
+  LoggingConditionDisagreesWithLogLevelStatement:
+    active: false
+  LoggingPlaceholderCountMatchesArgumentCount:
+    active: true
+    slf4jToLog4J2Type: 'AUTO'
+  LoggingStringTemplateAsArgument:
+    active: true
+    limitLevelType: 'DEBUG_AND_LOWER'
+    arePrimitivesSkipped: true
+    isOnlyExceptionSkipped: false
+
+intellij-jvm-test-frameworks:
+  AssertBetweenInconvertibleTypes:
+    active: true
+  TestCaseWithConstructor:
+    active: false
+  TestCaseWithNoTestMethods:
+    active: false
+    isSupersIgnored: true
+  TestMethodWithoutAssertion:
+    active: false
+    assertionMethods:
+      - 'org.junit.Assert#assert.*|fail.*'
+      - 'junit.framework.Assert#assert.*|fail.*'
+      - 'org.junit.jupiter.api.Assertions#assert.*|fail.*'
+      - 'org.junit.jupiter.api#assert.*|fail.*'
+      - 'org.assertj.core.api.Assertions#assertThat.*'
+      - 'org.assertj.core.api.WithAssertions#assertThat'
+      - 'com.google.common.truth.Truth#assert.*'
+      - 'com.google.common.truth.Truth8#assert.*'
+      - 'org.mockito.Mockito#verify.*'
+      - 'org.mockito.InOrder#verify'
+      - 'org.junit.rules.ExpectedException#expect.*'
+      - 'io.mockk#verify.*'
+      - 'org.hamcrest.MatcherAssert#assertThat'
+      - 'mockit.Verifications#Verifications'
+      - 'kotlin.test#assert.*|fail.*|expect'
+      - 'org.testng.Assert#assert.*|fail.*|expect.*'
+      - 'org.testng.AssertJUnit#assert.*|fail.*'
+    isAssertKeywordAssertion: true
+    isThrowingIgnored: false
+
+intellij-kotlin-code-migration:
+  CanConvertToMultiDollarString:
+    active: true
+  ConvertFromMultiDollarToRegularString:
+    active: false
+  ConvertLongToDuration:
+    active: true
+  InfixCallToOrdinary:
+    active: false
+
+intellij-kotlin-coroutines:
+  CoroutineContextWithJob:
+    active: true
+  DeferredResultUnused:
+    active: true
+  ForEachJoinOnCollectionOfJob:
+    active: true
+  MapAwaitOnCollectionOfDeferred:
+    active: true
+  PreferCurrentCoroutineContextToCoroutineContext:
+    active: true
+  RunBlockingInSuspendFunction:
+    active: true
+  SimplifiableFlowCall:
+    active: true
+  SimplifiableFlowCallChain:
+    active: true
+  SuspendCoroutineLacksCancellationGuarantees:
+    active: true
+  SuspiciousImplicitCoroutineScopeReceiverAccess:
+    active: true
+  SuspiciousMutableCollectionInStateFlow:
+    active: true
+  UnusedFlow:
+    active: true
+  UselessCallOnFlow:
+    active: true
+
+intellij-kotlin-java-interop:
+  JavaCollectionWithNullableTypeArgument:
+    active: true
+  JavaCollectionsStaticMethodOnImmutableList:
+    active: true
+  JavaDefaultMethodsNotOverriddenByDelegation:
+    active: true
+
+intellij-kotlin-logging:
+  KotlinLoggerInitializedWithForeignClass:
+    active: false
+
+intellij-kotlin-naming-conventions:
+  InconsistentCommentForJavaParameter:
+    active: true
+  LocalVariableName:
+    active: true
+
+intellij-kotlin-numeric-issues:
+  KotlinBigDecimalEquals:
+    active: false
+
+intellij-kotlin-other-problems:
+  ConvertArgumentToSet:
+    active: true
+  DeprecatedCallableAddReplaceWith:
+    active: true
+  EnumValuesSoftDeprecate:
+    active: true
+  EnumValuesTopLevelFunctionSoftDeprecate:
+    active: true
+  FloatingPointLiteralPrecision:
+    active: true
+  MigrateDiagnosticSuppression:
+    active: true
+  ReplaceWithEnumMap:
+    active: true
+  ReplaceWithStringBuilderAppendRange:
+    active: true
+
+intellij-kotlin-probable-bugs:
+  AmbiguousNonLocalJump:
+    active: true
+  ArrayInDataClass:
+    active: true
+  AssignedValueIsNeverRead:
+    active: true
+  CanSealedSubClassBeObject:
+    active: true
+  ConflictingExtensionProperty:
+    active: true
+  ConvertNaNEquality:
+    active: true
+  DataClassPrivateConstructor:
+    active: true
+  DelegationToVarProperty:
+    active: true
+  DuplicateArgumentsInSetOfAndMapOfFunctions:
+    active: true
+  EmptyRange:
+    active: true
+  FilterIsInstanceResultIsAlwaysEmpty:
+    active: true
+  ForEachParameterNotUsed:
+    active: true
+  ImplicitNullableNothingType:
+    active: true
+  IncompleteDestructuring:
+    active: true
+  JavaIoSerializableObjectMustHaveReadResolve:
+    active: true
+  KotlinArrayHashCode:
+    active: true
+  KotlinArrayToString:
+    active: true
+  KotlinEqualsBetweenInconvertibleTypes:
+    active: true
+  KotlinMisorderedAssertEqualsArguments:
+    active: true
+  KotlinThrowableNotThrown:
+    active: true
+  LateinitVarOverridesLateinitVar:
+    active: true
+  LazyWithoutDelegation:
+    active: true
+  MainFunctionReturnUnit:
+    active: true
+  RecursiveEqualsCall:
+    active: true
+  RecursivePropertyAccessor:
+    active: true
+  RedundantLabel:
+    active: true
+  SelfAssignment:
+    active: true
+  SelfReferenceConstructorParameter:
+    active: true
+  SetterBackingFieldAssignment:
+    active: true
+  SuspiciousCallOnCollectionToAddOrRemovePath:
+    active: true
+  SuspiciousCascadingIf:
+    active: true
+  SuspiciousCollectionReassignment:
+    active: true
+  SuspiciousEqualsCombination:
+    active: true
+  SuspiciousGetterForMutableObject:
+    active: true
+  SuspiciousJavaClassCallableReference:
+    active: true
+  SuspiciousVarProperty:
+    active: true
+  UnusedDataClassCopyResult:
+    active: true
+  UnusedEquals:
+    active: true
+  UnusedExpression:
+    active: true
+  UnusedLambdaExpression:
+    active: true
+  UnusedLambdaExpressionBody:
+    active: true
+  UselessCallOnCollection:
+    active: true
+  VariableNeverRead:
+    active: true
+  WrapUnaryOperator:
+    active: true
+
+intellij-kotlin-redundant-constructs:
+  CanBeParameter:
+    active: true
+  CanBePrimaryConstructorProperty:
+    active: true
+  CanUnescapeDollarLiteral:
+    active: true
+  ConstantConditionIf:
+    active: true
+  ExplicitThis:
+    active: true
+  IfExpressionWithIdenticalBranches:
+    active: true
+  KotlinRedundantOverride:
+    active: true
+  NullChecksToSafeCall:
+    active: true
+  RedundantCompanionReference:
+    active: true
+  RedundantElvisReturnNull:
+    active: true
+  RedundantEnumConstructorInvocation:
+    active: true
+  RedundantIf:
+    active: true
+  RedundantInterpolationPrefix:
+    active: true
+  RedundantLambdaArrow:
+    active: true
+  RedundantModalityModifier:
+    active: true
+  RedundantNullableReturnType:
+    active: true
+  RedundantReturnKeyword:
+    active: true
+  RedundantReturnLabel:
+    active: true
+  RedundantSamConstructor:
+    active: true
+  RedundantSetter:
+    active: true
+  RedundantUpperBound:
+    active: true
+  RedundantValueArgument:
+    active: false
+  RedundantWith:
+    active: true
+  RemoveExplicitSuperQualifier:
+    active: true
+  RemoveExplicitTypeArguments:
+    active: true
+  RemoveRedundantQualifierName:
+    active: true
+  RemoveRedundantSpreadOperator:
+    active: true
+  RemoveSingleExpressionStringTemplate:
+    active: true
+  SuspiciousCallableReferenceInLambda:
+    active: true
+  UnnecessaryOptInAnnotation:
+    active: true
+  UnnecessaryVariable:
+    active: true
+  UnusedContextParameterCall:
+    active: true
+  UnusedReceiverParameter:
+    active: true
+  VariableInitializerIsRedundant:
+    active: true
+
+intellij-kotlin-style-issues:
+  AddOperatorModifier:
+    active: true
+    areSuspendFunctionsSkipped: true
+  AddVarianceModifier:
+    active: true
+  BooleanLiteralArgument:
+    active: true
+  CascadeIf:
+    active: true
+  CollectionConcatenationToBuildCollection:
+    active: true
+  ConvertPairConstructorToToFunction:
+    active: true
+  ConvertRangeCheckToTwoComparisons:
+    active: false
+  ConvertReferenceToLambda:
+    active: false
+  ConvertSealedClassToSealedInterface:
+    active: true
+  ConvertSealedInterfaceToSealedClass:
+    active: false
+  ConvertSecondaryConstructorToPrimary:
+    active: true
+  ConvertToExplicitBackingFields:
+    active: true
+  ConvertToStringTemplate:
+    active: true
+  ConvertTryFinallyToUseCall:
+    active: true
+  ConvertTwoComparisonsToRangeCheck:
+    active: true
+  CopyWithoutNamedArguments:
+    active: true
+  DestructuringDeclaration:
+    active: true
+    areNonParameterCasesReported: false
+    maxDestructuringEntries: 3
+  FilterIsInstanceCallWithClassLiteralArgument:
+    active: true
+  FoldInitializerAndIfToElvis:
+    active: true
+  IfThenToElvis:
+    active: true
+  IfThenToSafeAccess:
+    active: true
+  ImplicitThis:
+    active: false
+  IntroduceWhenSubject:
+    active: true
+  JavaMapForEach:
+    active: true
+  JoinDeclarationAndAssignment:
+    active: true
+  LiftReturnOrAssignment:
+    active: true
+  MapToForEach:
+    active: true
+  MoveLambdaOutsideParentheses:
+    active: true
+  MoveVariableDeclarationIntoWhen:
+    active: true
+  NullableHashCode:
+    active: true
+  RedundantAsSequence:
+    active: true
+  RedundantElseInIf:
+    active: true
+  RedundantObjectTypeCheck:
+    active: true
+  RedundantRunCatching:
+    active: true
+  RemoveEmptyParenthesesFromAnnotationEntry:
+    active: true
+  ReplaceAddAllWithMapTo:
+    active: true
+  ReplaceAssertBooleanWithAssertEquality:
+    active: true
+  ReplaceAssociateFunction:
+    active: false
+  ReplaceCallWithBinaryOperator:
+    active: true
+  ReplaceCollectionCountWithSize:
+    active: false
+  ReplaceContains:
+    active: true
+  ReplaceIfExpressionWithFirstOrNull:
+    active: true
+  ReplaceJavaStaticMethodWithKotlinAnalog:
+    active: true
+  ReplaceManualRangeWithIndicesCalls:
+    active: true
+  ReplaceMapGetOrDefault:
+    active: true
+  ReplaceMapIndexedWithListGenerator:
+    active: true
+  ReplaceMapKeysCallChainWithKeys:
+    active: true
+  ReplaceNegatedIsEmptyWithIsNotEmpty:
+    active: true
+  ReplaceNotNullAssertionWithElvisReturn:
+    active: false
+  ReplaceRangeStartEndInclusiveWithFirstLast:
+    active: true
+  ReplaceReadLineWithReadln:
+    active: true
+  ReplaceSizeCheckWithIsNotEmpty:
+    active: true
+  ReplaceSizeZeroCheckWithIsEmpty:
+    active: true
+  ReplaceStringFormatWithLiteral:
+    active: true
+  ReplaceSubstringWithDropLast:
+    active: true
+  ReplaceSubstringWithIndexingOperation:
+    active: true
+  ReplaceSubstringWithSubstringAfter:
+    active: true
+  ReplaceSubstringWithSubstringBefore:
+    active: true
+  ReplaceSubstringWithTake:
+    active: true
+  ReplaceToStringWithStringTemplate:
+    active: false
+  ReplaceToWithInfixForm:
+    active: true
+  ReplaceUntilWithRangeUntil:
+    active: true
+  ReplaceWithCallWithContextCall:
+    active: true
+  ReplaceWithIgnoreCaseEquals:
+    active: true
+  ReplaceWithImportAlias:
+    active: true
+  ReplaceWithOperatorAssignment:
+    active: true
+  RevertExplicitBackingFields:
+    active: false
+  SafeCastWithReturn:
+    active: true
+  SimplifiableCall:
+    active: true
+  SimplifiableCallChain:
+    active: true
+  SimplifyAssertNotNull:
+    active: true
+  SimplifyBooleanWithConstants:
+    active: true
+  SimplifyNegatedBinaryExpression:
+    active: true
+  SimplifyNestedEachInScopeFunction:
+    active: true
+  UnclearPrecedenceOfBinaryExpression:
+    active: true
+  UnlabeledReturnInsideLambda:
+    active: true
+  UnsafeCastWithReturn:
+    active: true
+  UseExpressionBody:
+    active: true
+    areUnitExpressionsSkipped: true
+  UsePropertyAccessSyntax:
+    active: true
+  VerboseNullabilityAndEmptiness:
+    active: true
+
 overpas-architecture:
   HiddenAbstraction:
     active: true

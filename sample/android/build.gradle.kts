@@ -33,6 +33,7 @@ android {
         }
         create("benchmark") {
             initWith(release)
+            proguardFiles("benchmark-rules.pro")
             signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf(release.name)
             isDebuggable = false

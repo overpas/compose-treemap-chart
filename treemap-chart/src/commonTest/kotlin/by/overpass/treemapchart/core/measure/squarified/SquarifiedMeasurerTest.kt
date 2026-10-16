@@ -47,6 +47,62 @@ class SquarifiedMeasurerTest {
     }
 
     @Test
+    fun unsortedValuesAreMeasuredInTheirOrder() {
+        val values = listOf(1.0, 6.0, 2.0, 4.0, 6.0, 3.0, 2.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 175, height = 57, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 175, height = 343, offsetX = 0, offsetY = 57),
+            TreemapNode(width = 150, height = 133, offsetX = 175, offsetY = 0),
+            TreemapNode(width = 150, height = 267, offsetX = 175, offsetY = 133),
+            TreemapNode(width = 275, height = 218, offsetX = 325, offsetY = 0),
+            TreemapNode(width = 165, height = 182, offsetX = 325, offsetY = 218),
+            TreemapNode(width = 110, height = 182, offsetX = 490, offsetY = 218),
+        )
+
+        val actual = sut.measureNodes(values, 600, 400)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun equalValuesAreMeasuredAsAGridInASquare() {
+        val values = List(9) { 1.0 }
+        val expectedNodes = listOf(
+            TreemapNode(width = 100, height = 100, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 100, height = 100, offsetX = 100, offsetY = 0),
+            TreemapNode(width = 100, height = 100, offsetX = 200, offsetY = 0),
+            TreemapNode(width = 100, height = 100, offsetX = 0, offsetY = 100),
+            TreemapNode(width = 100, height = 100, offsetX = 0, offsetY = 200),
+            TreemapNode(width = 100, height = 100, offsetX = 100, offsetY = 100),
+            TreemapNode(width = 100, height = 100, offsetX = 100, offsetY = 200),
+            TreemapNode(width = 100, height = 100, offsetX = 200, offsetY = 100),
+            TreemapNode(width = 100, height = 100, offsetX = 200, offsetY = 200),
+        )
+
+        val actual = sut.measureNodes(values, 300, 300)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun nodesAreMeasuredCorrectlyWithOddSize() {
+        val values = listOf(13.0, 11.0, 7.0, 5.0, 3.0, 2.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 198, height = 359, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 275, height = 219, offsetX = 198, offsetY = 0),
+            TreemapNode(width = 275, height = 140, offsetX = 198, offsetY = 219),
+            TreemapNode(width = 168, height = 163, offsetX = 473, offsetY = 0),
+            TreemapNode(width = 168, height = 98, offsetX = 473, offsetY = 163),
+            TreemapNode(width = 112, height = 98, offsetX = 473, offsetY = 261),
+            TreemapNode(width = 56, height = 98, offsetX = 585, offsetY = 261),
+        )
+
+        val actual = sut.measureNodes(values, 641, 359)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
     fun nodesFillBoundsWithoutGaps() {
         gapProneValues.forEach { values ->
             gapProneSizes.forEach { (width, height) ->

@@ -27,6 +27,7 @@ private val simpleTreeData = tree(10) {
 @Composable
 internal fun SimpleChart(
     onGoToComplexChartClick: () -> Unit,
+    onGoToLargeChartClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -43,6 +44,9 @@ internal fun SimpleChart(
         }
         Button(onClick = onGoToComplexChartClick) {
             Text(text = "Show more complex chart")
+        }
+        Button(onClick = onGoToLargeChartClick) {
+            Text(text = "Show large chart")
         }
     }
 }

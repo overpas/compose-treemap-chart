@@ -71,6 +71,16 @@ dumps. An unintended change fails the ABI check in L1.
 Run them on an emulator or device. The device tests also run the common tests, so a new Compose UI
 test belongs in the common test source set, unless it needs an Android API.
 
+### L5: Benchmarks
+
+```shell
+./gradlew :benchmark:connectedBenchmarkAndroidTest
+./gradlew :treemap-chart-microbenchmark:benchmark
+```
+
+Run them only when the task is about performance. Compare two builds on the same device and run
+each side at least twice, because a single run does not show the noise.
+
 ## Self-editing
 
 When editing .md files, including this file:

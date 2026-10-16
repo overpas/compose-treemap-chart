@@ -60,7 +60,6 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":treemap-chart"))
             implementation(libs.compose.foundation)
-            implementation(libs.compose.material)
             implementation(libs.compose.runtime)
             implementation(libs.compose.ui.tooling.preview)
         }

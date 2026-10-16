@@ -6,7 +6,6 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import by.overpass.treemapchart.compose.SimpleTreemapItem
 import by.overpass.treemapchart.compose.TreemapChart
 import by.overpass.treemapchart.core.tree.tree
 

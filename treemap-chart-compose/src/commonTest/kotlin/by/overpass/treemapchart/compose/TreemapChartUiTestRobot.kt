@@ -2,7 +2,7 @@ package by.overpass.treemapchart.compose
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.Text
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -48,8 +48,8 @@ internal fun ComposeUiTest.setTreemapChartContent(measurer: TreemapChartMeasurer
                     .testTag(CHART_TAG)
                     .size(width = 301.dp, height = 199.dp),
             ) { item ->
-                SimpleTreemapItem(
-                    item = item.toString(),
+                BasicText(
+                    text = item.toString(),
                     modifier = Modifier.testTag(LEAF_TAG),
                 )
             }
@@ -65,7 +65,7 @@ internal fun ComposeUiTest.setTreemapChartNodeContent() {
             evaluateItem = Int::toDouble,
         ) { node, groupContent ->
             if (node.children.isEmpty()) {
-                Text(
+                BasicText(
                     text = node.data.toString(),
                     modifier = Modifier.testTag(LEAF_TAG),
                 )

@@ -44,6 +44,22 @@ fun MyChart() {
         SimpleTreemapItem(item = item.toString())
     }
 }
+
+@Composable
+fun SimpleTreemapItem(
+    item: String,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = modifier.border(1.dp, MaterialTheme.colors.onBackground),
+    ) {
+        Text(
+            text = item,
+            textAlign = TextAlign.Center,
+        )
+    }
+}
 ```
 The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">

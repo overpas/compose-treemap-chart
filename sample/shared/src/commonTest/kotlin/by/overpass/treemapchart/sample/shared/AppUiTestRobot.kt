@@ -20,6 +20,10 @@ import kotlin.time.Duration.Companion.milliseconds
 private const val SIMPLE_CHART_TITLE = "Simple chart"
 private const val COMPLEX_CHART_TITLE = "Japan Exports 2021"
 private const val COMPLEX_CHART_BUTTON = "Show more complex chart"
+private const val LARGE_CHART_TITLE = "Large chart"
+private const val LARGE_CHART_BUTTON = "Show large chart"
+private const val CHANGE_DATA_BUTTON = "Change data"
+private const val RESIZE_BUTTON = "Resize"
 private const val PARSING_TEXT = "Parsing Exports data..."
 private const val EXPORTS_VALUE_LABEL = "Exports value"
 private const val PERCENTAGE_LABEL = "Percentage"
@@ -42,6 +46,12 @@ internal suspend fun ComposeUiTest.openComplexChart(pollingDispatcher: Coroutine
             delay(LOADING_POLL_INTERVAL)
         }
     }
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.openLargeChart() {
+    onNodeWithText(LARGE_CHART_BUTTON)
+        .performClick()
 }
 
 @OptIn(ExperimentalTestApi::class)
@@ -73,6 +83,18 @@ internal fun ComposeUiTest.assertComplexChartDisplayed() {
     onNodeWithContentDescription(BACK_DESCRIPTION)
         .assertIsDisplayed()
     onNode(hasProductName("Cars"))
+        .assertIsDisplayed()
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.assertLargeChartDisplayed() {
+    onNodeWithText(LARGE_CHART_TITLE)
+        .assertIsDisplayed()
+    onNodeWithContentDescription(BACK_DESCRIPTION)
+        .assertIsDisplayed()
+    onNodeWithText(CHANGE_DATA_BUTTON)
+        .assertIsDisplayed()
+    onNodeWithText(RESIZE_BUTTON)
         .assertIsDisplayed()
 }
 

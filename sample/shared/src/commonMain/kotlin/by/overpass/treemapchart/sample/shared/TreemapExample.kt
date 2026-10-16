@@ -14,51 +14,61 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import by.overpass.treemapchart.sample.shared.complex.ComplexChart
+import by.overpass.treemapchart.sample.shared.large.LargeChart
 import by.overpass.treemapchart.sample.shared.simple.SimpleChart
 import by.overpass.treemapchart.sample.shared.ui.icons.ArrowBack
 
 @Composable
 internal fun TreemapChartSample(modifier: Modifier = Modifier) {
     val scaffoldState = rememberScaffoldState()
-    var isComplexChartShown by rememberSaveable { mutableStateOf(false) }
+    var screen by rememberSaveable { mutableStateOf(SampleScreen.SIMPLE) }
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
             TreemapChartSampleTopAppBar(
-                isComplexChartShown = isComplexChartShown,
-                onBackClick = { isComplexChartShown = false },
+                screen = screen,
+                onBackClick = { screen = SampleScreen.SIMPLE },
             )
         },
         modifier = modifier,
     ) { paddingValues ->
-        if (isComplexChartShown) {
-            ComplexChart(Modifier.padding(paddingValues))
-        } else {
-            SimpleChart(
-                onGoToComplexChartClick = { isComplexChartShown = true },
-                modifier = Modifier.padding(paddingValues),
-            )
+        when (screen) {
+            SampleScreen.SIMPLE -> {
+                SimpleChart(
+                    onGoToComplexChartClick = { screen = SampleScreen.COMPLEX },
+                    onGoToLargeChartClick = { screen = SampleScreen.LARGE },
+                    modifier = Modifier.padding(paddingValues),
+                )
+            }
+
+            SampleScreen.COMPLEX -> {
+                ComplexChart(Modifier.padding(paddingValues))
+            }
+
+            SampleScreen.LARGE -> {
+                LargeChart(Modifier.padding(paddingValues))
+            }
         }
     }
 }
 
 @Composable
 private fun TreemapChartSampleTopAppBar(
-    isComplexChartShown: Boolean,
+    screen: SampleScreen,
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     TopAppBar(
         title = {
             Text(
-                text = if (isComplexChartShown) {
-                    "Japan Exports 2021"
-                } else {
-                    "Simple chart"
+                text = when (screen) {
+                    SampleScreen.SIMPLE -> "Simple chart"
+                    SampleScreen.COMPLEX -> "Japan Exports 2021"
+                    SampleScreen.LARGE -> "Large chart"
                 },
             )
         },
-        navigationIcon = if (isComplexChartShown) {
+        navigationIcon = if (screen != SampleScreen.SIMPLE) {
             {
                 IconButton(
                     onClick = onBackClick,

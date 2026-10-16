@@ -14,6 +14,7 @@ For the commands that build and test the project, see the verification section o
   Android device or emulator.
 - The benchmark module — performance of the chart in the Android sample. Add a benchmark only when
   the task is about performance.
+- The microbenchmark module — performance of the layout algorithms, without UI.
 
 Test layout logic in common tests, not through the UI. A UI test checks only what needs Compose:
 that the chart and its node content are displayed and react to input.

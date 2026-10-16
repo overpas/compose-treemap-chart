@@ -26,6 +26,16 @@ class AppUiTest {
         }
 
     @Test
+    fun largeChartIsShownAfterButtonClick() =
+        runComposeUiTest {
+            setAppContent()
+
+            openLargeChart()
+
+            assertLargeChartDisplayed()
+        }
+
+    @Test
     fun backButtonReturnsToSimpleChart() =
         runComposeUiTest {
             setAppContent()

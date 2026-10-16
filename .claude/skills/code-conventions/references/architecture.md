@@ -11,7 +11,10 @@ This is a **Kotlin Multiplatform** library with **Compose Multiplatform** UI.
 - **Sample** — a shared Compose UI module and one thin entry-point module or project per platform:
   Android, desktop, iOS, web (JS) and web (Wasm). Platform entry points hold no sample logic.
 - **Benchmark** — an Android macrobenchmark that runs against the Android sample in its
-  `benchmark` build type.
+  `benchmark` build type. The sample has a large generated chart for it, and the measured blocks
+  hold only chart work: app start and navigation go into the setup block.
+- **Microbenchmark** — a JVM-only kotlinx-benchmark module for the layout algorithms of the core
+  library. It is not part of the build.
 - **Convention plugins** — an included build with the shared Gradle configuration: publication and
   static analysis.
 

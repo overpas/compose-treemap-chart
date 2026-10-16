@@ -7,22 +7,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import by.overpass.treemapchart.compose.TreemapChart
-import by.overpass.treemapchart.core.tree.tree
-
-private val simpleTreeData = tree(10) {
-    node(6) {
-        node(4)
-        node(2) {
-            node(1)
-            node(1)
-        }
-    }
-    node(3) {
-        node(2)
-        node(1)
-    }
-    node(1)
-}
 
 @Composable
 internal fun SimpleChart(
@@ -33,16 +17,27 @@ internal fun SimpleChart(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier,
     ) {
-        TreemapChart(
-            data = simpleTreeData,
-            evaluateItem = Int::toDouble,
-            modifier = Modifier
-                .weight(1f),
-        ) { item ->
-            SimpleTreemapItem(item = item.toString())
-        }
+        SimpleTreemapChart(Modifier.weight(1f))
         Button(onClick = onGoToComplexChartClick) {
             Text(text = "Show more complex chart")
         }
+    }
+}
+
+@Composable
+private fun SimpleTreemapChart(modifier: Modifier = Modifier) {
+    TreemapChart(modifier) {
+        TreemapChart(Modifier.weight(6.0)) {
+            SimpleTreemapItem(item = "4", modifier = Modifier.weight(4.0))
+            TreemapChart(Modifier.weight(2.0)) {
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+            }
+        }
+        TreemapChart(Modifier.weight(3.0)) {
+            SimpleTreemapItem(item = "2", modifier = Modifier.weight(2.0))
+            SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+        }
+        SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
     }
 }

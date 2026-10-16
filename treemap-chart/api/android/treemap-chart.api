@@ -11,7 +11,6 @@ public abstract interface class by/overpass/treemapchart/core/measure/TreemapCha
 }
 
 public final class by/overpass/treemapchart/core/measure/TreemapNode {
-	public static final field $stable I
 	public fun <init> (IIII)V
 	public final fun component1 ()I
 	public final fun component2 ()I
@@ -29,13 +28,11 @@ public final class by/overpass/treemapchart/core/measure/TreemapNode {
 }
 
 public final class by/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
-	public static final field $stable I
 	public static final field INSTANCE Lby/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer;
 	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
 }
 
 public final class by/overpass/treemapchart/core/measure/squarified/SquarifiedMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
-	public static final field $stable I
 	public fun <init> ()V
 	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
 }
@@ -50,7 +47,6 @@ public final class by/overpass/treemapchart/core/tree/NodeDsl$DefaultImpls {
 }
 
 public final class by/overpass/treemapchart/core/tree/Tree {
-	public static final field $stable I
 	public fun <init> (Lby/overpass/treemapchart/core/tree/Tree$Node;)V
 	public final fun component1 ()Lby/overpass/treemapchart/core/tree/Tree$Node;
 	public final fun copy (Lby/overpass/treemapchart/core/tree/Tree$Node;)Lby/overpass/treemapchart/core/tree/Tree;
@@ -62,7 +58,6 @@ public final class by/overpass/treemapchart/core/tree/Tree {
 }
 
 public final class by/overpass/treemapchart/core/tree/Tree$Node {
-	public static final field $stable I
 	public fun <init> (Ljava/lang/Object;Lkotlinx/collections/immutable/ImmutableList;)V
 	public final fun component1 ()Ljava/lang/Object;
 	public final fun component2 ()Lkotlinx/collections/immutable/ImmutableList;

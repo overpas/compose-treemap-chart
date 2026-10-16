@@ -4,78 +4,105 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.DoubleState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.ComposeUiTest
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertCountEquals
+import androidx.compose.ui.test.assertWidthIsEqualTo
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.unit.dp
 import by.overpass.treemapchart.core.measure.TreemapChartMeasurer
-import by.overpass.treemapchart.core.tree.tree
+import by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer
 import kotlin.test.assertEquals
 
 private const val CHART_TAG = "chart"
 private const val GROUP_TAG = "group"
 private const val LEAF_TAG = "leaf"
-
-private val sampleTreeData = tree(10) {
-    node(6) {
-        node(4)
-        node(2) {
-            node(1)
-            node(1)
-        }
-    }
-    node(3) {
-        node(2)
-        node(1)
-    }
-    node(1)
-}
+private const val FIRST_TAG = "first"
 
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.setTreemapChartContent(measurer: TreemapChartMeasurer) {
     setContent {
         CompositionLocalProvider(LocalTreemapChartMeasurer provides measurer) {
             TreemapChart(
-                data = sampleTreeData,
-                evaluateItem = Int::toDouble,
-                modifier = Modifier
+                Modifier
                     .testTag(CHART_TAG)
                     .size(width = 301.dp, height = 199.dp),
-            ) { item ->
-                BasicText(
-                    text = item.toString(),
-                    modifier = Modifier.testTag(LEAF_TAG),
-                )
+            ) {
+                TreemapChart(Modifier.weight(6.0)) {
+                    BasicText(text = "4", modifier = Modifier.weight(4.0).testTag(LEAF_TAG))
+                    TreemapChart(Modifier.weight(2.0)) {
+                        BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                        BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                    }
+                }
+                TreemapChart(Modifier.weight(3.0)) {
+                    BasicText(text = "2", modifier = Modifier.weight(2.0).testTag(LEAF_TAG))
+                    BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                }
+                BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
             }
         }
     }
 }
 
 @OptIn(ExperimentalTestApi::class)
-internal fun ComposeUiTest.setTreemapChartNodeContent() {
+internal fun ComposeUiTest.setTreemapChartGroupContent() {
     setContent {
-        TreemapChart(
-            data = sampleTreeData,
-            evaluateItem = Int::toDouble,
-        ) { node, groupContent ->
-            if (node.children.isEmpty()) {
-                BasicText(
-                    text = node.data.toString(),
-                    modifier = Modifier.testTag(LEAF_TAG),
-                )
-            } else {
-                Box(Modifier.testTag(GROUP_TAG)) {
-                    groupContent(node)
+        TreemapChart {
+            Box(Modifier.weight(6.0).testTag(GROUP_TAG)) {
+                TreemapChart {
+                    BasicText(text = "4", modifier = Modifier.weight(4.0).testTag(LEAF_TAG))
+                    Box(Modifier.weight(2.0).testTag(GROUP_TAG)) {
+                        TreemapChart {
+                            BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                            BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                        }
+                    }
                 }
+            }
+            Box(Modifier.weight(3.0).testTag(GROUP_TAG)) {
+                TreemapChart {
+                    BasicText(text = "2", modifier = Modifier.weight(2.0).testTag(LEAF_TAG))
+                    BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+                }
+            }
+            BasicText(text = "1", modifier = Modifier.weight(1.0).testTag(LEAF_TAG))
+        }
+    }
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.setTreemapChartContentWithoutWeight() {
+    setContent {
+        TreemapChart {
+            BasicText(text = "4", modifier = Modifier.weight(4.0))
+            BasicText(text = "1")
+        }
+    }
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.setTreemapChartContentWithFirstWeight(firstWeight: DoubleState) {
+    setContent {
+        CompositionLocalProvider(LocalTreemapChartMeasurer provides SliceAndDiceMeasurer) {
+            TreemapChart(Modifier.size(width = 400.dp, height = 100.dp)) {
+                BasicText(text = "first", modifier = Modifier.weight(firstWeight.doubleValue).testTag(FIRST_TAG))
+                BasicText(text = "second", modifier = Modifier.weight(1.0))
             }
         }
     }
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.assertFirstChildTakesThreeQuarters() {
+    onNodeWithTag(FIRST_TAG)
+        .assertWidthIsEqualTo(300.dp)
 }
 
 @OptIn(ExperimentalTestApi::class)
@@ -91,7 +118,7 @@ internal fun ComposeUiTest.assertTreemapChartDisplayed() {
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.assertTreemapChartNodesDisplayed() {
     onAllNodesWithTag(GROUP_TAG)
-        .assertCountEquals(4)
+        .assertCountEquals(3)
     onAllNodesWithTag(LEAF_TAG)
         .assertCountEquals(6)
 }

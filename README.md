@@ -18,30 +18,24 @@ implementation "io.github.overpas:treemap-chart:0.1.3"
 implementation "io.github.overpas:treemap-chart-compose:0.1.3"
 ```
 ### Sample code
+Every direct child of `TreemapChart` takes an area in proportion to its `Modifier.weight`. Put a
+`TreemapChart` in another `TreemapChart` to make a group:
 ```kotlin
-private val simpleTreeData = tree(10) {
-    node(6) {
-        node(4)
-        node(2) {
-            node(1)
-            node(1)
-        }
-    }
-    node(3) {
-        node(2)
-        node(1)
-    }
-    node(1)
-}
-
 @Composable
 fun MyChart() {
-    TreemapChart(
-        data = simpleTreeData,
-        evaluateItem = Int::toDouble,
-        modifier = Modifier.fillMaxSize(),
-    ) { item ->
-        SimpleTreemapItem(item = item.toString())
+    TreemapChart(Modifier.fillMaxSize()) {
+        TreemapChart(Modifier.weight(6.0)) {
+            SimpleTreemapItem(item = "4", modifier = Modifier.weight(4.0))
+            TreemapChart(Modifier.weight(2.0)) {
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+            }
+        }
+        TreemapChart(Modifier.weight(3.0)) {
+            SimpleTreemapItem(item = "2", modifier = Modifier.weight(2.0))
+            SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+        }
+        SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
     }
 }
 
@@ -63,6 +57,9 @@ fun SimpleTreemapItem(
 ```
 The code above produces something like this:
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
+
+The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
+layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.
 
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
 

@@ -95,3 +95,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 tasks.named("jsBrowserTest") {
     enabled = false
 }
+
+tasks.named("compileTestDevelopmentExecutableKotlinJs") {
+    enabled = false
+}

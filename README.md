@@ -8,6 +8,7 @@
 ![Badge-Wasm](https://img.shields.io/badge/platform-wasm-blue)
 
 Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart implementation
+
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_complex_chart.png" width="500">
 
 ## Usage
@@ -18,30 +19,24 @@ implementation "io.github.overpas:treemap-chart:0.1.3"
 implementation "io.github.overpas:treemap-chart-compose:0.1.3"
 ```
 ### Sample code
+Every direct child of `TreemapChart` takes an area in proportion to its `Modifier.weight`. Put a
+`TreemapChart` in another `TreemapChart` to make a group:
 ```kotlin
-private val simpleTreeData = tree(10) {
-    node(6) {
-        node(4)
-        node(2) {
-            node(1)
-            node(1)
-        }
-    }
-    node(3) {
-        node(2)
-        node(1)
-    }
-    node(1)
-}
-
 @Composable
 fun MyChart() {
-    TreemapChart(
-        data = simpleTreeData,
-        evaluateItem = Int::toDouble,
-        modifier = Modifier.fillMaxSize(),
-    ) { item ->
-        SimpleTreemapItem(item = item.toString())
+    TreemapChart(Modifier.fillMaxSize()) {
+        TreemapChart(Modifier.weight(6.0)) {
+            SimpleTreemapItem(item = "4", modifier = Modifier.weight(4.0))
+            TreemapChart(Modifier.weight(2.0)) {
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+                SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+            }
+        }
+        TreemapChart(Modifier.weight(3.0)) {
+            SimpleTreemapItem(item = "2", modifier = Modifier.weight(2.0))
+            SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
+        }
+        SimpleTreemapItem(item = "1", modifier = Modifier.weight(1.0))
     }
 }
 
@@ -62,7 +57,11 @@ fun SimpleTreemapItem(
 }
 ```
 The code above produces something like this:
+
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
+
+The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
+layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.
 
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
 
@@ -71,16 +70,3 @@ Set the git hooks path to `config/git-hooks` to run detekt before each commit:
 ```shell
 git config --local core.hooksPath config/git-hooks
 ```
-
-## Publishing
-The Publish workflow publishes a GitHub release to Maven Central. The release tag must match `lib.version` in `gradle.properties`.
-
-To publish manually, set these Gradle properties as environment variables and run `./gradlew publishToMavenCentral`. Never put them in the project `gradle.properties`.
-```shell
-export ORG_GRADLE_PROJECT_mavenCentralUsername="<Central Portal user token name>"
-export ORG_GRADLE_PROJECT_mavenCentralPassword="<Central Portal user token password>"
-export ORG_GRADLE_PROJECT_signingInMemoryKey="$(gpg --export-secret-keys --armor <key id>)"
-export ORG_GRADLE_PROJECT_signingInMemoryKeyId="<last 8 characters of the key id>"
-export ORG_GRADLE_PROJECT_signingInMemoryKeyPassword="<key password>"
-```
-Set `ORG_GRADLE_PROJECT_mavenCentralPublishingType=USER_MANAGED` to release the deployment by hand at https://central.sonatype.com/publishing/deployments. Run `./gradlew validateMavenCentralBundle` to check the publications without an upload.

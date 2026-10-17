@@ -16,6 +16,7 @@ plugins {
 dependencies {
     kover(project(":treemap-chart"))
     kover(project(":treemap-chart-compose"))
+    kover(project(":treemap-chart-views"))
 }
 
 tasks.register("cleanAll", Delete::class) {

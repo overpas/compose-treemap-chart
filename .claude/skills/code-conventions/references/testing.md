@@ -10,6 +10,8 @@ For the commands that build and test the project, see the verification section o
 
 - `src/commonTest/` of the core library — the tree model, the DSL and the layout algorithms. These
   tests run on every target and need no device.
+- `src/androidHostTest/` of the Views library — Robolectric tests of the views. They run in the
+  build and need no device.
 - `src/androidDeviceTest/` of the Compose library — Compose UI tests of the chart. They run on an
   Android device or emulator.
 - The benchmark module — performance of the chart in the Android sample. Add a benchmark only when

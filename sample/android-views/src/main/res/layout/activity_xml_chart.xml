@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<by.overpass.treemapchart.views.TreemapChartLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <by.overpass.treemapchart.views.TreemapChartLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_treemapWeight="6">
+
+        <TextView
+            style="@style/TreemapItem"
+            android:text="4"
+            app:layout_treemapWeight="4" />
+
+        <by.overpass.treemapchart.views.TreemapChartLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_treemapWeight="2">
+
+            <TextView
+                style="@style/TreemapItem"
+                android:text="1"
+                app:layout_treemapWeight="1" />
+
+            <TextView
+                style="@style/TreemapItem"
+                android:text="1"
+                app:layout_treemapWeight="1" />
+
+        </by.overpass.treemapchart.views.TreemapChartLayout>
+
+    </by.overpass.treemapchart.views.TreemapChartLayout>
+
+    <by.overpass.treemapchart.views.TreemapChartLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_treemapWeight="3">
+
+        <TextView
+            style="@style/TreemapItem"
+            android:text="2"
+            app:layout_treemapWeight="2" />
+
+        <TextView
+            style="@style/TreemapItem"
+            android:text="1"
+            app:layout_treemapWeight="1" />
+
+    </by.overpass.treemapchart.views.TreemapChartLayout>
+
+    <TextView
+        style="@style/TreemapItem"
+        android:text="1"
+        app:layout_treemapWeight="1" />
+
+</by.overpass.treemapchart.views.TreemapChartLayout>

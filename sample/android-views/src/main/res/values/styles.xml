@@ -1,0 +1,31 @@
+<resources>
+    <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="android:colorPrimaryDark">@color/primary_variant</item>
+        <item name="android:colorAccent">@color/secondary</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:actionBarStyle">@style/TopBar</item>
+    </style>
+
+    <style name="TopBar" parent="android:Widget.Material.ActionBar.Solid">
+        <item name="android:background">@color/top_bar</item>
+    </style>
+
+    <style name="SampleButton" parent="android:Widget.Material.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/button</item>
+        <item name="android:textColor">@color/on_button</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="TreemapItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/item_border</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/on_background</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.03125</item>
+    </style>
+</resources>

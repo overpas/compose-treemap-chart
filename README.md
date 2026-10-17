@@ -63,6 +63,43 @@ The code above produces something like this:
 The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
 layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.
 
+### Android Views
+For Android Views, add the views module instead of the compose one:
+```gradle
+implementation "io.github.overpas:treemap-chart:0.1.3"
+implementation "io.github.overpas:treemap-chart-views:0.1.3"
+```
+Build the chart from a tree in code:
+```kotlin
+findViewById<TreemapChartView>(R.id.chart).setData(simpleTreeData, Int::toDouble) { parent, item ->
+    TextView(parent.context).apply {
+        text = item.toString()
+        gravity = Gravity.CENTER
+    }
+}
+```
+Or write it in XML with nested `TreemapChartLayout`s, where each child sets its weight:
+```xml
+<by.overpass.treemapchart.views.TreemapChartLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="6"
+        app:layout_treemapWeight="6" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="4"
+        app:layout_treemapWeight="4" />
+
+</by.overpass.treemapchart.views.TreemapChartLayout>
+```
+Set `measurer` on `TreemapChartView` or `TreemapChartLayout` to change the layout algorithm.
+
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
 
 ## Development

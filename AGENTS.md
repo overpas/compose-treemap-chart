@@ -75,6 +75,7 @@ test belongs in the common test source set, unless it needs an Android API.
 
 ```shell
 ./gradlew :benchmark:connectedBenchmarkAndroidTest
+./gradlew :benchmark-views:connectedBenchmarkAndroidTest
 ./gradlew :treemap-chart-microbenchmark:benchmark
 ```
 

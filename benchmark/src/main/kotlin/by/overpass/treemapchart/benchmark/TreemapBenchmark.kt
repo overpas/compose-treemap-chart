@@ -17,6 +17,7 @@ private const val ITERATIONS = 10
 private const val CHANGES_PER_ITERATION = 20
 private const val RECOMPOSE_SECTION = "Recomposer:recompose"
 private const val MEASURE_AND_LAYOUT_SECTION = "AndroidOwner:measureAndLayout"
+private const val TRAVERSAL_SECTION = "traversal"
 
 @OptIn(ExperimentalMetricApi::class)
 @RunWith(AndroidJUnit4::class)
@@ -92,6 +93,7 @@ class TreemapBenchmark {
                 FrameTimingMetric(),
                 TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
             ),
             compilationMode = CompilationMode.DEFAULT,
             startupMode = null,
@@ -115,6 +117,7 @@ class TreemapBenchmark {
                 FrameTimingMetric(),
                 TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
             ),
             compilationMode = CompilationMode.DEFAULT,
             startupMode = null,

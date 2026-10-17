@@ -27,12 +27,12 @@
 
         <Button
             android:id="@+id/change_data"
-            style="@style/SampleButton"
+            style="@style/SampleButtonWithoutRipple"
             android:text="Change data" />
 
         <Button
             android:id="@+id/resize"
-            style="@style/SampleButton"
+            style="@style/SampleButtonWithoutRipple"
             android:text="Resize" />
 
     </LinearLayout>

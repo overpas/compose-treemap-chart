@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
+import androidx.compose.material.LocalRippleConfiguration
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -42,12 +44,14 @@ internal fun LargeChart(
         ) {
             chart(tree, Modifier.fillMaxSize(if (isShrunk) SHRUNK_CHART_FRACTION else 1f))
         }
-        Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Button(onClick = { seed++ }) {
-                Text(text = "Change data")
-            }
-            Button(onClick = { isShrunk = !isShrunk }) {
-                Text(text = "Resize")
+        CompositionLocalProvider(LocalRippleConfiguration provides null) {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Button(onClick = { seed++ }) {
+                    Text(text = "Change data")
+                }
+                Button(onClick = { isShrunk = !isShrunk }) {
+                    Text(text = "Resize")
+                }
             }
         }
     }

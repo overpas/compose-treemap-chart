@@ -5,12 +5,15 @@ This is a **Kotlin Multiplatform** library with **Compose Multiplatform** UI.
 ## Modules
 
 - **Core library** — the tree model, its builder DSL and the layout algorithms (measurers) that
-  turn a tree into rectangles. It has no UI and depends only on the Compose runtime.
-- **Compose library** — the treemap chart composable. It draws the rectangles of a measurer and
-  takes the caller's content for each node. It depends on the core library.
+  turn weights into rectangles. It has no UI and no Compose dependency, so any UI toolkit can use
+  it.
+- **Compose library** — the treemap chart composable. The composition is the tree: each direct
+  child sets its weight through a parent data modifier, and a nested chart is a group. It uses the
+  measurers of the core library, not its tree model.
 - **Views library** — an Android-only treemap chart for Android Views: a layout that places its
   children by weight with a measurer, and a view that builds such layouts from a tree. The measurer
-  is a property of the view, not a composition local. It depends on the core library.
+  is a property of the view, not a composition local. It uses the tree model and the measurers of
+  the core library.
 - **Sample** — a shared Compose UI module and one thin entry-point module or project per platform:
   Android, desktop, iOS, web (JS) and web (Wasm). Platform entry points hold no sample logic. A
   separate Android app samples the Views library; its screens copy the Compose sample screens.

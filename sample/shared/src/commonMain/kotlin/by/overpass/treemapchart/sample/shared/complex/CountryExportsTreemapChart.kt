@@ -11,17 +11,42 @@ internal fun CountryExportsTreemapChart(
     onItemClick: (Export.Product) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    TreemapChart(
-        data = tree,
-        evaluateItem = Export::exportsValue,
+    ExportNode(
+        node = tree.root,
+        onItemClick = onItemClick,
         modifier = modifier,
-    ) { node, groupContent ->
-        val export = node.data
-        if (node.children.isEmpty() && export is Export.Product) {
-            ProductExportItem(item = export, onClick = onItemClick)
-        } else if (export is Export.Section) {
-            SectionExportItem(export.color) {
-                groupContent(node)
+    )
+}
+
+@Composable
+private fun ExportNode(
+    node: Tree.Node<Export>,
+    onItemClick: (Export.Product) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    when (val export = node.data) {
+        is Export.Product -> {
+            ProductExportItem(
+                item = export,
+                onClick = onItemClick,
+                modifier = modifier,
+            )
+        }
+
+        is Export.Section -> {
+            SectionExportItem(
+                sectionColor = export.color,
+                modifier = modifier,
+            ) {
+                TreemapChart {
+                    node.children.forEach { child ->
+                        ExportNode(
+                            node = child,
+                            onItemClick = onItemClick,
+                            modifier = Modifier.weight(child.data.exportsValue),
+                        )
+                    }
+                }
             }
         }
     }

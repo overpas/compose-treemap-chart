@@ -1,6 +1,5 @@
 package by.overpass.treemapchart.core.tree
 
-import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.ImmutableList
 
 /**
@@ -9,7 +8,6 @@ import kotlinx.collections.immutable.ImmutableList
  * @param T type of the node values
  * @property root the root node
  */
-@Stable
 data class Tree<T>(val root: Node<T>) {
 
     /**
@@ -19,7 +17,6 @@ data class Tree<T>(val root: Node<T>) {
      * @property data value of the node
      * @property children child nodes of the node
      */
-    @Stable
     data class Node<T>(
         val data: T,
         val children: ImmutableList<Node<T>>,

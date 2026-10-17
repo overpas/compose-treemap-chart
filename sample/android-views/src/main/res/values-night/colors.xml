@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#FFBB86FC</color>
+    <color name="top_bar">#FF282828</color>
+    <color name="background">#FF121212</color>
+    <color name="on_background">#FFFFFFFF</color>
+    <color name="button">#FFBB86FC</color>
+    <color name="on_button">#FF000000</color>
+</resources>

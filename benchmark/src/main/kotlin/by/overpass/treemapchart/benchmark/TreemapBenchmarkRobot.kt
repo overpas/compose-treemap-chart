@@ -9,6 +9,7 @@ import androidx.test.uiautomator.Until
 private const val TIMEOUT_MILLIS = 5_000L
 private const val COMPLEX_CHART_BUTTON = "Show more complex chart"
 private const val LARGE_CHART_BUTTON = "Show large chart"
+private const val CANVAS_LARGE_CHART_BUTTON = "Show large canvas chart"
 private const val CHANGE_DATA_BUTTON = "Change data"
 private const val RESIZE_BUTTON = "Resize"
 private const val TOP_PRODUCT = "Cars"
@@ -34,6 +35,11 @@ internal fun MacrobenchmarkScope.openTopProductPopup() {
 
 internal fun MacrobenchmarkScope.openLargeChart() {
     waitForObject(By.text(LARGE_CHART_BUTTON)).click()
+    waitForObject(By.text(CHANGE_DATA_BUTTON))
+}
+
+internal fun MacrobenchmarkScope.openCanvasLargeChart() {
+    waitForObject(By.text(CANVAS_LARGE_CHART_BUTTON)).click()
     waitForObject(By.text(CHANGE_DATA_BUTTON))
 }
 

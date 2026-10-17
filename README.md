@@ -60,6 +60,25 @@ The code above produces something like this:
 
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="500">
 
+### Canvas chart
+`CanvasTreemapChart` draws all nodes of a `Tree` on one canvas. It creates no composable per node,
+so use it for large trees or data that changes often. The nodes have no semantics and do not react
+to input. Each node is drawn by a lambda, where `size` is the size of the node:
+```kotlin
+@Composable
+fun MyCanvasChart(data: Tree<Double>) {
+    val borderColor = MaterialTheme.colors.onBackground
+    CanvasTreemapChart(
+        data = data,
+        evaluateItem = { it },
+        modifier = Modifier.fillMaxSize(),
+    ) { node ->
+        drawRect(color = borderColor, style = Stroke(1.dp.toPx()))
+    }
+}
+```
+Both charts get the layout algorithm from `LocalTreemapChartMeasurer`.
+
 The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
 layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.
 

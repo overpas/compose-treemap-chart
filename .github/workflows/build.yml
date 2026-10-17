@@ -35,15 +35,19 @@ jobs:
           ./gradlew
           :treemap-chart:build
           :treemap-chart-compose:build
+          :treemap-chart-views:build
           :sample:shared:allTests
           :sample:shared:compileKotlinJs
           :sample:shared:compileKotlinWasmJs
           :sample:android:assembleDebug
           :sample:android:check
+          :sample:android-views:assembleDebug
+          :sample:android-views:check
           :sample:desktop:build
           :sample:web:compileKotlinJs
           :sample:web-wasm:compileKotlinWasmJs
           :benchmark:compileBenchmarkKotlin
+          :benchmark-views:compileBenchmarkKotlin
           :koverXmlReport
           :koverHtmlReport
           :koverLog

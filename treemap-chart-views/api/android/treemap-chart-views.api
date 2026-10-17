@@ -1,0 +1,35 @@
+public final class by/overpass/treemapchart/views/TreemapChartLayout : android/view/ViewGroup {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun generateDefaultLayoutParams ()Landroid/view/ViewGroup$LayoutParams;
+	public synthetic fun generateLayoutParams (Landroid/util/AttributeSet;)Landroid/view/ViewGroup$LayoutParams;
+	public fun generateLayoutParams (Landroid/util/AttributeSet;)Lby/overpass/treemapchart/views/TreemapChartLayout$LayoutParams;
+	public synthetic fun generateLayoutParams (Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
+	public final fun getMeasurer ()Lby/overpass/treemapchart/core/measure/TreemapChartMeasurer;
+	public final fun setMeasurer (Lby/overpass/treemapchart/core/measure/TreemapChartMeasurer;)V
+	public fun shouldDelayChildPressedState ()Z
+}
+
+public final class by/overpass/treemapchart/views/TreemapChartLayout$LayoutParams : android/view/ViewGroup$LayoutParams {
+	public fun <init> (II)V
+	public fun <init> (IID)V
+	public synthetic fun <init> (IIDILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/view/ViewGroup$LayoutParams;)V
+	public final fun getWeight ()D
+	public final fun setWeight (D)V
+}
+
+public final class by/overpass/treemapchart/views/TreemapChartView : android/widget/FrameLayout {
+	public fun <init> (Landroid/content/Context;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;)V
+	public fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;I)V
+	public synthetic fun <init> (Landroid/content/Context;Landroid/util/AttributeSet;IILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getMeasurer ()Lby/overpass/treemapchart/core/measure/TreemapChartMeasurer;
+	public final fun setData (Lby/overpass/treemapchart/core/tree/Tree;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;)V
+	public final fun setData (Lby/overpass/treemapchart/core/tree/Tree;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function3;)V
+	public final fun setMeasurer (Lby/overpass/treemapchart/core/measure/TreemapChartMeasurer;)V
+}
+

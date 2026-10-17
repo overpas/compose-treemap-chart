@@ -69,8 +69,29 @@ For Android Views, add the views module instead of the compose one:
 implementation "io.github.overpas:treemap-chart:0.1.3"
 implementation "io.github.overpas:treemap-chart-views:0.1.3"
 ```
+There are two ways to make a chart:
+- `TreemapChartLayout` places the views you add to it, in XML or in code. Use it when the chart
+  shape is fixed, for example written in XML.
+- `TreemapChartView` builds the chart from a `Tree`. Use it when the data comes at runtime or
+  changes: call `setData` again for each new data set.
+
 Build the chart from a tree in code:
 ```kotlin
+private val simpleTreeData = tree(10) {
+    node(6) {
+        node(4)
+        node(2) {
+            node(1)
+            node(1)
+        }
+    }
+    node(3) {
+        node(2)
+        node(1)
+    }
+    node(1)
+}
+
 findViewById<TreemapChartView>(R.id.chart).setData(simpleTreeData, Int::toDouble) { parent, item ->
     TextView(parent.context).apply {
         text = item.toString()

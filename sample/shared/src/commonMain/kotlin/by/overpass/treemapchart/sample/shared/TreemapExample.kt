@@ -14,7 +14,9 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import by.overpass.treemapchart.sample.shared.complex.ComplexChart
+import by.overpass.treemapchart.sample.shared.large.CanvasLargeTreemapChart
 import by.overpass.treemapchart.sample.shared.large.LargeChart
+import by.overpass.treemapchart.sample.shared.large.LargeTreemapChart
 import by.overpass.treemapchart.sample.shared.simple.SimpleChart
 import by.overpass.treemapchart.sample.shared.ui.icons.ArrowBack
 
@@ -37,6 +39,7 @@ internal fun TreemapChartSample(modifier: Modifier = Modifier) {
                 SimpleChart(
                     onGoToComplexChartClick = { screen = SampleScreen.COMPLEX },
                     onGoToLargeChartClick = { screen = SampleScreen.LARGE },
+                    onGoToCanvasLargeChartClick = { screen = SampleScreen.CANVAS_LARGE },
                     modifier = Modifier.padding(paddingValues),
                 )
             }
@@ -46,7 +49,15 @@ internal fun TreemapChartSample(modifier: Modifier = Modifier) {
             }
 
             SampleScreen.LARGE -> {
-                LargeChart(Modifier.padding(paddingValues))
+                LargeChart(Modifier.padding(paddingValues)) { tree, chartModifier ->
+                    LargeTreemapChart(tree = tree, modifier = chartModifier)
+                }
+            }
+
+            SampleScreen.CANVAS_LARGE -> {
+                LargeChart(Modifier.padding(paddingValues)) { tree, chartModifier ->
+                    CanvasLargeTreemapChart(tree = tree, modifier = chartModifier)
+                }
             }
         }
     }
@@ -65,6 +76,7 @@ private fun TreemapChartSampleTopAppBar(
                     SampleScreen.SIMPLE -> "Simple chart"
                     SampleScreen.COMPLEX -> "Japan Exports 2021"
                     SampleScreen.LARGE -> "Large chart"
+                    SampleScreen.CANVAS_LARGE -> "Large canvas chart"
                 },
             )
         },

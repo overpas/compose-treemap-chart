@@ -4,4 +4,5 @@ internal enum class SampleScreen {
     SIMPLE,
     COMPLEX,
     LARGE,
+    CANVAS_LARGE,
 }

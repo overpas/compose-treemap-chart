@@ -132,4 +132,52 @@ class TreemapBenchmark {
                 resizeLargeChart()
             }
         }
+
+    @Test
+    fun changeLargeCanvasChartData() =
+        benchmarkRule.measureRepeated(
+            packageName = PACKAGE_NAME,
+            metrics = listOf(
+                FrameTimingMetric(),
+                TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+            ),
+            compilationMode = CompilationMode.DEFAULT,
+            startupMode = null,
+            iterations = ITERATIONS,
+            setupBlock = {
+                killProcess()
+                startActivityAndWait()
+                openCanvasLargeChart()
+            },
+        ) {
+            repeat(CHANGES_PER_ITERATION) {
+                changeLargeChartData()
+            }
+        }
+
+    @Test
+    fun resizeLargeCanvasChart() =
+        benchmarkRule.measureRepeated(
+            packageName = PACKAGE_NAME,
+            metrics = listOf(
+                FrameTimingMetric(),
+                TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+            ),
+            compilationMode = CompilationMode.DEFAULT,
+            startupMode = null,
+            iterations = ITERATIONS,
+            setupBlock = {
+                killProcess()
+                startActivityAndWait()
+                openCanvasLargeChart()
+            },
+        ) {
+            repeat(CHANGES_PER_ITERATION) {
+                resizeLargeChart()
+            }
+        }
 }

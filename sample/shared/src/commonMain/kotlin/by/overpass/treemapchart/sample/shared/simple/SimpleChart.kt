@@ -12,6 +12,7 @@ import by.overpass.treemapchart.compose.TreemapChart
 internal fun SimpleChart(
     onGoToComplexChartClick: () -> Unit,
     onGoToLargeChartClick: () -> Unit,
+    onGoToCanvasLargeChartClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -24,6 +25,9 @@ internal fun SimpleChart(
         }
         Button(onClick = onGoToLargeChartClick) {
             Text(text = "Show large chart")
+        }
+        Button(onClick = onGoToCanvasLargeChartClick) {
+            Text(text = "Show large canvas chart")
         }
     }
 }

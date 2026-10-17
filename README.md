@@ -58,7 +58,7 @@ fun SimpleTreemapItem(
 ```
 The code above produces something like this:
 
-<img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="750">
+<img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_treemap.png" width="500">
 
 The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
 layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.

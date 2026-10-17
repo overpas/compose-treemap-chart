@@ -18,6 +18,11 @@ import by.overpass.treemapchart.core.tree.Tree
  * The measurer comes from [LocalTreemapChartMeasurer]. The chart lays the nodes out again only when
  * its size, layout direction or inputs change.
  *
+ * When other content animates while the chart stays the same, apply
+ * `Modifier.graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)` to the chart. Then the
+ * frames of that animation draw a cached texture instead of every node. The texture takes memory in
+ * proportion to the size of the chart.
+ *
  * @param T Type of the node values
  * @param data The tree to draw. The root takes the full size of the chart
  * @param evaluateItem The weight of a node, must be positive. It is not called for the root

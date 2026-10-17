@@ -19,6 +19,10 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="SampleButtonWithoutRipple" parent="SampleButton">
+        <item name="android:background">@drawable/button_without_ripple</item>
+    </style>
+
     <style name="TreemapItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>

@@ -18,6 +18,8 @@ private const val CHANGES_PER_ITERATION = 20
 private const val RECOMPOSE_SECTION = "Recomposer:recompose"
 private const val MEASURE_AND_LAYOUT_SECTION = "AndroidOwner:measureAndLayout"
 private const val TRAVERSAL_SECTION = "traversal"
+private const val RECORD_DRAW_SECTION = "Record View#draw()"
+private const val DRAW_FRAME_SECTION = "DrawFrame%"
 
 @OptIn(ExperimentalMetricApi::class)
 @RunWith(AndroidJUnit4::class)
@@ -94,6 +96,8 @@ class TreemapBenchmark {
                 TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(RECORD_DRAW_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(DRAW_FRAME_SECTION, TraceSectionMetric.Mode.Sum),
             ),
             compilationMode = CompilationMode.DEFAULT,
             startupMode = null,
@@ -118,6 +122,8 @@ class TreemapBenchmark {
                 TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
                 TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(RECORD_DRAW_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(DRAW_FRAME_SECTION, TraceSectionMetric.Mode.Sum),
             ),
             compilationMode = CompilationMode.DEFAULT,
             startupMode = null,
@@ -126,6 +132,58 @@ class TreemapBenchmark {
                 killProcess()
                 startActivityAndWait()
                 openLargeChart()
+            },
+        ) {
+            repeat(CHANGES_PER_ITERATION) {
+                resizeLargeChart()
+            }
+        }
+
+    @Test
+    fun changeLargeCanvasChartData() =
+        benchmarkRule.measureRepeated(
+            packageName = PACKAGE_NAME,
+            metrics = listOf(
+                FrameTimingMetric(),
+                TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(RECORD_DRAW_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(DRAW_FRAME_SECTION, TraceSectionMetric.Mode.Sum),
+            ),
+            compilationMode = CompilationMode.DEFAULT,
+            startupMode = null,
+            iterations = ITERATIONS,
+            setupBlock = {
+                killProcess()
+                startActivityAndWait()
+                openCanvasLargeChart()
+            },
+        ) {
+            repeat(CHANGES_PER_ITERATION) {
+                changeLargeChartData()
+            }
+        }
+
+    @Test
+    fun resizeLargeCanvasChart() =
+        benchmarkRule.measureRepeated(
+            packageName = PACKAGE_NAME,
+            metrics = listOf(
+                FrameTimingMetric(),
+                TraceSectionMetric(RECOMPOSE_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(MEASURE_AND_LAYOUT_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(TRAVERSAL_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(RECORD_DRAW_SECTION, TraceSectionMetric.Mode.Sum),
+                TraceSectionMetric(DRAW_FRAME_SECTION, TraceSectionMetric.Mode.Sum),
+            ),
+            compilationMode = CompilationMode.DEFAULT,
+            startupMode = null,
+            iterations = ITERATIONS,
+            setupBlock = {
+                killProcess()
+                startActivityAndWait()
+                openCanvasLargeChart()
             },
         ) {
             repeat(CHANGES_PER_ITERATION) {

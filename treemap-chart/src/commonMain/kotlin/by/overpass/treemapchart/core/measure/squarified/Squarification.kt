@@ -8,7 +8,6 @@ internal class Squarification(
     private val height: Double,
 ) {
 
-    private val freeSpace = FreeSpace(width, height)
     private val elements = run {
         val ratio = values.sum() / (width * height)
         values.map { TreemapElement(it / ratio) }
@@ -24,16 +23,13 @@ internal class Squarification(
     }
 
     private fun squarify() {
-        var row = Row()
-        var side = freeSpace.shortSide
-        elements.forEach { element ->
-            if (!row.accepts(element, side)) {
-                freeSpace.place(row, side)
-                row = Row()
-                side = freeSpace.shortSide
+        val (lastRow, freeSpace) = elements.fold(Row(elements) to FreeSpace(width, height)) { (row, space), _ ->
+            if (row.acceptsNext(space.shortSide)) {
+                row.extended() to space
+            } else {
+                row.following().extended() to space.place(row)
             }
-            row.add(element)
         }
-        freeSpace.place(row, side)
+        freeSpace.place(lastRow)
     }
 }

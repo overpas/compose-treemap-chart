@@ -18,23 +18,32 @@ internal class TreemapChartViewFactory<T>(
     fun create(
         parent: ViewGroup,
         node: Tree.Node<T>,
-    ): View {
-        if (node.children.isEmpty()) {
-            return createNodeView(parent, node, null)
+    ): View =
+        PlacedNode(parent, node).createView()
+
+    private inner class PlacedNode(
+        private val parent: ViewGroup,
+        private val node: Tree.Node<T>,
+    ) {
+
+        fun createView(): View {
+            if (node.children.isEmpty()) {
+                return createNodeView(parent, node, null)
+            }
+            val group = TreemapChartLayout(context)
+            group.measurer = measurer
+            groups += group
+            node.children.forEach { child ->
+                group.addView(
+                    PlacedNode(group, child).createView(),
+                    TreemapChartLayout.LayoutParams(
+                        width = ViewGroup.LayoutParams.MATCH_PARENT,
+                        height = ViewGroup.LayoutParams.MATCH_PARENT,
+                        weight = evaluateItem(child.data),
+                    ),
+                )
+            }
+            return createNodeView(parent, node, group)
         }
-        val group = TreemapChartLayout(context)
-        group.measurer = measurer
-        groups += group
-        node.children.forEach { child ->
-            group.addView(
-                create(group, child),
-                TreemapChartLayout.LayoutParams(
-                    width = ViewGroup.LayoutParams.MATCH_PARENT,
-                    height = ViewGroup.LayoutParams.MATCH_PARENT,
-                    weight = evaluateItem(child.data),
-                ),
-            )
-        }
-        return createNodeView(parent, node, group)
     }
 }

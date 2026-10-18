@@ -3,54 +3,76 @@ package by.overpass.treemapchart.core.measure.squarified
 import by.overpass.treemapchart.core.measure.LayoutOrientation
 import kotlin.math.min
 
-internal class FreeSpace(
-    private var width: Double,
-    private var height: Double,
+internal class FreeSpace private constructor(
+    private val left: Double,
+    private val top: Double,
+    private val width: Double,
+    private val height: Double,
+    private val orientation: LayoutOrientation,
 ) {
-
-    private var left = 0.0
-    private var top = 0.0
-    private var orientation = if (width > height) {
-        LayoutOrientation.VERTICAL
-    } else {
-        LayoutOrientation.HORIZONTAL
-    }
 
     val shortSide: Double
         get() = min(height, width)
 
-    fun place(
-        row: Row,
-        side: Double,
-    ) {
-        val thickness = row.area / side
-        var offset = 0.0
-        if (orientation == LayoutOrientation.VERTICAL) {
-            row.elements.forEach { element ->
+    constructor(
+        width: Double,
+        height: Double,
+    ) : this(
+        left = 0.0,
+        top = 0.0,
+        width = width,
+        height = height,
+        orientation = if (width > height) {
+            LayoutOrientation.VERTICAL
+        } else {
+            LayoutOrientation.HORIZONTAL
+        },
+    )
+
+    fun place(row: Row): FreeSpace {
+        val thickness = row.area / shortSide
+        return if (orientation == LayoutOrientation.VERTICAL) {
+            row.elements.fold(0.0) { offset, element ->
+                val nextOffset = offset + element.area / thickness
                 element.top = top + offset
                 element.left = left
                 element.right = left + thickness
-                offset += element.area / thickness
-                element.bottom = top + offset
+                element.bottom = top + nextOffset
+                nextOffset
             }
-            width -= thickness
-            left += thickness
-            if (!shortSide.isCloseTo(height)) {
-                orientation = LayoutOrientation.HORIZONTAL
-            }
+            val remainingWidth = width - thickness
+            FreeSpace(
+                left = left + thickness,
+                top = top,
+                width = remainingWidth,
+                height = height,
+                orientation = if (min(height, remainingWidth).isCloseTo(height)) {
+                    LayoutOrientation.VERTICAL
+                } else {
+                    LayoutOrientation.HORIZONTAL
+                },
+            )
         } else {
-            row.elements.forEach { element ->
+            row.elements.fold(0.0) { offset, element ->
+                val nextOffset = offset + element.area / thickness
                 element.top = top
                 element.left = left + offset
                 element.bottom = top + thickness
-                offset += element.area / thickness
-                element.right = left + offset
+                element.right = left + nextOffset
+                nextOffset
             }
-            height -= thickness
-            top += thickness
-            if (!shortSide.isCloseTo(width)) {
-                orientation = LayoutOrientation.VERTICAL
-            }
+            val remainingHeight = height - thickness
+            FreeSpace(
+                left = left,
+                top = top + thickness,
+                width = width,
+                height = remainingHeight,
+                orientation = if (min(remainingHeight, width).isCloseTo(width)) {
+                    LayoutOrientation.HORIZONTAL
+                } else {
+                    LayoutOrientation.VERTICAL
+                },
+            )
         }
     }
 }

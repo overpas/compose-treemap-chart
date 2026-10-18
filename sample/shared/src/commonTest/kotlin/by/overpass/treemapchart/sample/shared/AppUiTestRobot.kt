@@ -22,6 +22,8 @@ private const val COMPLEX_CHART_TITLE = "Japan Exports 2021"
 private const val COMPLEX_CHART_BUTTON = "Show more complex chart"
 private const val LARGE_CHART_TITLE = "Large chart"
 private const val LARGE_CHART_BUTTON = "Show large chart"
+private const val CANVAS_LARGE_CHART_TITLE = "Large canvas chart"
+private const val CANVAS_LARGE_CHART_BUTTON = "Show large canvas chart"
 private const val CHANGE_DATA_BUTTON = "Change data"
 private const val RESIZE_BUTTON = "Resize"
 private const val PARSING_TEXT = "Parsing Exports data..."
@@ -51,6 +53,12 @@ internal suspend fun ComposeUiTest.openComplexChart(pollingDispatcher: Coroutine
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.openLargeChart() {
     onNodeWithText(LARGE_CHART_BUTTON)
+        .performClick()
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.openCanvasLargeChart() {
+    onNodeWithText(CANVAS_LARGE_CHART_BUTTON)
         .performClick()
 }
 
@@ -89,6 +97,18 @@ internal fun ComposeUiTest.assertComplexChartDisplayed() {
 @OptIn(ExperimentalTestApi::class)
 internal fun ComposeUiTest.assertLargeChartDisplayed() {
     onNodeWithText(LARGE_CHART_TITLE)
+        .assertIsDisplayed()
+    onNodeWithContentDescription(BACK_DESCRIPTION)
+        .assertIsDisplayed()
+    onNodeWithText(CHANGE_DATA_BUTTON)
+        .assertIsDisplayed()
+    onNodeWithText(RESIZE_BUTTON)
+        .assertIsDisplayed()
+}
+
+@OptIn(ExperimentalTestApi::class)
+internal fun ComposeUiTest.assertCanvasLargeChartDisplayed() {
+    onNodeWithText(CANVAS_LARGE_CHART_TITLE)
         .assertIsDisplayed()
     onNodeWithContentDescription(BACK_DESCRIPTION)
         .assertIsDisplayed()

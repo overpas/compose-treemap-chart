@@ -1,3 +1,7 @@
+public final class by/overpass/treemapchart/compose/CanvasTreemapChartKt {
+	public static final fun CanvasTreemapChart (Lby/overpass/treemapchart/core/tree/Tree;Lkotlin/jvm/functions/Function1;Landroidx/compose/ui/Modifier;Lkotlin/jvm/functions/Function2;Landroidx/compose/runtime/Composer;II)V
+}
+
 public final class by/overpass/treemapchart/compose/LocalTreemapChartMeasurerKt {
 	public static final fun getLocalTreemapChartMeasurer ()Landroidx/compose/runtime/ProvidableCompositionLocal;
 }

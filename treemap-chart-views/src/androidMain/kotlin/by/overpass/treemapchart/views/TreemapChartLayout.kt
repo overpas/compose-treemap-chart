@@ -19,7 +19,7 @@ class TreemapChartLayout @JvmOverloads constructor(
     defStyleAttr: Int = 0,
 ) : ViewGroup(context, attrs, defStyleAttr) {
 
-    private var nodes: List<TreemapNode> = emptyList()
+    private val nodes = mutableListOf<TreemapNode>()
 
     /**
      * Strategy that measures the children of this layout.
@@ -37,8 +37,9 @@ class TreemapChartLayout @JvmOverloads constructor(
         val width = getDefaultSize(suggestedMinimumWidth, widthMeasureSpec)
         val height = getDefaultSize(suggestedMinimumHeight, heightMeasureSpec)
         val visibleChildren = visibleChildren()
-        nodes = measurer.measureNodes(
-            visibleChildren.map { (it.layoutParams as LayoutParams).weight },
+        nodes.clear()
+        nodes += measurer.measureNodes(
+            visibleChildren.map { it.weight() },
             (width - paddingLeft - paddingRight).coerceAtLeast(0),
             (height - paddingTop - paddingBottom).coerceAtLeast(0),
         )
@@ -90,6 +91,12 @@ class TreemapChartLayout @JvmOverloads constructor(
         (0..<childCount)
             .map(::getChildAt)
             .filter { it.visibility != GONE }
+
+    private fun View.weight(): Double {
+        val params = layoutParams
+        check(params is LayoutParams) { "Child layout params are not TreemapChartLayout.LayoutParams" }
+        return params.weight
+    }
 
     /**
      * Layout parameters of a [TreemapChartLayout] child.

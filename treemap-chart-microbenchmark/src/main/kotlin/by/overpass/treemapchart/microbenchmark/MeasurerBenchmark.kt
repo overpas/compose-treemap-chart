@@ -25,15 +25,15 @@ private const val MAX_VALUE = 100.0
 @OutputTimeUnit(BenchmarkTimeUnit.MICROSECONDS)
 class MeasurerBenchmark {
 
-    private var values: List<Double> = emptyList()
+    private lateinit var values: List<Double>
 
     @Param("10", "100", "1000", "10000")
-    var nodeCount: Int = 0
+    lateinit var nodeCount: String
 
     @Setup
     fun setUp() {
         val random = Random(SEED)
-        values = List(nodeCount) { random.nextDouble(MIN_VALUE, MAX_VALUE) }
+        values = List(nodeCount.toInt()) { random.nextDouble(MIN_VALUE, MAX_VALUE) }
             .sortedDescending()
     }
 

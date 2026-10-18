@@ -32,7 +32,8 @@ class MainActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         findViewById<TreemapChartView>(R.id.chart).setData(simpleTreeData, Int::toDouble) { parent, item ->
-            val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_simple, parent, false) as TextView
+            val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_simple, parent, false)
+            check(itemView is TextView)
             itemView.text = item.toString()
             itemView.background = BorderDrawable(this, ITEM_BORDER_WIDTH_DP)
             itemView

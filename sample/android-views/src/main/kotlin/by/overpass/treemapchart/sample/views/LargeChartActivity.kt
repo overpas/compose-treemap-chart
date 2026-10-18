@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.Trace
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import by.overpass.treemapchart.views.TreemapChartView
 import kotlin.math.roundToInt
 
@@ -17,8 +16,13 @@ private const val LEAF_BORDER_WIDTH_DP = 0.5f
 
 class LargeChartActivity : Activity() {
 
-    private var seed = 0
-    private var isShrunk = false
+    private val state = Bundle()
+
+    private val seed: Int
+        get() = state.getInt(SEED_KEY)
+
+    private val isShrunk: Boolean
+        get() = state.getBoolean(IS_SHRUNK_KEY)
 
     private val chartContainer: View
         get() = findViewById(R.id.chart_container)
@@ -30,24 +34,22 @@ class LargeChartActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_large_chart)
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        seed = savedInstanceState?.getInt(SEED_KEY) ?: 0
-        isShrunk = savedInstanceState?.getBoolean(IS_SHRUNK_KEY) == true
+        savedInstanceState?.let(state::putAll)
         showData()
         chartContainer.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> resizeChart() }
         findViewById<View>(R.id.change_data).setOnClickListener {
-            seed++
+            state.putInt(SEED_KEY, seed + 1)
             showData()
         }
         findViewById<View>(R.id.resize).setOnClickListener {
-            isShrunk = !isShrunk
+            state.putBoolean(IS_SHRUNK_KEY, !isShrunk)
             resizeChart()
         }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt(SEED_KEY, seed)
-        outState.putBoolean(IS_SHRUNK_KEY, isShrunk)
+        outState.putAll(state)
     }
 
     private fun showData() {
@@ -72,7 +74,7 @@ class LargeChartActivity : Activity() {
         } else {
             ViewGroup.LayoutParams.MATCH_PARENT
         }
-        val layoutParams = chart.layoutParams as FrameLayout.LayoutParams
+        val layoutParams = chart.layoutParams
         if (layoutParams.width != width || layoutParams.height != height) {
             layoutParams.width = width
             layoutParams.height = height

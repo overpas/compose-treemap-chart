@@ -42,12 +42,15 @@ class TreemapChartView @JvmOverloads constructor(
         evaluateItem: (T) -> Double,
         createItemView: (parent: ViewGroup, item: T) -> View,
     ) {
-        setData(
-            data = data,
-            evaluateItem = evaluateItem,
-        ) { parent: ViewGroup, node: Tree.Node<T>, group: TreemapChartLayout? ->
-            group ?: createItemView(parent, node.data)
-        }
+        data.show(
+            TreemapChartViewFactory(
+                context = context,
+                measurer = measurer,
+                evaluateItem = evaluateItem,
+            ) { parent: ViewGroup, node: Tree.Node<T>, group: TreemapChartLayout? ->
+                group ?: createItemView(parent, node.data)
+            },
+        )
     }
 
     /**
@@ -64,14 +67,20 @@ class TreemapChartView @JvmOverloads constructor(
         evaluateItem: (T) -> Double,
         createNodeView: (parent: ViewGroup, node: Tree.Node<T>, group: TreemapChartLayout?) -> View,
     ) {
-        removeAllViews()
-        val factory = TreemapChartViewFactory(
-            context = context,
-            measurer = measurer,
-            evaluateItem = evaluateItem,
-            createNodeView = createNodeView,
+        data.show(
+            TreemapChartViewFactory(
+                context = context,
+                measurer = measurer,
+                evaluateItem = evaluateItem,
+                createNodeView = createNodeView,
+            ),
         )
-        addView(factory.create(this, data.root), LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
+    }
+
+    private fun <T> Tree<T>.show(factory: TreemapChartViewFactory<T>) {
+        removeAllViews()
+        val chart = factory.create(this@TreemapChartView, root)
+        addView(chart, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
         groups.clear()
         groups += factory.groups
     }

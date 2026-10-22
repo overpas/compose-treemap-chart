@@ -10,17 +10,6 @@ open annotation class by.overpass.treemapchart.core.tree/TreeDslMarker : kotlin/
     constructor <init>() // by.overpass.treemapchart.core.tree/TreeDslMarker.<init>|<init>(){}[0]
 }
 
-final enum class by.overpass.treemapchart.core.measure/LayoutOrientation : kotlin/Enum<by.overpass.treemapchart.core.measure/LayoutOrientation> { // by.overpass.treemapchart.core.measure/LayoutOrientation|null[0]
-    enum entry HORIZONTAL // by.overpass.treemapchart.core.measure/LayoutOrientation.HORIZONTAL|null[0]
-    enum entry VERTICAL // by.overpass.treemapchart.core.measure/LayoutOrientation.VERTICAL|null[0]
-
-    final val entries // by.overpass.treemapchart.core.measure/LayoutOrientation.entries|#static{}entries[0]
-        final fun <get-entries>(): kotlin.enums/EnumEntries<by.overpass.treemapchart.core.measure/LayoutOrientation> // by.overpass.treemapchart.core.measure/LayoutOrientation.entries.<get-entries>|<get-entries>#static(){}[0]
-
-    final fun valueOf(kotlin/String): by.overpass.treemapchart.core.measure/LayoutOrientation // by.overpass.treemapchart.core.measure/LayoutOrientation.valueOf|valueOf#static(kotlin.String){}[0]
-    final fun values(): kotlin/Array<by.overpass.treemapchart.core.measure/LayoutOrientation> // by.overpass.treemapchart.core.measure/LayoutOrientation.values|values#static(){}[0]
-}
-
 abstract interface <#A: in kotlin/Any?> by.overpass.treemapchart.core.tree/NodeDsl { // by.overpass.treemapchart.core.tree/NodeDsl|null[0]
     abstract fun node(#A, kotlin/Function1<by.overpass.treemapchart.core.tree/NodeDsl<#A>, kotlin/Unit> = ...) // by.overpass.treemapchart.core.tree/NodeDsl.node|node(1:0;kotlin.Function1<by.overpass.treemapchart.core.tree.NodeDsl<1:0>,kotlin.Unit>){}[0]
 }

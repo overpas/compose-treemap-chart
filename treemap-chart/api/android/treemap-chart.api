@@ -1,11 +1,3 @@
-public final class by/overpass/treemapchart/core/measure/LayoutOrientation : java/lang/Enum {
-	public static final field HORIZONTAL Lby/overpass/treemapchart/core/measure/LayoutOrientation;
-	public static final field VERTICAL Lby/overpass/treemapchart/core/measure/LayoutOrientation;
-	public static fun getEntries ()Lkotlin/enums/EnumEntries;
-	public static fun valueOf (Ljava/lang/String;)Lby/overpass/treemapchart/core/measure/LayoutOrientation;
-	public static fun values ()[Lby/overpass/treemapchart/core/measure/LayoutOrientation;
-}
-
 public abstract interface class by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
 	public abstract fun measureNodes (Ljava/util/List;II)Ljava/util/List;
 }

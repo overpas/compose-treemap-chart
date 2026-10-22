@@ -9,6 +9,8 @@ import androidx.compose.ui.unit.Constraints
 /**
  * Treemap chart UI. Every direct child takes an area in proportion to its
  * [TreemapChartScope.weight]. Put a [TreemapChart] in another [TreemapChart] to make a group.
+ * In a dimension without a maximum size, such as in a scrollable container, the chart takes its
+ * minimum size, so set its size with [modifier].
  *
  * @param modifier Modifier to be applied to the layout
  * @param content The nodes of the chart; Every direct child must have a [TreemapChartScope.weight]
@@ -23,15 +25,17 @@ fun TreemapChart(
         content = { TreemapChartScopeInstance.content() },
         modifier = modifier,
     ) { measurables, constraints ->
+        val width = if (constraints.hasBoundedWidth) constraints.maxWidth else constraints.minWidth
+        val height = if (constraints.hasBoundedHeight) constraints.maxHeight else constraints.minHeight
         val nodes = treemapChartMeasurer.measureNodes(
             measurables.map { it.treemapChartWeight },
-            constraints.maxWidth,
-            constraints.maxHeight,
+            width,
+            height,
         )
         val placeables = measurables.mapIndexed { index, measurable ->
             measurable.measure(Constraints.fixed(nodes[index].width, nodes[index].height))
         }
-        layout(constraints.maxWidth, constraints.maxHeight) {
+        layout(width, height) {
             placeables.forEachIndexed { index, placeable ->
                 placeable.placeRelative(nodes[index].offsetX, nodes[index].offsetY)
             }

@@ -1,8 +1,17 @@
 package by.overpass.treemapchart.compose
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.BasicText
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.mutableDoubleStateOf
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertHeightIsEqualTo
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.v2.runComposeUiTest
+import androidx.compose.ui.unit.dp
 import by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer
 import by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer
 import kotlin.test.Test
@@ -63,5 +72,20 @@ class TreemapChartUiTest {
             }
 
             assertEquals("Every direct child of TreemapChart must have Modifier.weight", exception.message)
+        }
+
+    @Test
+    fun chartWithUnboundedHeightTakesZeroHeight() =
+        runComposeUiTest {
+            setContent {
+                Column(Modifier.verticalScroll(rememberScrollState())) {
+                    TreemapChart(Modifier.testTag("chart")) {
+                        BasicText(text = "first", modifier = Modifier.weight(2.0))
+                        BasicText(text = "second", modifier = Modifier.weight(1.0))
+                    }
+                }
+            }
+
+            onNodeWithTag("chart").assertHeightIsEqualTo(0.dp)
         }
 }

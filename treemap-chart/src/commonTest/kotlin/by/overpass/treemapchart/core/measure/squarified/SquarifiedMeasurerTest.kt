@@ -124,6 +124,18 @@ class SquarifiedMeasurerTest {
     }
 
     @Test
+    fun thinLastRowStaysInsideTheBounds() {
+        val values = listOf(
+            94.8, 93.1, 92.9, 88.7, 87.8, 79.9, 70.8, 62.9, 62.3, 59.8,
+            59.4, 55.8, 54.8, 52.6, 49.6, 49.6, 43.1, 36.6, 2.1, 1.0E-12,
+        )
+
+        val nodes = sut.measureNodes(values, 939, 142)
+
+        assertNodesFillBoundsWithoutGaps(nodes, 939, 142)
+    }
+
+    @Test
     fun zeroWidthGivesEmptyNodes() {
         val values = listOf(2.0, 1.0)
         val expectedNodes = listOf(

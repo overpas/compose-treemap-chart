@@ -34,7 +34,7 @@ class TreemapChartView @JvmOverloads constructor(
      *
      * @param T type of the node values
      * @param data Items to be displayed
-     * @param evaluateItem Function that evaluates an item
+     * @param evaluateItem Function that evaluates an item; The weight must be finite and greater than zero
      * @param createItemView Creates the view of a leaf treemap item
      */
     fun <T> setData(
@@ -55,7 +55,7 @@ class TreemapChartView @JvmOverloads constructor(
      *
      * @param T type of the node values
      * @param data Items to be displayed
-     * @param evaluateItem Function that evaluates an item
+     * @param evaluateItem Function that evaluates an item; The weight must be finite and greater than zero
      * @param createNodeView Creates the view of a treemap node; For a group, `group` holds the views of
      * the child nodes and the result must contain it; For a leaf, `group` is null
      */

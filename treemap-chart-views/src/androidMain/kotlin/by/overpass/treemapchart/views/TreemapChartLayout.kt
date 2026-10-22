@@ -104,9 +104,16 @@ class TreemapChartLayout @JvmOverloads constructor(
     class LayoutParams : ViewGroup.LayoutParams {
 
         /**
-         * Weight of the child. The child takes the area that is proportional to it.
+         * Weight of the child. The child takes the area that is proportional to it. Must be finite and
+         * greater than zero.
          */
         var weight: Double = DEFAULT_WEIGHT
+            set(value) {
+                require(value > 0.0 && value.isFinite()) {
+                    "Invalid weight $value; must be finite and greater than zero"
+                }
+                field = value
+            }
 
         constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
             context.withStyledAttributes(attrs, R.styleable.TreemapChartLayout_Layout) {

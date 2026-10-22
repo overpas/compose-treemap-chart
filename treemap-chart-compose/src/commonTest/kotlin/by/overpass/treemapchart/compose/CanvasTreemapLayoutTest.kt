@@ -1,6 +1,8 @@
 package by.overpass.treemapchart.compose
 
 import androidx.compose.ui.unit.IntSize
+import by.overpass.treemapchart.core.measure.TreemapChartMeasurer
+import by.overpass.treemapchart.core.measure.TreemapNode
 import by.overpass.treemapchart.core.measure.sliceanddice.SliceAndDiceMeasurer
 import by.overpass.treemapchart.core.measure.squarified.SquarifiedMeasurer
 import by.overpass.treemapchart.core.tree.tree
@@ -134,6 +136,51 @@ class CanvasTreemapLayoutTest {
         val data = tree(0.0) {
             node(1.0)
             node(-1.0)
+        }
+
+        val exception = runCatching {
+            sut.measureTreemap(
+                root = data.root,
+                evaluateItem = { it },
+                size = IntSize(600, 100),
+            )
+        }.exceptionOrNull()
+
+        assertIs<IllegalArgumentException>(exception)
+    }
+
+    @Test
+    fun nanWeightFails() {
+        val sut = SliceAndDiceMeasurer
+        val data = tree(0.0) {
+            node(1.0)
+            node(Double.NaN)
+        }
+
+        val exception = runCatching {
+            sut.measureTreemap(
+                root = data.root,
+                evaluateItem = { it },
+                size = IntSize(600, 100),
+            )
+        }.exceptionOrNull()
+
+        assertIs<IllegalArgumentException>(exception)
+    }
+
+    @Test
+    fun infiniteWeightFails() {
+        val sut = object : TreemapChartMeasurer {
+            override fun measureNodes(
+                values: List<Double>,
+                width: Int,
+                height: Int,
+            ): List<TreemapNode> =
+                values.map { TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0) }
+        }
+        val data = tree(0.0) {
+            node(1.0)
+            node(Double.POSITIVE_INFINITY)
         }
 
         val exception = runCatching {

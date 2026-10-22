@@ -9,7 +9,8 @@ This is a **Kotlin Multiplatform** library with **Compose Multiplatform** UI.
   it.
 - **Compose library** — the treemap chart composable. The composition is the tree: each direct
   child sets its weight through a parent data modifier, and a nested chart is a group. It uses the
-  measurers of the core library, not its tree model.
+  measurers of the core library. A canvas chart composable also takes the tree model of the core
+  library and draws all its nodes on one canvas.
 - **Views library** — an Android-only treemap chart for Android Views: a layout that places its
   children by weight with a measurer, and a view that builds such layouts from a tree. The measurer
   is a property of the view, not a composition local. It uses the tree model and the measurers of

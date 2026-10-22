@@ -126,4 +126,17 @@ class TreemapChartLayoutTest {
 
         assertTrue(isLayoutRequested)
     }
+
+    @Test
+    fun unspecifiedHeightGivesZeroHeight() {
+        sut.addView(View(context), TreemapChartLayout.LayoutParams(0, 0, 2.0))
+        sut.addView(View(context), TreemapChartLayout.LayoutParams(0, 0, 1.0))
+
+        sut.measure(
+            MeasureSpec.makeMeasureSpec(400, MeasureSpec.EXACTLY),
+            MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+        )
+
+        assertEquals(0, sut.measuredHeight)
+    }
 }

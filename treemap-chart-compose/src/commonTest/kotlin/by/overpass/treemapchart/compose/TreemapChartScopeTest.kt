@@ -31,4 +31,30 @@ class TreemapChartScopeTest {
 
         assertIs<IllegalArgumentException>(exception)
     }
+
+    @Test
+    fun nanWeightFails() {
+        val sut = TreemapChartScopeInstance
+
+        val exception = runCatching {
+            with(sut) {
+                Modifier.weight(Double.NaN)
+            }
+        }.exceptionOrNull()
+
+        assertIs<IllegalArgumentException>(exception)
+    }
+
+    @Test
+    fun infiniteWeightFails() {
+        val sut = TreemapChartScopeInstance
+
+        val exception = runCatching {
+            with(sut) {
+                Modifier.weight(Double.POSITIVE_INFINITY)
+            }
+        }.exceptionOrNull()
+
+        assertIs<IllegalArgumentException>(exception)
+    }
 }

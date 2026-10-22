@@ -16,8 +16,8 @@ internal class Squarification(
     fun nodes(): List<TreemapNode> {
         squarify()
         return elements.map { element ->
-            check(element.top <= height) { "Top is bigger than height" }
-            check(element.left <= width) { "Left is bigger than width" }
+            check(element.top <= height || element.top.isCloseTo(height)) { "Top is bigger than height" }
+            check(element.left <= width || element.left.isCloseTo(width)) { "Left is bigger than width" }
             element.toNode()
         }
     }

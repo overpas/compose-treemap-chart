@@ -12,6 +12,7 @@ plugins {
 
 group = properties["lib.group"].toString()
 version = properties["lib.version"].toString()
+description = "Android Views treemap chart"
 
 kotlin {
     @OptIn(ExperimentalAbiValidation::class)
@@ -35,7 +36,7 @@ kotlin {
             implementation(libs.robolectric)
         }
         androidMain.dependencies {
-            implementation(project(":treemap-chart"))
+            api(project(":treemap-chart"))
             implementation(libs.androidx.core.ktx)
         }
     }

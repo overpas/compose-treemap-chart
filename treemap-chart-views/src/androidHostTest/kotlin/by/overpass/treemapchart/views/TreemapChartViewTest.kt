@@ -9,6 +9,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertIs
 
 @RunWith(RobolectricTestRunner::class)
 class TreemapChartViewTest {
@@ -118,5 +119,19 @@ class TreemapChartViewTest {
         val sizes = listOf(1, 2, 3).map { leaves.getValue(it).width to leaves.getValue(it).height }
 
         assertEquals(expectedSizes, sizes)
+    }
+
+    @Test
+    fun zeroNodeWeightFails() {
+        val data = tree(1) {
+            node(1)
+            node(0)
+        }
+
+        val exception = runCatching {
+            sut.setData(data, Int::toDouble) { parent, _ -> View(parent.context) }
+        }.exceptionOrNull()
+
+        assertIs<IllegalArgumentException>(exception)
     }
 }

@@ -56,4 +56,30 @@ class SliceAndDiceMeasurerTest {
             }
         }
     }
+
+    @Test
+    fun zeroWidthGivesNodesOfZeroWidth() {
+        val values = listOf(3.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 0, height = 75, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 0, height = 25, offsetX = 0, offsetY = 75),
+        )
+
+        val actual = sut.measureNodes(values, 0, 100)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun zeroHeightGivesNodesOfZeroHeight() {
+        val values = listOf(3.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 75, height = 0, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 25, height = 0, offsetX = 75, offsetY = 0),
+        )
+
+        val actual = sut.measureNodes(values, 100, 0)
+
+        assertEquals(expectedNodes, actual)
+    }
 }

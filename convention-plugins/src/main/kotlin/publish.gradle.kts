@@ -20,8 +20,8 @@ publishing {
         artifact(javadocJar)
 
         pom {
-            name.set("Treemap Chart Compose")
-            description.set("Jetpack Compose (Multiplatform) treemap chart implementation")
+            name.set(project.name.split("-").joinToString(" ") { it.replaceFirstChar(Char::uppercase) })
+            description.set(provider { project.description })
             url.set("https://github.com/overpas/compose-treemap-chart")
 
             licenses {
@@ -40,8 +40,8 @@ publishing {
             }
 
             scm {
-                connection.set("scm:git:github.com/overpas/compose-treemap-chart.git")
-                developerConnection.set("scm:git:ssh://github.com/overpas/compose-treemap-chart.git")
+                connection.set("scm:git:https://github.com/overpas/compose-treemap-chart.git")
+                developerConnection.set("scm:git:ssh://git@github.com/overpas/compose-treemap-chart.git")
                 url.set("https://github.com/overpas/compose-treemap-chart/tree/master")
             }
         }

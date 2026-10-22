@@ -15,8 +15,7 @@ Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart imple
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.1.3"
-implementation "io.github.overpas:treemap-chart-compose:0.1.3"
+implementation "io.github.overpas:treemap-chart-compose:0.2.0"
 ```
 ### Sample code
 Every direct child of `TreemapChart` takes an area in proportion to its `Modifier.weight`. Put a
@@ -85,8 +84,7 @@ layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI to
 ### Android Views
 For Android Views, add the views module instead of the compose one:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.1.3"
-implementation "io.github.overpas:treemap-chart-views:0.1.3"
+implementation "io.github.overpas:treemap-chart-views:0.2.0"
 ```
 There are two ways to make a chart:
 - `TreemapChartLayout` places the views you add to it, in XML or in code. Use it when the chart

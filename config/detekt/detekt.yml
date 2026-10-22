@@ -121,7 +121,7 @@ overpas-coroutines:
 overpas-gradle:
   ApiDependency:
     active: true
-    excludes: ['**/treemap-chart/build.gradle.kts']
+    excludes: ['**/treemap-chart/build.gradle.kts', '**/treemap-chart-compose/build.gradle.kts', '**/treemap-chart-views/build.gradle.kts']
   GradleDeclarationOrder:
     active: true
     testLibraries: ['androidx.compose.ui.test', 'androidx.espresso', 'androidx.test', 'compose.ui.test', 'junit', 'kotlin.test', 'kotlinx.coroutines.test', 'robolectric', 'ultron']
@@ -150,6 +150,9 @@ overpas-style:
     active: true
     ignoredWords: ['And', 'At', 'By', 'For', 'From', 'In', 'Of', 'On', 'Or', 'To', 'With']
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/androidDeviceTest/**', '**/androidHostTest/**', '**/iosTest/**', '**/uiTest/**', '**/ui-test/**', '**/core/tree/NodeDsl.kt']
+  SetupWithoutApply:
+    active: true
+    minUseCount: 2
   SubjectlessWhenOnOneValue:
     active: true
   TypeCast:

@@ -40,8 +40,8 @@ publishing {
             }
 
             scm {
-                connection.set("scm:git:github.com/overpas/compose-treemap-chart.git")
-                developerConnection.set("scm:git:ssh://github.com/overpas/compose-treemap-chart.git")
+                connection.set("scm:git:https://github.com/overpas/compose-treemap-chart.git")
+                developerConnection.set("scm:git:ssh://git@github.com/overpas/compose-treemap-chart.git")
                 url.set("https://github.com/overpas/compose-treemap-chart/tree/master")
             }
         }

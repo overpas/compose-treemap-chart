@@ -12,6 +12,7 @@ Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart imple
 <img src="https://raw.githubusercontent.com/overpas/compose-treemap-chart/master/img/sample_complex_chart.png" width="500">
 
 ## Usage
+
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
@@ -76,10 +77,6 @@ fun MyCanvasChart(data: Tree<Double>) {
     }
 }
 ```
-Both charts get the layout algorithm from `LocalTreemapChartMeasurer`.
-
-The `treemap-chart` artifact alone has no Compose dependency. It gives the `tree {}` model and the
-layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI toolkits.
 
 ### Android Views
 For Android Views, add the views module instead of the compose one:
@@ -137,6 +134,8 @@ Or write it in XML with nested `TreemapChartLayout`s, where each child sets its 
 </by.overpass.treemapchart.views.TreemapChartLayout>
 ```
 Set `measurer` on `TreemapChartView` or `TreemapChartLayout` to change the layout algorithm.
+
+## Sample
 
 For more advanced Kotlin Multiplatform samples check out the [sample](https://github.com/overpas/compose-treemap-chart/tree/master/sample) directory
 

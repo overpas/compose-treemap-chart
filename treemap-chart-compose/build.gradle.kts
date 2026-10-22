@@ -54,14 +54,10 @@ kotlin {
             implementation(libs.androidx.test.espresso.core)
             implementation(libs.androidx.test.ext.junit)
         }
-        androidMain.dependencies {
-            implementation(libs.compose.ui.tooling)
-        }
         commonMain.dependencies {
             implementation(project(":treemap-chart"))
             implementation(libs.compose.foundation)
             implementation(libs.compose.runtime)
-            implementation(libs.compose.ui.tooling.preview)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

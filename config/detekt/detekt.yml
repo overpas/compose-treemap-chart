@@ -150,6 +150,9 @@ overpas-style:
     active: true
     ignoredWords: ['And', 'At', 'By', 'For', 'From', 'In', 'Of', 'On', 'Or', 'To', 'With']
     excludes: ['**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/androidDeviceTest/**', '**/androidHostTest/**', '**/iosTest/**', '**/uiTest/**', '**/ui-test/**', '**/core/tree/NodeDsl.kt']
+  SetupWithoutApply:
+    active: true
+    minUseCount: 2
   SubjectlessWhenOnOneValue:
     active: true
   TypeCast:

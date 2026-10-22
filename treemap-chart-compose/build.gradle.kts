@@ -55,7 +55,7 @@ kotlin {
             implementation(libs.androidx.test.ext.junit)
         }
         commonMain.dependencies {
-            implementation(project(":treemap-chart"))
+            api(project(":treemap-chart"))
             implementation(libs.compose.foundation)
             implementation(libs.compose.runtime)
         }

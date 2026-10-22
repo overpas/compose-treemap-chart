@@ -15,7 +15,6 @@ Jetpack compose [treemap](https://en.wikipedia.org/wiki/Treemapping) chart imple
 ### Adding to the project
 Add this to your `dependencies` gradle block:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.1.3"
 implementation "io.github.overpas:treemap-chart-compose:0.1.3"
 ```
 ### Sample code
@@ -85,7 +84,6 @@ layout algorithms (`SquarifiedMeasurer`, `SliceAndDiceMeasurer`) for other UI to
 ### Android Views
 For Android Views, add the views module instead of the compose one:
 ```gradle
-implementation "io.github.overpas:treemap-chart:0.1.3"
 implementation "io.github.overpas:treemap-chart-views:0.1.3"
 ```
 There are two ways to make a chart:

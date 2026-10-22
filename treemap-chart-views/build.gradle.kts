@@ -35,7 +35,7 @@ kotlin {
             implementation(libs.robolectric)
         }
         androidMain.dependencies {
-            implementation(project(":treemap-chart"))
+            api(project(":treemap-chart"))
             implementation(libs.androidx.core.ktx)
         }
     }

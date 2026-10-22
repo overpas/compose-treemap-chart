@@ -121,7 +121,7 @@ overpas-coroutines:
 overpas-gradle:
   ApiDependency:
     active: true
-    excludes: ['**/treemap-chart/build.gradle.kts']
+    excludes: ['**/treemap-chart/build.gradle.kts', '**/treemap-chart-compose/build.gradle.kts', '**/treemap-chart-views/build.gradle.kts']
   GradleDeclarationOrder:
     active: true
     testLibraries: ['androidx.compose.ui.test', 'androidx.espresso', 'androidx.test', 'compose.ui.test', 'junit', 'kotlin.test', 'kotlinx.coroutines.test', 'robolectric', 'ultron']

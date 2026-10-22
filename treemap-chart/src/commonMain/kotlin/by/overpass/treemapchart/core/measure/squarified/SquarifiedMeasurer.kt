@@ -16,5 +16,9 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         width: Int,
         height: Int,
     ): List<TreemapNode> =
-        Squarification(values, width.toDouble(), height.toDouble()).nodes()
+        if (width == 0 || height == 0) {
+            values.map { TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0) }
+        } else {
+            Squarification(values, width.toDouble(), height.toDouble()).nodes()
+        }
 }

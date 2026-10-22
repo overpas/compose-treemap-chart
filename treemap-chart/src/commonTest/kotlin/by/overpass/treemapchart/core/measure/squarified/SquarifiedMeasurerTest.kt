@@ -122,4 +122,30 @@ class SquarifiedMeasurerTest {
 
         assertEquals(1080L * 1920, coveredArea)
     }
+
+    @Test
+    fun zeroWidthGivesEmptyNodes() {
+        val values = listOf(2.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+        )
+
+        val actual = sut.measureNodes(values, 0, 100)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun zeroHeightGivesEmptyNodes() {
+        val values = listOf(2.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+        )
+
+        val actual = sut.measureNodes(values, 100, 0)
+
+        assertEquals(expectedNodes, actual)
+    }
 }

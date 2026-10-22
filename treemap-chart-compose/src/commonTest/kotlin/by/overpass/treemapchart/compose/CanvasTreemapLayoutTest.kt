@@ -146,4 +146,31 @@ class CanvasTreemapLayoutTest {
 
         assertIs<IllegalArgumentException>(exception)
     }
+
+    @Test
+    fun nestedChartOfZeroHeightGetsChildrenOfZeroSize() {
+        val sut = SquarifiedMeasurer()
+        val data = tree(0.0) {
+            node(1.0) {
+                node(1.0)
+                node(1.0)
+            }
+            node(1000.0)
+        }
+        val nested = data.root.children[0]
+        val expected = listOf(
+            CanvasTreemapNode(node = nested.children[0], left = 0, top = 0, width = 0, height = 0),
+            CanvasTreemapNode(node = nested.children[1], left = 0, top = 0, width = 0, height = 0),
+        )
+
+        val actual = sut
+            .measureTreemap(
+                root = data.root,
+                evaluateItem = { it },
+                size = IntSize(100, 100),
+            )
+            .filter { it.node in nested.children }
+
+        assertEquals(expected, actual)
+    }
 }

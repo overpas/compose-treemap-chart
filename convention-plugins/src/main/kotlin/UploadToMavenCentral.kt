@@ -51,10 +51,6 @@ abstract class UploadToMavenCentral : DefaultTask() {
     @get:Internal
     abstract val password: Property<String>
 
-    private val client: HttpClient = HttpClient.newBuilder()
-        .connectTimeout(Duration.ofSeconds(CONNECT_TIMEOUT_SECONDS))
-        .build()
-
     @TaskAction
     fun upload() {
         val type = publishingType.get()
@@ -79,13 +75,16 @@ abstract class UploadToMavenCentral : DefaultTask() {
         }
         val authorization = "Bearer " + Base64.getEncoder()
             .encodeToString("${username.get()}:${password.get()}".toByteArray())
-        checkNotPublished(authorization)
-        val deploymentId = uploadBundle(authorization, type)
+        val client = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofSeconds(CONNECT_TIMEOUT_SECONDS))
+            .build()
+        client.checkNotPublished(authorization)
+        val deploymentId = client.uploadBundle(authorization, type)
         logger.lifecycle("Uploaded deployment $deploymentId, see ${MavenCentral.PORTAL_DEPLOYMENTS_URL}")
-        waitForDeployment(authorization, deploymentId, type)
+        client.waitForDeployment(authorization, deploymentId, type)
     }
 
-    private fun checkNotPublished(authorization: String) {
+    private fun HttpClient.checkNotPublished(authorization: String) {
         val published = MavenCentralBundleValidator.artifactIds(stagingDirectory.get().asFile, groupId.get())
             .filter { artifactId ->
                 val query = listOf(
@@ -98,7 +97,7 @@ abstract class UploadToMavenCentral : DefaultTask() {
                     .timeout(Duration.ofSeconds(REQUEST_TIMEOUT_SECONDS))
                     .GET()
                     .build()
-                val response = send(request)
+                val response = sendChecked(request)
                 PUBLISHED_REGEX.containsMatchIn(response.body())
             }
         if (published.isNotEmpty()) {
@@ -109,7 +108,7 @@ abstract class UploadToMavenCentral : DefaultTask() {
         }
     }
 
-    private fun uploadBundle(authorization: String, type: String): String {
+    private fun HttpClient.uploadBundle(authorization: String, type: String): String {
         val boundary = "----${UUID.randomUUID()}"
         val file = bundle.get().asFile
         val header = "--$boundary\r\n" +
@@ -125,10 +124,10 @@ abstract class UploadToMavenCentral : DefaultTask() {
             .timeout(Duration.ofMinutes(UPLOAD_TIMEOUT_MINUTES))
             .POST(HttpRequest.BodyPublishers.ofByteArray(body))
             .build()
-        return send(request).body().trim()
+        return sendChecked(request).body().trim()
     }
 
-    private fun waitForDeployment(authorization: String, deploymentId: String, type: String) {
+    private fun HttpClient.waitForDeployment(authorization: String, deploymentId: String, type: String) {
         val successStates = if (type == USER_MANAGED) setOf("VALIDATED") else setOf("PUBLISHING", "PUBLISHED")
         val deadline = Instant.now().plus(Duration.ofMinutes(timeoutMinutes.get().toLong()))
         var lastState: String? = null
@@ -141,7 +140,7 @@ abstract class UploadToMavenCentral : DefaultTask() {
                 .POST(HttpRequest.BodyPublishers.noBody())
                 .build()
             val body = try {
-                send(request).body()
+                sendChecked(request).body()
             } catch (exception: GradleException) {
                 failedPolls++
                 if (failedPolls > MAX_FAILED_POLLS) throw exception
@@ -165,9 +164,9 @@ abstract class UploadToMavenCentral : DefaultTask() {
         )
     }
 
-    private fun send(request: HttpRequest): HttpResponse<String> {
+    private fun HttpClient.sendChecked(request: HttpRequest): HttpResponse<String> {
         val response = try {
-            client.send(request, HttpResponse.BodyHandlers.ofString())
+            send(request, HttpResponse.BodyHandlers.ofString())
         } catch (exception: IOException) {
             throw GradleException("${request.method()} ${request.uri()} failed: ${exception.message}", exception)
         }

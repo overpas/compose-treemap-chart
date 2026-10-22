@@ -13,6 +13,7 @@ plugins {
 
 group = properties["lib.group"].toString()
 version = properties["lib.version"].toString()
+description = "Treemap chart tree model and layout algorithms with no UI dependency"
 
 kotlin {
     applyDefaultHierarchyTemplate()

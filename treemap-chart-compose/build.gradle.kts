@@ -14,6 +14,7 @@ plugins {
 
 group = properties["lib.group"].toString()
 version = properties["lib.version"].toString()
+description = "Compose Multiplatform treemap chart"
 
 kotlin {
     applyDefaultHierarchyTemplate()

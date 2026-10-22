@@ -12,6 +12,7 @@ plugins {
 
 group = properties["lib.group"].toString()
 version = properties["lib.version"].toString()
+description = "Android Views treemap chart"
 
 kotlin {
     @OptIn(ExperimentalAbiValidation::class)

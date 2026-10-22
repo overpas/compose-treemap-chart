@@ -20,8 +20,8 @@ publishing {
         artifact(javadocJar)
 
         pom {
-            name.set("Treemap Chart Compose")
-            description.set("Jetpack Compose (Multiplatform) treemap chart implementation")
+            name.set(project.name.split("-").joinToString(" ") { it.replaceFirstChar(Char::uppercase) })
+            description.set(provider { project.description })
             url.set("https://github.com/overpas/compose-treemap-chart")
 
             licenses {

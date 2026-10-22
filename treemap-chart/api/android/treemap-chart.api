@@ -21,12 +21,18 @@ public final class by/overpass/treemapchart/core/measure/TreemapNode {
 
 public final class by/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
 	public static final field INSTANCE Lby/overpass/treemapchart/core/measure/sliceanddice/SliceAndDiceMeasurer;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
 	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class by/overpass/treemapchart/core/measure/squarified/SquarifiedMeasurer : by/overpass/treemapchart/core/measure/TreemapChartMeasurer {
 	public fun <init> ()V
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
 	public fun measureNodes (Ljava/util/List;II)Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
 }
 
 public abstract interface class by/overpass/treemapchart/core/tree/NodeDsl {

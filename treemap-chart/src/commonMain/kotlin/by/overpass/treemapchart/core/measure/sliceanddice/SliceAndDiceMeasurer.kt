@@ -8,7 +8,7 @@ import kotlin.math.roundToInt
 /**
  * An implementation of [TreemapChartMeasurer] that positions treemap nodes the "slice-and-dice" way.
  */
-object SliceAndDiceMeasurer : TreemapChartMeasurer {
+data object SliceAndDiceMeasurer : TreemapChartMeasurer {
 
     override fun measureNodes(
         values: List<Double>,

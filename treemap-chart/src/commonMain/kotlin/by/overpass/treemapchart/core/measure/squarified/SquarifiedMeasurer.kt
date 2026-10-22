@@ -21,4 +21,13 @@ class SquarifiedMeasurer : TreemapChartMeasurer {
         } else {
             Squarification(values, width.toDouble(), height.toDouble()).nodes()
         }
+
+    override fun equals(other: Any?): Boolean =
+        other is SquarifiedMeasurer
+
+    override fun hashCode(): Int =
+        this::class.hashCode()
+
+    override fun toString(): String =
+        "SquarifiedMeasurer"
 }

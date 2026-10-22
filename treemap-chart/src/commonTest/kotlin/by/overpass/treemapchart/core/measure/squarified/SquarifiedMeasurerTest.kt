@@ -6,6 +6,7 @@ import by.overpass.treemapchart.core.measure.gapProneSizes
 import by.overpass.treemapchart.core.measure.gapProneValues
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SquarifiedMeasurerTest {
 
@@ -159,5 +160,23 @@ class SquarifiedMeasurerTest {
         val actual = sut.measureNodes(values, 100, 0)
 
         assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun newMeasurersAreEqual() {
+        val other = SquarifiedMeasurer()
+
+        val isEqual = sut == other
+
+        assertTrue(isEqual)
+    }
+
+    @Test
+    fun newMeasurersHaveEqualHashCodes() {
+        val otherHashCode = SquarifiedMeasurer().hashCode()
+
+        val hashCode = sut.hashCode()
+
+        assertEquals(otherHashCode, hashCode)
     }
 }

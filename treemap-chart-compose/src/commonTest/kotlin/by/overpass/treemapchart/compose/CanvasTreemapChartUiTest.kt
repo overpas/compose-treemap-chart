@@ -1,6 +1,10 @@
 package by.overpass.treemapchart.compose
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertHeightIsEqualTo
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.v2.runComposeUiTest
 import androidx.compose.ui.unit.dp
@@ -127,5 +132,28 @@ class CanvasTreemapChartUiTest {
             waitForIdle()
 
             assertEquals(listOf(10.0, 5.0, 2.0), drawn.takeLast(3))
+        }
+
+    @Test
+    fun chartWithUnboundedHeightTakesZeroHeight() =
+        runComposeUiTest {
+            val data = tree(0.0) {
+                node(2.0)
+                node(1.0)
+            }
+
+            setContent {
+                Column(Modifier.verticalScroll(rememberScrollState())) {
+                    CanvasTreemapChart(
+                        data = data,
+                        evaluateItem = { it },
+                        modifier = Modifier
+                            .testTag("chart")
+                            .fillMaxWidth(),
+                    ) {}
+                }
+            }
+
+            onNodeWithTag("chart").assertHeightIsEqualTo(0.dp)
         }
 }

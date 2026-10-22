@@ -17,7 +17,9 @@ private class CanvasTreemapMeasurement<T>(
         if (children.isEmpty()) return
         val weights = children.map { child ->
             evaluateItem(child.data).also { weight ->
-                require(weight > 0.0) { "Every node of CanvasTreemapChart must have a positive weight" }
+                require(weight > 0.0 && weight.isFinite()) {
+                    "Every node of CanvasTreemapChart must have a finite positive weight"
+                }
             }
         }
         val measured = measurer.measureNodes(weights, width, height)

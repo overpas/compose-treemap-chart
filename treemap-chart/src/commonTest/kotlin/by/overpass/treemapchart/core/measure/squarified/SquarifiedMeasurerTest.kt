@@ -6,6 +6,7 @@ import by.overpass.treemapchart.core.measure.gapProneSizes
 import by.overpass.treemapchart.core.measure.gapProneValues
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class SquarifiedMeasurerTest {
 
@@ -121,5 +122,61 @@ class SquarifiedMeasurerTest {
         val coveredArea = nodes.sumOf { it.width.toLong() * it.height }
 
         assertEquals(1080L * 1920, coveredArea)
+    }
+
+    @Test
+    fun thinLastRowStaysInsideTheBounds() {
+        val values = listOf(
+            94.8, 93.1, 92.9, 88.7, 87.8, 79.9, 70.8, 62.9, 62.3, 59.8,
+            59.4, 55.8, 54.8, 52.6, 49.6, 49.6, 43.1, 36.6, 2.1, 1.0E-12,
+        )
+
+        val nodes = sut.measureNodes(values, 939, 142)
+
+        assertNodesFillBoundsWithoutGaps(nodes, 939, 142)
+    }
+
+    @Test
+    fun zeroWidthGivesEmptyNodes() {
+        val values = listOf(2.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+        )
+
+        val actual = sut.measureNodes(values, 0, 100)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun zeroHeightGivesEmptyNodes() {
+        val values = listOf(2.0, 1.0)
+        val expectedNodes = listOf(
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+            TreemapNode(width = 0, height = 0, offsetX = 0, offsetY = 0),
+        )
+
+        val actual = sut.measureNodes(values, 100, 0)
+
+        assertEquals(expectedNodes, actual)
+    }
+
+    @Test
+    fun newMeasurersAreEqual() {
+        val other = SquarifiedMeasurer()
+
+        val isEqual = sut == other
+
+        assertTrue(isEqual)
+    }
+
+    @Test
+    fun newMeasurersHaveEqualHashCodes() {
+        val otherHashCode = SquarifiedMeasurer().hashCode()
+
+        val hashCode = sut.hashCode()
+
+        assertEquals(otherHashCode, hashCode)
     }
 }

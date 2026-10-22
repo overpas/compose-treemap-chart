@@ -25,7 +25,7 @@ import by.overpass.treemapchart.core.tree.Tree
  *
  * @param T Type of the node values
  * @param data The tree to draw. The root takes the full size of the chart
- * @param evaluateItem The weight of a node, must be positive. It is not called for the root
+ * @param evaluateItem The weight of a node, must be finite and positive. It is not called for the root
  * @param modifier Modifier to be applied to the chart
  * @param drawNode Draws one node. Every node is drawn, parents before their children. In the
  * lambda, `size` is the size of the node and the origin is its top-left corner
